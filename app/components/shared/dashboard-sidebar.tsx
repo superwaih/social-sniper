@@ -38,7 +38,7 @@ const DashboardSidebar = () => {
         ))}
       </div>
 
-      <div className="border-brandgray flex gap-3 mb-[5.8rem]  border-b py-2 w-full">
+      <div className="border-brandgray flex gap-3 mb-[5.24rem]  border-b py-2 w-full">
         <Icons.logoutIcon />
         <p className="text-[#FF4C02] text-[19.89px] font-pixelify ">LOGOUT</p>
       </div>
