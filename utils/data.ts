@@ -51,25 +51,25 @@ export const runnerData: Runner[] = [
     tiktokVideos: 690,
     hashtagReach: '42M IMPRESSIONS'
   },
-  {
-    name: 'KEKIUS MAXIMUS',
-    engagement: { score: 94, status: 'positive' },
-    mentions: ['ELONMUSK', 'CRYPTO0OD', 'WHALENUMBER9', 'ADI'],
-    tiktokVideos: 789,
-    hashtagReach: '42M IMPRESSIONS'
-  },
-  {
-    name: 'KEKIUS MAXIMUS',
-    engagement: { score: 94, status: 'positive' },
-    mentions: ['ELONMUSK', 'CRYPTO0OD', 'WHALENUMBER9', 'ADI'],
-    tiktokVideos: 789,
-    hashtagReach: '42M IMPRESSIONS'
-  },
-  {
-    name: 'KEKIUS MAXIMUS',
-    engagement: { score: 94, status: 'positive' },
-    mentions: ['ELONMUSK', 'CRYPTO0OD', 'WHALENUMBER9', 'ADI'],
-    tiktokVideos: 789,
-    hashtagReach: '42M IMPRESSIONS'
-  }
+  // {
+  //   name: 'KEKIUS MAXIMUS',
+  //   engagement: { score: 94, status: 'positive' },
+  //   mentions: ['ELONMUSK', 'CRYPTO0OD', 'WHALENUMBER9', 'ADI'],
+  //   tiktokVideos: 789,
+  //   hashtagReach: '42M IMPRESSIONS'
+  // },
+  // {
+  //   name: 'KEKIUS MAXIMUS',
+  //   engagement: { score: 94, status: 'positive' },
+  //   mentions: ['ELONMUSK', 'CRYPTO0OD', 'WHALENUMBER9', 'ADI'],
+  //   tiktokVideos: 789,
+  //   hashtagReach: '42M IMPRESSIONS'
+  // },
+  // {
+  //   name: 'KEKIUS MAXIMUS',
+  //   engagement: { score: 94, status: 'positive' },
+  //   mentions: ['ELONMUSK', 'CRYPTO0OD', 'WHALENUMBER9', 'ADI'],
+  //   tiktokVideos: 789,
+  //   hashtagReach: '42M IMPRESSIONS'
+  // }
 ];
