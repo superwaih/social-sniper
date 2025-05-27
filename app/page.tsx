@@ -1,9 +1,12 @@
+"use client"
 import { Icons } from "@/components/shared/icons";
-import React from "react";
+import React, { useState } from "react";
 import RunnerTable from "./runner/components/runner-table";
 import DashboardLayout from "./components/shared/dashboard-layout";
+import TokenFilterSheet from "./components/sheets/token-filter-sheet";
 
 const Runner = () => {
+const [showfilters, setShowFilters] =  useState(false);
   return (
     <DashboardLayout>
       <section className="flex flex-col space-y-4">
@@ -16,17 +19,26 @@ const Runner = () => {
             <Icons.refresh className="text-[#FFFFFF94]" />
           </p>
           <div className="flex gap-4 items-center">
-            <div className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px]">
+            <button onClick={() => setShowFilters(true)} className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px]">
               <Icons.filterIcon className="text-[#FFFFFF8A] text-sm" />
-              <p className="text-[#FFFFFF8A] text-sm">RUNNER FILTERS</p>
-            </div>
-            <div className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px]">
+              <p className="text-[#FFFFFF8A] font-mono text-sm">
+                RUNNER FILTERS
+              </p>
+            </button>
+            <button className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px]">
               <Icons.filterIcon className="text-[#FFFFFF8A] text-sm" />
-              <p className="text-[#FFFFFF8A] text-sm">RUNNER FILTERS</p>
-            </div>
+              <p className="text-[#FFFFFF8A] font-mono text-sm">
+                RUNNER FILTERS
+              </p>
+            </button>
           </div>
         </div>
         <RunnerTable />
+
+        <TokenFilterSheet
+        open={showfilters}
+        onOpenChange={setShowFilters}
+        />
       </section>
     </DashboardLayout>
   );

@@ -45,40 +45,8 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
         className="max-w-[623px] backdrop-blur-lg bg-[#020C12]/60 overflow-hidden text-white rounded-[20px]  p-8"
       >
         <section className="relative flex flex-col gap-4">
-          {/* Background Glow SVG */}
-          <div className="pointer-events-none absolute inset-0 z-0">
-            <div className="absolute -top-32 -right-32 bottom-0">
-              <svg
-                width="367"
-                height="502"
-                viewBox="0 0 367 502"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  opacity="0.13"
-                  cx="273"
-                  cy="229"
-                  r="273"
-                  fill="url(#glowGradient)"
-                />
-                <defs>
-                  <radialGradient
-                    id="glowGradient"
-                    cx="0"
-                    cy="0"
-                    r="1"
-                    gradientUnits="userSpaceOnUse"
-                    gradientTransform="translate(273 229) rotate(90) scale(273)"
-                  >
-                    <stop stopColor="#FF4C02" />
-                    <stop offset="1" stopColor="#FF4C02" stopOpacity="0" />
-                  </radialGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
-
+       
+          <div className="absolute -top-11 left-[136px] w-[546px] h-[546px] rounded-[273px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.13]" />
           <div className="bg-[#0A141A]/60 p-3 rounded-[12px]">
             <DialogHeader>
               <DialogTitle className="text-[#FFFFFFD4] font-mono text-lg border-b py-3 border-brandgray">
@@ -217,6 +185,7 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
                 </button>
               </div>
             </div>
+            <div className="absolute top-[352px] left-[-201px] w-[546px] h-[546px] rounded-[273px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.13]" />
           </div>
         </section>
       </DialogContent>
