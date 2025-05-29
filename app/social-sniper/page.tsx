@@ -1,6 +1,7 @@
 import React from "react";
 import DashboardLayout from "../components/shared/dashboard-layout";
 import { Icons } from "@/components/shared/icons";
+import SniperTable from "./components/sniper-table";
 
 const Twitter = () => {
   return (
@@ -25,6 +26,7 @@ const Twitter = () => {
             </div>
           </div>
         </div>
+        <SniperTable />
       </section>
     </DashboardLayout>
   );
