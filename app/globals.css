@@ -18,6 +18,7 @@ body {
   font-family: var(--font-space-grotes);
 
 }
+
 /* styles.css */
 .bg-custom-gradient {
   background: linear-gradient(90deg, rgba(255, 76, 2, 0.4958) 0%, rgba(35, 20, 15, 0.67) 100%);

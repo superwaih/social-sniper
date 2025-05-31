@@ -1,11 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Button } from "../../components/ui/button";
-import { Card, CardContent } from "../../components/ui/card";
-import { Input } from "../../components/ui/input";
-import { Separator } from "../../components/ui/separator";
+
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+
 
 const formSchema = z.object({
   buyAmount: z.string().refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
@@ -21,7 +24,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export const Frame = (): JSX.Element => {
+export const Frame = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -86,7 +89,7 @@ export const Frame = (): JSX.Element => {
                   </label>
                   <div className="flex h-[52px] items-center bg-[#0a141a] rounded-[7px] px-6 py-[18.04px]">
                     <Input
-                      {...form.register(field.id)}
+                      {...form.register(field.id as "buyAmount" | "takeProfit1" | "takeProfit2")}
                       className="border-none bg-transparent text-[#7a7a7a] text-sm font-['Space_Grotesk',Helvetica] placeholder:text-[#7a7a7a] h-full p-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                       placeholder={field.placeholder}
                     />

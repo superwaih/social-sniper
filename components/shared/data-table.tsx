@@ -20,14 +20,17 @@ interface DataTableProps<T> {
 
 export function DataTable<T>({ data, columns, onRowClick }: DataTableProps<T>) {
   return (
-    <div className=" overflow-x-auto overflow-hidden">
-      <Table>
-        <TableHeader className="">
+    <div className="w-full overflow-x-auto">
+      <Table className="w-full table-auto">
+        <TableHeader>
           <TableRow>
             {columns.map((column, index) => (
               <TableHead
                 key={index}
-                className={cn(" uppercase font-mono text-[15px] !text-[#2F4857]", column.className)}
+                className={cn(
+                  "uppercase font-mono text-[15px] !text-[#2F4857] whitespace-nowrap",
+                  column.className
+                )}
               >
                 {column.header}
               </TableHead>
@@ -38,13 +41,13 @@ export function DataTable<T>({ data, columns, onRowClick }: DataTableProps<T>) {
           {data.map((row, rowIndex) => (
             <TableRow
               key={rowIndex}
-              className=" transition-colors rounded-[6px]  cursor-pointer"
+              className="transition-colors rounded-[6px] cursor-pointer w-full"
               onClick={() => onRowClick?.(row)}
             >
               {columns.map((column, colIndex) => (
                 <TableCell
                   key={colIndex}
-                  className={cn("font-mono", column.className)}
+                  className={cn("font-mono whitespace-nowrap", column.className)}
                 >
                   {typeof column.accessor === "function"
                     ? column.accessor(row)

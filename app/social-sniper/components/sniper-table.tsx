@@ -132,7 +132,8 @@ export default function SniperTable() {
       className: "",
     },
   ];
-
+console.log("Target Data:", selectedTarget);
+  console.log("Is Modal Open:", isModalOpen);
   return (
     <div className="bg-[#1A1A1A]">
       <DataTable
