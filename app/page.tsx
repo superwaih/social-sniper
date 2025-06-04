@@ -1,5 +1,6 @@
 "use client"
 
+import { BottomBanner } from "@/components/landing-page/bottom-banner";
 import BuiltBanner from "@/components/landing-page/built-banner";
 import Features from "@/components/landing-page/features";
 import Footer from "@/components/landing-page/footer";
@@ -16,6 +17,7 @@ const Runner = () => {
  <HowitWorks />
  <Features />
  <BuiltBanner />
+ <BottomBanner />
  <Footer />
   </main>
   );

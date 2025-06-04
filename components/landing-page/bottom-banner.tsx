@@ -1,41 +1,33 @@
 import React from "react";
 import { Button } from "../ui/button";
 
-export const Frame = () => {
+export const BottomBanner = () => {
   return (
     <section className="flex flex-col h-[434px] items-center justify-center relative bg-[#00060c] overflow-hidden">
-      <img
-        className="absolute w-[2386px] h-[1786px] top-[-566px] left-[-437px]"
-        alt="Vector"
-        src="https://c.animaapp.com/mbi2ko1qrYVTSI/img/vector.svg"
-      />
+      
 
       <div className="relative z-10 flex flex-col w-[720px] items-center gap-[30px] py-[112px]">
         <div className="flex flex-col items-center gap-4 self-stretch w-full">
-          <h1 className="self-stretch [background:linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(255,125,72,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Space_Grotesk',Helvetica] font-medium text-transparent text-[43px] text-center leading-normal">
-            Ready to Front-Run the Timeline?
+          <h1 className="text-2xl md:text-4xl gradient-text max-w-[528px] font-medium text-center">
+      Ready to Front-Run the Timeline?
           </h1>
 
           <p className="self-stretch [font-family:'Space_Grotesk',Helvetica] font-normal text-[#ffffff70] text-xl text-center leading-normal">
-            Join thousands of early snipers already securing entries.
-            <br />
-            Your alpha advantage starts now.
+          Join thousands of early snipers already securing entries. Your alpha advantage starts now.
           </p>
         </div>
 
-        <div className="flex items-start gap-[30px]">
-          <Button className="w-56 h-[57px] bg-[#ff4c02] hover:bg-[#e64400] [font-family:'Space_Grotesk',Helvetica] font-normal text-white text-[16.3px] tracking-[-0.65px] rounded">
+        <div className="flex md:flex-row flex-col gap-[30px]">
+          <Button className="px-12 py-3 bg-[#ff4c02] hover:bg-[#e64400] [font-family:'Space_Grotesk',Helvetica] font-normal text-white text-[16.3px] tracking-[-0.65px] rounded">
             Snipe now
           </Button>
 
-          <Button
-            variant="ghost"
-            className="w-56 h-[57px] [font-family:'Space_Grotesk',Helvetica] font-medium text-[16.3px] rounded"
+          <button
+            className="gradient-border  px-8 py-3 [font-family:'Space_Grotesk',Helvetica]  gradient-text font-medium text-[16.3px] "
           >
-            <span className="[background:linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(255,125,72,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent]">
               Learn more
-            </span>
-          </Button>
+  
+          </button>
         </div>
       </div>
 
