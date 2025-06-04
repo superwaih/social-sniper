@@ -43,7 +43,7 @@ const LandingNavbar = () => {
           );
         })}
       </div>
-      <Link href={'/runner'} className="w-[130px] h-[48px] md:w-56 flex justify-center items-center md:h-[54px] bg-[#ff4c02] rounded border-none text-white">
+      <Link href={'/'} className="w-[130px] h-[48px] md:w-56 flex justify-center items-center md:h-[54px] bg-[#ff4c02] rounded border-none text-white">
         <div className="font-['Space_Grotesk',Helvetica] font-normal text-[16.3px] text-center tracking-[-0.65px] leading-normal">
           Snipe now
         </div>
