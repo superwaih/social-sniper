@@ -1,92 +1,91 @@
-import Image from 'next/image';
-import React from 'react'
-import { Icons } from '../shared/icons';
+import Image from "next/image"
+import { Icons } from "../shared/icons"
 
 const HowitWorks = () => {
   return (
-    <section
-      className="min-h-screen mx-auto bg-[#00090F] flex flex-col space-y-4 w-[90%] md:w-[85%] "
-      id="how-it-works"
-    >
-      <div className="flex  justify-center my-20  items-center ">
-        <h1 className="text-4xl gradient-text font-medium text-center">
-          How it Works
-        </h1>
+    <section className="h-screen mx-auto bg-[#00090F] flex flex-col w-[90%] md:w-[85%] py-4 md:py-8" id="how-it-works">
+      {/* Header - Compact */}
+      <div className="flex justify-center items-center mb-4 md:mb-6">
+        <h1 className="text-xl md:text-3xl gradient-text font-medium text-center">How it Works</h1>
       </div>
 
-      {/* Main Grid Container */}
-      <section className="mx-auto relative gap-6 grid grid-cols-2 w-[95%] md:w-[70%] ">
-        {/* Grid One */}
-        <div className="flex flex-col space-y-4">
+      {/* Main Grid Container - Takes remaining space */}
+      <section className="mx-auto relative gap-4 md:gap-6 grid grid-cols-1 md:grid-cols-2 w-[95%] md:w-[75%] flex-1 min-h-0">
+        {/* Grid One - Content Boxes */}
+        <div className="flex flex-col justify-between space-y-3 md:space-y-4 order-2 md:order-1 min-h-0">
           {/* Box 1 */}
-          <div className="flex flex-col space-y-4">
-            <div
-              className="max-w-[590.3842163085938px] flex flex-col space-y-4
-      "
-            >
-              <h3 className="text-4xl font-medium gradient-text">
+          <div className="flex flex-col space-y-2 md:space-y-3 flex-1">
+            <div className="flex flex-col space-y-2">
+              <h3 className="text-lg md:text-2xl lg:text-3xl font-medium gradient-text leading-tight">
                 Track the Right Signals
               </h3>
-              <p className="text-[#FFFFFF70] w-full text-lg grok">
-                We monitor thousands of Twitter accounts, trending memes,
-                hashtags, and influencers 24/7 — so you don’t have to.
+              <p className="text-[#FFFFFF70] text-sm md:text-base grok leading-relaxed">
+                We monitor thousands of Twitter accounts, trending memes, hashtags, and influencers 24/7 — so you don&apos;t
+                have to.
               </p>
             </div>
-            <div>
+            <div className="w-full flex-1 min-h-0">
               <Image
                 src={"/images/box-1.png"}
-                width={590}
+                width={510}
                 height={330}
-                alt="box-1"
+                alt="Track the Right Signals"
+                className="w-full h-full object-cover rounded-lg max-h-[120px] md:max-h-[330px]"
+                priority
               />
             </div>
           </div>
+
           {/* Box 2 */}
-          <div className="flex flex-col space-y-4">
-            <div
-              className="max-w-[590.3842163085938px] flex flex-col space-y-4
-      "
-            >
-              <h3 className="text-4xl font-medium gradient-text">
+          <div className="flex flex-col space-y-2 md:space-y-3 flex-1">
+            <div className="flex flex-col space-y-2">
+              <h3 className="text-lg md:text-2xl lg:text-3xl font-medium gradient-text leading-tight">
                 Catch Drops in Real Time
               </h3>
-              <p className="text-[#FFFFFF70] w-full text-lg grok">
-                Social Sniper detects token launches, contract drops, and viral
-                tweet spikes instantly — with built-in risk flags.
+              <p className="text-[#FFFFFF70] text-sm md:text-base grok leading-relaxed">
+                Social Sniper detects token launches, contract drops, and viral tweet spikes instantly — with built-in
+                risk flags.
               </p>
             </div>
-            <div>
+            <div className="w-full flex-1 min-h-0">
               <Image
                 src={"/images/box-2.png"}
-                width={590}
+                width={510}
                 height={330}
-                alt="box-1"
+                alt="Catch Drops in Real Time"
+                className="w-full h-full object-cover rounded-lg max-h-[120px] md:max-h-[330px]"
               />
             </div>
           </div>
         </div>
 
-        {/* Grid Two */}
-        <div className="flex flex-col justify-center items-center ">
-          <div
-            // style={{ transform: "rotate(280deg)" }}
-            className="absolute rotate-180 scale-x-[-1]  top-[15%] left-[50%]"
-          >
+        {/* Grid Two - Central Image with Arrows */}
+        <div className="flex flex-col justify-center items-center relative order-1 md:order-2 mb-4 md:mb-0 min-h-0">
+          {/* Top Arrow - Hidden on mobile */}
+          <div className="hidden md:block absolute rotate-180 scale-x-[-1] top-[10%] left-[35%] transform -translate-x-1/2 z-10">
             <Icons.arrows />
           </div>
-          <Image
-            alt="box 3"
-            src={"/images/box-3.png"}
-            width={590}
-            height={530}
-          />
-          <div className="absolute bottom-[15%] left-[50%]">
+
+          {/* Central Image */}
+          <div className="w-full max-w-[400px] md:max-w-[500px] flex-1 flex items-center justify-center">
+            <Image
+              alt="Social Sniper Dashboard"
+              src={"/images/box-3.png"}
+              width={550}
+              height={530}
+              className="w-full h-auto rounded-lg max-h-[250px] md:max-h-[400px] object-contain z-50"
+              priority
+            />
+          </div>
+
+          {/* Bottom Arrow - Hidden on mobile */}
+          <div className="hidden md:block absolute bottom-[10%] left-[35%] transform -translate-x-1/2 z-10">
             <Icons.arrows />
           </div>
         </div>
       </section>
     </section>
-  );
+  )
 }
 
 export default HowitWorks
