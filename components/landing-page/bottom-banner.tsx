@@ -6,13 +6,13 @@ export const BottomBanner = () => {
     <section className="flex flex-col h-[434px] items-center justify-center relative bg-[#00060c] overflow-hidden">
       
 
-      <div className="relative z-10 flex flex-col w-[720px] items-center gap-[30px] py-[112px]">
-        <div className="flex flex-col items-center gap-4 self-stretch w-full">
+      <div className="relative z-10 flex flex-col max-w-[720px] items-center gap-[30px] py-[112px]">
+        <div className="flex flex-col items-center gap-4  w-full">
           <h1 className="text-2xl md:text-4xl gradient-text max-w-[528px] font-medium text-center">
       Ready to Front-Run the Timeline?
           </h1>
 
-          <p className="self-stretch [font-family:'Space_Grotesk',Helvetica] font-normal text-[#ffffff70] text-xl text-center leading-normal">
+          <p className=" [font-family:'Space_Grotesk',Helvetica] font-normal text-[#ffffff70] text-xl text-center leading-normal">
           Join thousands of early snipers already securing entries. Your alpha advantage starts now.
           </p>
         </div>

@@ -10,15 +10,15 @@ const footerlinks = [
         icon: Icons.telegram
     },
     {
-        id:1,
+        id:1665,
         icon: Icons.discord
     },
 ]
 const Footer = () => {
   return (
     <footer className='bg-[#00090F] py-16'>
-        <div className='mx-auto flex items-center justify-between w-[90%] md:w-[80%]'>
-<Icons.logo className='w-20 h-20 mb-4' />
+        <div className='mx-auto flex md:flex-row flex-col space-y-6 items-center justify-between w-[90%] md:w-[80%]'>
+<Icons.logo className='size-24 ' />
 <p className='text-[#FFFFFF70] text-2xl'>hello@socialsniper.ai</p>
 <div className='flex gap-4'>
    {footerlinks.map((footer) => (

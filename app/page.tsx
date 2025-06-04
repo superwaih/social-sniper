@@ -11,7 +11,7 @@ import HowitWorks from "@/components/landing-page/how-it-works";
 
 const Runner = () => {
   return (
-  <main className="flex flex-col  ">
+  <main className="flex flex-col overflow-hidden ">
     
  <Hero />
  <HowitWorks />

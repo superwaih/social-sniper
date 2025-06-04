@@ -22,7 +22,7 @@ const specs = [
 ]
 const BuiltBanner = () => {
   return (
-    <section className="bg-[#00090F] py-16">
+    <section className="bg-[#00090F] py-16 px-4">
       <div>
         <div className="flex flex-col space-y-8  justify-center my-20  items-center ">
           <h1 className="text-2xl md:text-4xl gradient-text max-w-[528px] font-medium text-center">

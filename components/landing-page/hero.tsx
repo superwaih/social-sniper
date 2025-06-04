@@ -17,7 +17,7 @@ export const Hero = () => {
     >
       <LandingNavbar />
       <div className="max-w-[720px]  w-full mx-auto items-center  justify-center flex flex-col  space-y-4">
-        <h2 className="font-semibold text-white leading-12 text-[62px] text-center">
+        <h2 className="font-semibold text-white leading-12 md:leading-12 text-[48px] md:text-[62px] text-center">
           Be First. Be Fast. Be a{" "}
           <span className="text-[#ff4c02] font-bold">Social Sniper</span>{" "}
         </h2>
