@@ -7,14 +7,6 @@ import { Button } from "../ui/button";
 
 
 
-// // Data for the footer links
-// const footerLinks = [
-//   "Whitepaper",
-//   "Changelog",
-//   "Twitter",
-//   "Telegram",
-//   "Terms of Service",
-// ];
 
 
 export const Hero = () => {
