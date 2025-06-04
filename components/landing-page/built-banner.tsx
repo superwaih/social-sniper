@@ -38,7 +38,7 @@ const BuiltBanner = () => {
 {specs.map((spec) => (
   <div
     key={spec.id}
-    className="bg-[#060F15] px-6 py-3  flex gap-3 items-center p-3 rounded-[11px] mb-4">
+    className="bg-[#060F15] min-w-[300px] px-6 py-3  flex gap-3 items-center p-3 rounded-[11px] mb-4">
       <Icons.checkmark />
     <p className="text-[#FFFFFF8F] grok">{spec.text}</p>
       </div>
