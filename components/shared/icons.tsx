@@ -1,6 +1,31 @@
 import { LucideProps } from "lucide-react";
 
 export const Icons = {
+  checkmark: (props: LucideProps) => (
+ <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    {...props}
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <rect width="32" height="32" fill="#fff" fillOpacity="0.1" rx="16"></rect>
+    <rect
+      width="31"
+      height="31"
+      x="0.5"
+      y="0.5"
+      stroke="#fff"
+      strokeOpacity="0.49"
+      rx="15.5"
+    ></rect>
+    <path
+      fill="#fff"
+      d="M14.214 22 9 16.786l1.303-1.304 3.911 3.911L22.607 11l1.304 1.303z"
+    ></path>
+  </svg>
+  ),
   twitterIcon: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
