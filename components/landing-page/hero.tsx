@@ -13,7 +13,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative p-4 overflow-none mb-20 h-screen mx-auto w-[90%] md:w-[85%] "
+      className="relative p-4 overflow-none mb-20 h-screen mx-auto w-[95%] md:w-[85%] "
     >
       <LandingNavbar />
       <div className="max-w-[720px]  w-full mx-auto items-center  justify-center flex flex-col  space-y-4">
