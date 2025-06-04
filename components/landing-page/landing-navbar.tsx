@@ -1,7 +1,7 @@
 import React from "react";
 import { Icons } from "../shared/icons";
-import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const navlinks = [
   {
@@ -43,11 +43,11 @@ const LandingNavbar = () => {
           );
         })}
       </div>
-      <Button className="md:w-56 md:h-[54px] bg-[#ff4c02] rounded border-none text-white">
+      <Link href={'/runner'} className="md:w-56 flex justify-center items-center md:h-[54px] bg-[#ff4c02] rounded border-none text-white">
         <div className="font-['Space_Grotesk',Helvetica] font-normal text-[16.3px] text-center tracking-[-0.65px] leading-normal">
           Snipe now
         </div>
-      </Button>
+      </Link>
     </div>
   );
 };

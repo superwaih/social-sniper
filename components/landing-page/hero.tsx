@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import LandingNavbar from "./landing-navbar";
-import { Button } from "../ui/button";
+import Link from "next/link";
 
 
 
@@ -25,11 +25,11 @@ export const Hero = () => {
           Detect viral meme tokens the moment they hit Twitter — and auto-buy
           them before the rest of the market catches on.
         </p>
-        <Button className="w-56 h-[54px] bg-[#ff4c02] rounded border-none text-white">
+        <Link href={'/runner'} className="w-56 flex items-center justify-center h-[54px] bg-[#ff4c02] rounded border-none text-white">
           <div className="font-['Space_Grotesk',Helvetica] font-normal text-[16.3px] text-center tracking-[-0.65px] leading-normal">
             Snipe now
           </div>
-        </Button>
+        </Link>
       </div>
       <div className="absolute w-[400px] md:w-[671px] h-[671px] top-[100px] md:top-[250px] left-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />
       <div className="absolute w-[450px]  md:w-[671px] h-[400px] md:h-[671px] md:top-[150px] right-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />

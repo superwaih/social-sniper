@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../ui/button";
+import Link from "next/link";
 
 export const BottomBanner = () => {
   return (
@@ -18,16 +18,17 @@ export const BottomBanner = () => {
         </div>
 
         <div className="flex md:flex-row flex-col gap-[30px]">
-          <Button className="px-12 py-3 bg-[#ff4c02] hover:bg-[#e64400] [font-family:'Space_Grotesk',Helvetica] font-normal text-white text-[16.3px] tracking-[-0.65px] rounded">
+          <Link href={'/sniper'} className="px-12 py-3 bg-[#ff4c02] hover:bg-[#e64400] [font-family:'Space_Grotesk',Helvetica] font-normal text-white text-[16.3px] tracking-[-0.65px] rounded">
             Snipe now
-          </Button>
+          </Link>
 
-          <button
+          <Link
+          href={'/'}
             className="gradient-border  px-8 py-3 [font-family:'Space_Grotesk',Helvetica]  gradient-text font-medium text-[16.3px] "
           >
               Learn more
   
-          </button>
+          </Link>
         </div>
       </div>
 
