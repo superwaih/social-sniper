@@ -34,7 +34,7 @@ const BuiltBanner = () => {
         </p>
         </div>
         <div className='mx-auto w-[90%] md:w-[70%]'>
-<div className='flex gap-6 w-full justify-between'>
+<div className='flex flex-wrap gap-6 w-full justify-between'>
 {specs.map((spec) => (
   <div
     key={spec.id}
