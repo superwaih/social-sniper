@@ -38,7 +38,7 @@ export const dashboardLinks = [
     // },
     {
         id: 2,
-        href: '/',
+        href: '/runner',
         icon: Icons.runnerIcon ,
        
 

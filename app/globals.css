@@ -7,6 +7,9 @@
   --font-special: var(--font-pixelify-sans), cursive;
 }
 
+html{
+  scroll-behavior: smooth;
+}
 body {
   font-family: var(--font-space-grotes);
 
@@ -96,5 +99,11 @@ body {
   }
   .active-btn{
     @apply rounded-md border border-[rgba(255,76,2,0.8)] text-white bg-[linear-gradient(90deg,rgba(255,76,2,0.4958)_0%,rgba(35,20,15,0.67)_100%)] hover:opacity-90 transition uppercase
+  }
+  .gradient-text{
+    @apply font-['Space_Grotesk',Helvetica]  bg-gradient-to-r from-white to-[#FF7D48] bg-clip-text text-transparent;
+  }
+  .grok{
+    @apply font-['Space_Grotesk',Helvetica] 
   }
 }
