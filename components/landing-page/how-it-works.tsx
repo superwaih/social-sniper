@@ -3,10 +3,15 @@ import { Icons } from "../shared/icons"
 
 const HowitWorks = () => {
   return (
-    <section className="h-screen mx-auto bg-[#00090F] flex flex-col w-[90%] md:w-[85%] py-4 md:py-8" id="how-it-works">
+    <section
+      className="h-screen relative bg-[#00090F] flex flex-col  py-4 md:py-8"
+      id="how-it-works"
+    >
       {/* Header - Compact */}
       <div className="flex justify-center items-center mb-4 md:mb-6">
-        <h1 className="text-xl md:text-3xl gradient-text font-medium text-center">How it Works</h1>
+        <h1 className="text-xl md:text-3xl gradient-text font-medium text-center">
+          How it Works
+        </h1>
       </div>
 
       {/* Main Grid Container - Takes remaining space */}
@@ -20,8 +25,8 @@ const HowitWorks = () => {
                 Track the Right Signals
               </h3>
               <p className="text-[#FFFFFF70] text-sm md:text-base grok leading-relaxed">
-                We monitor thousands of Twitter accounts, trending memes, hashtags, and influencers 24/7 — so you don&apos;t
-                have to.
+                We monitor thousands of Twitter accounts, trending memes,
+                hashtags, and influencers 24/7 — so you don&apos;t have to.
               </p>
             </div>
             <div className="w-full flex-1 min-h-0">
@@ -43,8 +48,8 @@ const HowitWorks = () => {
                 Catch Drops in Real Time
               </h3>
               <p className="text-[#FFFFFF70] text-sm md:text-base grok leading-relaxed">
-                Social Sniper detects token launches, contract drops, and viral tweet spikes instantly — with built-in
-                risk flags.
+                Social Sniper detects token launches, contract drops, and viral
+                tweet spikes instantly — with built-in risk flags.
               </p>
             </div>
             <div className="w-full flex-1 min-h-0">
@@ -84,8 +89,10 @@ const HowitWorks = () => {
           </div>
         </div>
       </section>
+      <div className="absolute w-[400px] md:w-[671px] h-[371px] top-[800px] md:top-[200px] left-[13px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />
+      <div className="absolute w-[450px]  md:w-[671px] h-[400px] md:h-[671px] md:top-[150px] right-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />
     </section>
-  )
+  );
 }
 
 export default HowitWorks
