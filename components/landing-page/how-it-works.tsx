@@ -67,16 +67,16 @@ const HowitWorks = () => {
         {/* Grid Two - Central Image with Arrows */}
         <div className="flex flex-col justify-center items-center relative order-1 md:order-2 mb-4 md:mb-0 min-h-0">
           {/* Top Arrow - Hidden on mobile */}
-          <div className="hidden md:block absolute rotate-180 scale-x-[-1] top-[10%] left-[35%] transform -translate-x-1/2 z-10">
+          <div className="hidden md:block absolute rotate-180 scale-x-[-1] top-[15%] left-[30%] transform -translate-x-1/2 z-10">
             <Icons.arrows />
           </div>
 
           {/* Central Image */}
-          <div className="w-full max-w-[400px] md:max-w-[500px] flex-1 flex items-center justify-center">
+          <div className="w-full max-w-[400px] md:max-w-[480px] flex-1 flex items-center justify-center">
             <Image
               alt="Social Sniper Dashboard"
               src={"/images/box-3.png"}
-              width={550}
+              width={480}
               height={530}
               className="w-full h-auto rounded-lg max-h-[250px] md:max-h-[400px] object-contain z-50"
               priority
@@ -84,12 +84,12 @@ const HowitWorks = () => {
           </div>
 
           {/* Bottom Arrow - Hidden on mobile */}
-          <div className="hidden md:block absolute bottom-[10%] left-[35%] transform -translate-x-1/2 z-10">
+          <div className="hidden md:block absolute bottom-[10%] left-[30%] transform -translate-x-1/2 z-10">
             <Icons.arrows />
           </div>
         </div>
       </section>
-      <div className="absolute w-[400px] md:w-[671px] h-[371px] top-[800px] md:top-[200px] left-[13px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />
+      <div className="absolute w-[400px] md:w-[671px] h-[371px] bottom-0 -left-[20%] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />
       <div className="absolute w-[450px]  md:w-[671px] h-[400px] md:h-[671px] md:top-[150px] right-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />
     </section>
   );
