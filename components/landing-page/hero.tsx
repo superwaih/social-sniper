@@ -167,7 +167,7 @@ export const Hero = () => {
         </motion.h2>
 
         <motion.p
-          className="font-['Space_Grotesk',Helvetica] font-normal text-[#ffffff70] text-[19px] text-center leading-normal"
+          className="grok font-normal text-[#ffffff70] text-[19px] text-center leading-normal"
           variants={textVariants}
         >
           Detect viral meme tokens the moment they hit Twitter — and auto-buy
@@ -175,7 +175,7 @@ export const Hero = () => {
         </motion.p>
 
         <motion.div variants={buttonVariants}>
-          <Link href="/runner">
+          <Link href="/">
             <motion.div
               className="w-56 flex items-center justify-center h-[54px] bg-[#ff4c02] rounded border-none text-white cursor-pointer relative overflow-hidden"
               variants={buttonVariants}

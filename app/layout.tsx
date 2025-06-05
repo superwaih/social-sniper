@@ -14,7 +14,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Social Sniper",
-  description: "Social Sniper",
+  description: "Detect viral meme tokens the moment they hit Twitter — and auto-buy them before the rest of the market catches on.",
 };
 
 export default function RootLayout({

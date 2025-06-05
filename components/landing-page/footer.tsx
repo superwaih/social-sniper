@@ -5,14 +5,14 @@ const footerlinks = [
         id:1,
         icon: Icons.xicon
     },
-    {
-        id:2,
-        icon: Icons.telegram
-    },
-    {
-        id:1665,
-        icon: Icons.discord
-    },
+    // {
+    //     id:2,
+    //     icon: Icons.telegram
+    // },
+    // {
+    //     id:1665,
+    //     icon: Icons.discord
+    // },
 ]
 const Footer = () => {
   return (
