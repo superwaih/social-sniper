@@ -28,11 +28,13 @@ const HowitWorks = () => {
           <div className="w-full max-w-[350px]">
             <Image
               src={"/images/box-1.png"}
-              width={350}
-              height={200}
+              width={700}
+              height={400}
               alt="Track the Right Signals"
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-contain rounded-lg"
               priority
+              quality={100}
+              sizes="(max-width: 768px) 350px, 510px"
             />
           </div>
         </div>
@@ -62,10 +64,12 @@ const HowitWorks = () => {
           <div className="w-full max-w-[350px]">
             <Image
               src={"/images/box-2.png"}
-              width={350}
-              height={200}
+              width={700}
+              height={400}
               alt="Catch Drops in Real Time"
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-contain rounded-lg"
+              quality={100}
+              sizes="(max-width: 768px) 350px, 510px"
             />
           </div>
         </div>
@@ -95,10 +99,12 @@ const HowitWorks = () => {
           <div className="w-full max-w-[350px]">
             <Image
               src={"/images/box-3.png"}
-              width={350}
-              height={200}
+              width={700}
+              height={400}
               alt="Buy or Snipe Instantly"
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-contain rounded-lg"
+              quality={100}
+              sizes="(max-width: 768px) 350px, 480px"
             />
           </div>
         </div>
@@ -122,11 +128,13 @@ const HowitWorks = () => {
             <div className="w-full flex-1 min-h-0">
               <Image
                 src={"/images/box-1.png"}
-                width={510}
-                height={330}
+                width={1020}
+                height={660}
                 alt="Track the Right Signals"
-                className="w-full h-full object-cover rounded-lg max-h-[330px]"
+                className="w-full h-full object-contain rounded-lg max-h-[330px]"
                 priority
+                quality={100}
+                sizes="510px"
               />
             </div>
           </div>
@@ -144,11 +152,13 @@ const HowitWorks = () => {
             </div>
             <div className="w-full flex-1 min-h-0">
               <Image
-                src={"/images/box-2.png"}
-                width={510}
-                height={330}
+                src={"/images/box-3.png"}
+                width={1020}
+                height={660}
                 alt="Catch Drops in Real Time"
-                className="w-full h-full object-cover rounded-lg max-h-[330px]"
+                className="w-full h-full object-contain rounded-lg max-h-[330px]"
+                quality={100}
+                sizes="510px"
               />
             </div>
           </div>
@@ -165,11 +175,13 @@ const HowitWorks = () => {
           <div className="w-full max-w-[480px] flex-1 flex items-center justify-center">
             <Image
               alt="Social Sniper Dashboard"
-              src={"/images/box-3.png"}
-              width={480}
-              height={530}
+              src={"/images/box-2.png"}
+              width={960}
+              height={1060}
               className="w-full h-auto rounded-lg max-h-[400px] object-contain z-50"
               priority
+              quality={100}
+              sizes="480px"
             />
           </div>
 
