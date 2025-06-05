@@ -167,7 +167,7 @@ export const Hero = () => {
         </motion.h2>
 
         <motion.p
-          className="font-['Space_Grotesk',Helvetica] font-normal text-[#ffffff70] text-[19px] text-center leading-normal"
+          className="grok font-normal text-[#ffffff70] text-[19px] text-center leading-normal"
           variants={textVariants}
         >
           Detect viral meme tokens the moment they hit Twitter — and auto-buy
