@@ -125,7 +125,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative p-4 overflow-hidden mb-20 h-screen mx-auto w-[95%] md:w-[85%]"
+      className="relative p-4 overflow-hidden  h-screen mx-auto w-[95%] md:w-[85%]"
       ref={ref}
     >
       <motion.div

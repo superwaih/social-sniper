@@ -415,6 +415,21 @@ export const Icons = {
       ></path>
     </svg>
   ),
+  menuicon: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      {...props}
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="#FF4C02"
+        d="M4 17.27v-1h16v1zm0-4.77v-1h16v1zm0-4.77v-1h16v1z"
+      ></path>
+    </svg>
+  ),
   arrows: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
