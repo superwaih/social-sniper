@@ -117,7 +117,7 @@ export const BottomBanner = () => {
       />
 
       <motion.div
-        className="w-[671px] h-[671px] top-[154px] left-[-42px] rounded-[335.5px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
+        className="size-[200px] md:w-[671px] md:h-[671px] top-[154px] left-[-42px] rounded-[335.5px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
         variants={gradientVariants}
         initial="hidden"
         animate={
