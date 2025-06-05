@@ -59,7 +59,7 @@ const LandingNavbar = () => {
 
   return (
     <>
-      <div className="flex justify-between bg-[#020D13] md:bg-transparent rounded-[24px] items-center w-full px-6 py-2 md:py-4 relative z-50">
+      <div className="fixed top-0 md:top-4 left-0 md:left-1/2 md:-translate-x-1/2 z-50 flex justify-between bg-[#020D13] md:bg-transparent rounded-[24px] items-center w-full md:w-[80%] px-6 py-2 md:py-4 backdrop-blur-sm">
         <Icons.logo className="size-16 md:size-24" />
 
         {/* Desktop Navigation */}
@@ -110,14 +110,14 @@ const LandingNavbar = () => {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-[55] md:hidden"
           onClick={closeMobileMenu}
         />
       )}
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-[#020D13] transform transition-transform duration-300 ease-in-out z-50 md:hidden ${
+        className={`fixed top-0 right-0 h-full w-80 bg-[#020D13] transform transition-transform duration-300 ease-in-out z-[60] md:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

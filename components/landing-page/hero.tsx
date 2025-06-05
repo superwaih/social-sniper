@@ -137,7 +137,7 @@ export const Hero = () => {
       </motion.div>
 
       <motion.div
-        className="max-w-[720px] w-full mx-auto items-center justify-center flex flex-col space-y-4"
+        className="max-w-[720px] mt-32 w-full mx-auto items-center justify-center flex flex-col space-y-4"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
