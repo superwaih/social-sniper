@@ -61,7 +61,7 @@ console.log(selectedRunner)
           <Button
             variant="outline"
             size="sm"
-            className="text-xs text-[#FFFFFF8A] font-mono border-gray-700 flex gap-3 items-center hover:text-white bg-transparent hover:bg-opacity-50"
+            className="text-xs text-[#FFFFFF8A]   border-gray-700 flex gap-3 items-center hover:text-white bg-transparent hover:bg-opacity-50"
             onClick={(e) => {
               e.stopPropagation();
               setSelectedRunner(runner);

@@ -6,7 +6,7 @@ const Footer = () => {
     <div className='py-8 border-t border-brandgray w-full'>
        <div className='flex  justify-between px-8 w-full g'>
         {footerLinks.map((footer) =>(
-            <div className='text-sm font-mono text-[#FFFFFF75]' key={footer.id}>
+            <div className='text-sm   text-[#FFFFFF75]' key={footer.id}>
                 {footer.name}
 
             </div>

@@ -82,14 +82,14 @@ export default function SniperTable() {
       accessor: (target: Target) => (
         <span
           className={cn(
-            "font-mono",
+            " ",
             target.engagementScore >= 90 ? "text-green-500" : "text-red-500"
           )}
         >
           {target.engagementScore}/100
         </span>
       ),
-      className: "font-mono text-[#FFFFFFF2]",
+      className: "  text-[#FFFFFFF2]",
     },
     {
       header: "MENTIONS SPIKE",

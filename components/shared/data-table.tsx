@@ -28,7 +28,7 @@ export function DataTable<T>({ data, columns, onRowClick }: DataTableProps<T>) {
               <TableHead
                 key={index}
                 className={cn(
-                  "uppercase font-mono text-[15px] !text-[#2F4857] whitespace-nowrap",
+                  "uppercase   text-[15px] !text-[#2F4857] whitespace-nowrap",
                   column.className
                 )}
               >
@@ -47,7 +47,7 @@ export function DataTable<T>({ data, columns, onRowClick }: DataTableProps<T>) {
               {columns.map((column, colIndex) => (
                 <TableCell
                   key={colIndex}
-                  className={cn("font-mono whitespace-nowrap", column.className)}
+                  className={cn("  whitespace-nowrap", column.className)}
                 >
                   {typeof column.accessor === "function"
                     ? column.accessor(row)

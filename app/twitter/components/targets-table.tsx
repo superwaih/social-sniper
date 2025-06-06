@@ -104,9 +104,9 @@ export default function TargetsTable() {
     {
       header: "MARKET CAP",
       accessor: (target: Target) => (
-        <span className="font-mono text-[#FFFFFFF2]">{target.mcap}</span>
+        <span className="  text-[#FFFFFFF2]">{target.mcap}</span>
       ),
-      className: "font-mono text-[#FFFFFFF2]",
+      className: "  text-[#FFFFFFF2]",
     },
     {
       header: "BOUGHT",
@@ -156,7 +156,7 @@ export default function TargetsTable() {
         <Button
           variant="outline"
           size="sm"
-          className="text-xs text-[#FFFFFF8A] py-4 font-mono border-gray-700 flex gap-3 items-center hover:text-white hover:border-white hover:bg-[#FF4C02]  bg-transparent"
+          className="text-xs text-[#FFFFFF8A] py-4   border-gray-700 flex gap-3 items-center hover:text-white hover:border-white hover:bg-[#FF4C02]  bg-transparent"
           onClick={(e) => {
             e.stopPropagation();
             setSelectedTarget(target);
@@ -168,7 +168,7 @@ export default function TargetsTable() {
         </Button>
       ),
       className:
-        "text-[#FFFFFFF2] text-center font-mono flex justify-center items-center",
+        "text-[#FFFFFFF2] text-center   flex justify-center items-center",
     },
   ];
 console.log(selectedTarget)
