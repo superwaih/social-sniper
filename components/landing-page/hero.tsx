@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import React from "react"
@@ -104,7 +105,7 @@ export const Hero = () => {
   }
 
   return (
-    <section id="home" className="relative p-4 overflow-hidden h-screen mx-auto w-[95%] md:w-[85%]" ref={ref}>
+    <section id="home" className="relative p-4 overflow-hidden md:h-screen mx-auto w-[95%] md:w-[85%]" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -174,7 +175,7 @@ export const Hero = () => {
 
       {/* Animated Background Gradients */}
       <motion.div
-        className="absolute w-[400px] md:w-[671px] h-[671px] top-[100px] md:top-[250px] left-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
+        className="absolute w-[400px] md:w-[671px] h-[271px] top-[100px] md:top-[250px] left-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
         variants={gradientVariants}
         initial="hidden"
         animate={
@@ -202,7 +203,7 @@ export const Hero = () => {
       />
 
       <motion.div
-        className="absolute w-[450px] md:w-[671px] h-[400px] md:h-[671px] md:top-[150px] right-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
+        className="absolute w-[450px] md:w-[671px] h-[200px] md:h-[671px] md:top-[150px] right-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
         variants={gradientVariants}
         initial="hidden"
         animate={
@@ -231,7 +232,7 @@ export const Hero = () => {
 
       {/* Responsive Animated Hero Image */}
       <motion.div
-        className="mx-auto w-full max-w-[1010px] h-[500px] md:h-[660px] relative pt-8 md:pt-20"
+        className="mx-auto w-full max-w-[1010px] h-[300px] md:h-[660px] relative pt-8 md:pt-20"
         variants={imageVariants}
         initial="hidden"
         animate={
@@ -256,16 +257,13 @@ export const Hero = () => {
             scale: 1.02,
             transition: { duration: 0.3, ease: "easeOut" },
           }}
-          className="relative w-full h-full"
+          className="relative w-full h-full" // Changed to h-full to use all available height
         >
           {/* Mobile Image */}
-          <Image
+          <img
             src="/mobile-hero.png"
-            fill
             alt="Hero Image Mobile"
-            className="drop-shadow-2xl object-contain md:hidden scale-110 md:scale-100"
-            sizes="(max-width: 768px) 100vw, 0vw"
-            priority
+            className="absolute bottom-0 md:hidden w-full h-full" // Removed scale-110
           />
 
           {/* Desktop Image */}

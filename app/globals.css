@@ -107,6 +107,12 @@ body {
   .grok{
     @apply font-['Space_Grotesk',Helvetica] 
   }
+  .heading-text{
+    @apply text-[23.62px] md:text-[43px] font-medium gradient-text text-start md:text-center leading-tight
+  }
+  .description-text{
+    @apply text-[#FFFFFF70] text-sm md:text-lg text-start md:text-center grok leading-relaxed px-4 md:max-w-[320px]
+  }
    .font-pixelify {
     font-family: var(--font-pixelify-sans), monospace;
   }
