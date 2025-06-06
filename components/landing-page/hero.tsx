@@ -143,7 +143,7 @@ export const Hero = () => {
         animate={isInView ? "visible" : "hidden"}
       >
         <motion.h2
-          className="font-semibold text-white leading-12 md:leading-12 text-[48px] md:text-[62px] text-center"
+          className="font-grok max-w-[253px] -tracking-[2px]  text-white leading-[33.51px] md:leading-12 text-[40.72px] md:text-[62px] text-center"
           variants={textVariants}
         >
           Be First. Be Fast. Be a{" "}
@@ -162,7 +162,7 @@ export const Hero = () => {
               transition: { duration: 0.2 },
             }}
           >
-            Social Sniper
+            Social Sniper<span className="text-white">.</span>
           </motion.span>
         </motion.h2>
 
