@@ -35,7 +35,7 @@ const Features = () => {
     <section className="relative min-h-[50vh] overflow-hidden pb-20 bg-[#00090F]" id="features">
       <div className=" mx-auto w-[90%] md:w-[70%] ">
         <div className="flex  justify-center my-20  items-center ">
-          <h1 className="text-4xl gradient-text max-w-[528px] font-medium text-center">
+          <h1 className="text-[23.58px] md:text-4xl gradient-text max-w-[528px] font-medium text-center">
             Live Features That Give You the Edge
           </h1>
         </div>
@@ -49,7 +49,7 @@ const Features = () => {
                 <div className="bg-[#CB846638] p-2 rounded-md">
                   <feature.Icon />
                 </div>
-                <p className="text-[#FFFFFF8F] grok">{feature.text}</p>
+                <p className="text-[#FFFFFF8F] md:text-[16px] text-sm grok">{feature.text}</p>
               </div>
             ))}
           </div>

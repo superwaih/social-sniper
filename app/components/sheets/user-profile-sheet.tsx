@@ -48,27 +48,27 @@ export default function UserProfileSidebar() {
               <AvatarIcon />
               <p className="text-[#8A8A8A] text-xs">upload picture</p>
             </div>
-            <div className="font-mono text-[29.41px] text-white mt-2">
+            <div className="  text-[29.41px] text-white mt-2">
               0XFF98...7890
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm text-white font-mono">USERNAME</label>
+            <label className="text-sm text-white  ">USERNAME</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
                 @
               </span>
               <Input
                 defaultValue="JAAMEY_STONE"
-                className="bg-[#FFFFFF1C] !py-3 border-[#000000] border pl-8 font-mono text-white"
+                className="bg-[#FFFFFF1C] !py-3 border-[#000000] border pl-8   text-white"
               />
             </div>
           </div>
 
           {/* Appearance */}
           <div className="space-y-4">
-            <label className="text-sm text-white font-mono">APPEARANCE</label>
+            <label className="text-sm text-white  ">APPEARANCE</label>
             <div className="text-sm text-[#8A8A8A]">
               Choose a preferred theme for
             </div>
@@ -86,10 +86,10 @@ export default function UserProfileSidebar() {
 
           {/* Twitter Account */}
           <div className="space-y-4">
-            <label className="text-sm text-gray-400 font-mono">
+            <label className="text-sm text-gray-400  ">
               TWITTER ACCOUNT
             </label>
-            <Button className="w-full py-3 bg-[#FF4C02] hover:bg-[#FF4C02] text-white font-mono">
+            <Button className="w-full py-3 bg-[#FF4C02] hover:bg-[#FF4C02] text-white  ">
               <LinkIcon className="mr-2 h-4 w-4" />
               CONNECT TWITTER
             </Button>

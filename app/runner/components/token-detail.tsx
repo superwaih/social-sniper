@@ -49,7 +49,7 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
           <div className="absolute -top-11 left-[136px] w-[546px] h-[546px] rounded-[273px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.13]" />
           <div className="bg-[#0A141A]/60 p-3 rounded-[12px]">
             <DialogHeader>
-              <DialogTitle className="text-[#FFFFFFD4] font-mono text-lg border-b py-3 border-brandgray">
+              <DialogTitle className="text-[#FFFFFFD4]   text-lg border-b py-3 border-brandgray">
                 {dummyTokenData.name}{" "}
                 <span className="">({dummyTokenData.symbol})</span>
               </DialogTitle>
@@ -66,7 +66,7 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
                   <span className="text-[#FFFFFFD4]  uppercase text-xs w-full whitespace-nowrap overflow-hidden text-ellipsis">
                     {token.name}
                   </span>
-                  <p className="font-mono text-[#FFFFFF5C] text-md break-all">
+                  <p className="  text-[#FFFFFF5C] text-md break-all">
                     {token.value}
                   </p>
                 </div>
@@ -84,7 +84,7 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
                 <span className="text-[#FFFFFFD4]  uppercase text-xs w-full whitespace-nowrap overflow-hidden text-ellipsis">
                   BUY/SELL RATIO:
                 </span>
-                <div className="font-mono justify-between flex items-center  text-[13px] w-full  text-[#FFFFFF5C] text-md ">
+                <div className="  justify-between flex items-center  text-[13px] w-full  text-[#FFFFFF5C] text-md ">
                   <p className="text-green-400 w-full">20% BUYS / 80% SELLS</p>
                 </div>
               </div>
@@ -100,7 +100,7 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
             </div>
             <div className="h-[1px] w-full bg-brandgray my-3 "></div>
             <div className="flex justify-between items-center">
-              <div className="flex font-mono text-sm text-white  gap-2">
+              <div className="flex   text-sm text-white  gap-2">
                 <ChevronDown />
                 <p>VIEW DETAILS</p>
               </div>
@@ -119,7 +119,7 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
 
           <div className="bg-[#0A141A]/60 p-3 rounded-[12px]">
             <DialogHeader>
-              <DialogTitle className="text-[#FFFFFFD4] font-mono text-lg border-b py-3 border-brandgray">
+              <DialogTitle className="text-[#FFFFFFD4]   text-lg border-b py-3 border-brandgray">
                 {dummyTokenData.name}{" "}
                 <span className="">({dummyTokenData.symbol})</span>
               </DialogTitle>
@@ -136,7 +136,7 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
                   <span className="text-[#FFFFFFD4]  uppercase text-xs w-full whitespace-nowrap overflow-hidden text-ellipsis">
                     {token.name}
                   </span>
-                  <p className="font-mono text-[#FFFFFF5C] text-md break-all">
+                  <p className="  text-[#FFFFFF5C] text-md break-all">
                     {token.value}
                   </p>
                 </div>
@@ -154,7 +154,7 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
                 <span className="text-[#FFFFFFD4]  uppercase text-xs w-full whitespace-nowrap overflow-hidden text-ellipsis">
                   BUY/SELL RATIO:
                 </span>
-                <div className="font-mono justify-between flex items-center  text-[13px] w-full  text-[#FFFFFF5C] text-md ">
+                <div className="  justify-between flex items-center  text-[13px] w-full  text-[#FFFFFF5C] text-md ">
                   <p className="text-green-400 w-full">20% BUYS / 80% SELLS</p>
                 </div>
               </div>
@@ -170,16 +170,16 @@ export const TokenDetail: FC<KekimaxDialogProps> = ({ open, setOpen }) => {
             </div>
             <div className="h-[1px] w-full bg-brandgray my-3 "></div>
             <div className="flex justify-between items-center">
-              <div className="flex font-mono text-sm text-white  gap-2">
+              <div className="flex   text-sm text-white  gap-2">
                 <ChevronDown />
                 <p>VIEW DETAILS</p>
               </div>
               <div className="flex gap-4 ">
-                <button className="flex gap-3 font-mono items-center border p-2 rounded-md border-[#779CBF6B]">
+                <button className="flex gap-3   items-center border p-2 rounded-md border-[#779CBF6B]">
                   <Icons.trackicon />
                   TRACK TOKEN
                 </button>
-                <button className="flex font-mono bg-[#FF4C02] text-[#FFFFFFD4] gap-3 items-center border p-2 rounded-md border-[#779CBF6B]">
+                <button className="flex   bg-[#FF4C02] text-[#FFFFFFD4] gap-3 items-center border p-2 rounded-md border-[#779CBF6B]">
                   <Icons.autobuy />
                   SET AUTO BUY
                 </button>

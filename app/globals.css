@@ -96,6 +96,7 @@ body {
   }
   body {
     @apply bg-[#061016] text-foreground;
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
   }
   .active-btn{
     @apply rounded-md border border-[rgba(255,76,2,0.8)] text-white bg-[linear-gradient(90deg,rgba(255,76,2,0.4958)_0%,rgba(35,20,15,0.67)_100%)] hover:opacity-90 transition uppercase
@@ -106,6 +107,19 @@ body {
   .grok{
     @apply font-['Space_Grotesk',Helvetica] 
   }
+  .heading-text{
+    @apply text-[23.62px] md:text-[43px] font-medium gradient-text text-start md:text-center leading-tight
+  }
+  .description-text{
+    @apply text-[#FFFFFF70] text-sm md:text-lg text-start md:text-center grok leading-relaxed px-4 md:max-w-[320px]
+  }
+   .font-pixelify {
+    font-family: var(--font-pixelify-sans), monospace;
+  }
+    .font-space {
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  }
+
 }
 .gradient-border {
   border: 1px solid;

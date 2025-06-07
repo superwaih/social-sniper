@@ -8,12 +8,12 @@ const Twitter = () => {
     <DashboardLayout>
 
      <section className="flex flex-col space-y-4">
-          <h2 className="text-[40.41px] font-mono -leading-[1%] text-[#FFFFFFBF]">
+          <h2 className="text-[40.41px]   -leading-[1%] text-[#FFFFFFBF]">
             TWITTER TARGETS
           </h2>
           <div className="bg-[#091820] p-[14px] flex justify-between items-center">
             <p className="flex gap-2  text-[#FFFFFF94] items-center">
-              {/* <span className="text-lg font-mono"></span> */}
+              {/* <span className="text-lg  "></span> */}
               <Icons.refresh className="text-[#FFFFFF94]" />
             </p>
             <div className='flex gap-4 items-center'>

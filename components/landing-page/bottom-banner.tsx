@@ -158,14 +158,14 @@ export const BottomBanner = () => {
           variants={containerVariants}
         >
           <motion.h1
-            className="text-2xl md:text-4xl gradient-text max-w-[528px] font-medium text-center"
+            className="text-[34.58px] md:text-4xl gradient-text max-w-[528px] font-medium text-center"
             variants={textVariants}
           >
             Ready to Front-Run the Timeline?
           </motion.h1>
 
           <motion.p
-            className="[font-family:'Space_Grotesk',Helvetica] p-2 font-normal text-[#ffffff70] text-xl text-center leading-normal"
+            className="[font-family:'Space_Grotesk',Helvetica] p-5 font-normal text-[#ffffff70] text-[13px] md:text-xl text-center leading-normal"
             variants={textVariants}
           >
             Join thousands of early snipers already securing entries. Your alpha
@@ -174,13 +174,13 @@ export const BottomBanner = () => {
         </motion.div>
 
         <motion.div
-          className="flex md:flex-row flex-col gap-[30px]"
+          className="flex flex-row  gap-[30px]"
           variants={buttonContainerVariants}
         >
           <motion.div variants={buttonVariants}>
-            <Link href="/sniper">
+            <Link href="/">
               <motion.div
-                className="px-12 py-3 bg-[#ff4c02] [font-family:'Space_Grotesk',Helvetica] font-normal text-white text-[16.3px] tracking-[-0.65px] rounded cursor-pointer relative overflow-hidden"
+                className="px-6 md:px-12 py-3 md:py-3 bg-[#ff4c02] [font-family:'Space_Grotesk',Helvetica] font-normal text-white text-[16.3px] tracking-[-0.65px] rounded cursor-pointer relative overflow-hidden"
                 whileHover={{
                   scale: 1.05,
                   backgroundColor: "#e64400",
@@ -205,7 +205,7 @@ export const BottomBanner = () => {
           <motion.div variants={buttonVariants}>
             <Link href="/">
               <motion.div
-                className="gradient-border px-8 py-3 font-medium text-[16.3px] cursor-pointer relative overflow-hidden"
+                className="gradient-border px-4 md:px-8 py-2 md:py-3 font-medium text-[16.3px] cursor-pointer relative overflow-hidden"
                 style={{ fontFamily: "'Space Grotesk', Helvetica" }}
                 whileHover={{
                   scale: 1.05,

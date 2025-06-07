@@ -1,14 +1,15 @@
-"use client";
+/* eslint-disable @next/next/no-img-element */
+"use client"
 
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import LandingNavbar from "./landing-navbar";
+import React from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { motion, useInView } from "framer-motion"
+import LandingNavbar from "./landing-navbar"
 
 export const Hero = () => {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const ref = React.useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   // Animation variants
   const containerVariants = {
@@ -20,7 +21,7 @@ export const Hero = () => {
         delayChildren: 0.1,
       },
     },
-  };
+  }
 
   const textVariants = {
     hidden: {
@@ -37,7 +38,7 @@ export const Hero = () => {
         ease: [0.25, 0.25, 0, 1],
       },
     },
-  };
+  }
 
   const buttonVariants = {
     hidden: {
@@ -68,7 +69,7 @@ export const Hero = () => {
         duration: 0.1,
       },
     },
-  };
+  }
 
   const imageVariants = {
     hidden: {
@@ -86,7 +87,7 @@ export const Hero = () => {
         delay: 0.4,
       },
     },
-  };
+  }
 
   const gradientVariants = {
     hidden: {
@@ -101,33 +102,10 @@ export const Hero = () => {
         ease: "easeOut",
       },
     },
-  };
-
-  // const floatingAnimation = {
-  //   y: [-10, 10, -10],
-  //   transition: {
-  //     duration: 6,
-  //     repeat: Number.POSITIVE_INFINITY,
-  //     ease: "easeInOut",
-  //   },
-  // };
-
-  // const pulseAnimation = {
-  //   scale: [1, 1.05, 1],
-  //   opacity: [0.29, 0.4, 0.29],
-  //   transition: {
-  //     duration: 4,
-  //     repeat: Number.POSITIVE_INFINITY,
-  //     ease: "easeInOut",
-  //   },
-  // };
+  }
 
   return (
-    <section
-      id="home"
-      className="relative p-4 overflow-hidden  h-screen mx-auto w-[95%] md:w-[85%]"
-      ref={ref}
-    >
+    <section id="home" className="relative p-4 overflow-hidden md:h-screen mx-auto w-[95%] md:w-[85%]" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -137,13 +115,13 @@ export const Hero = () => {
       </motion.div>
 
       <motion.div
-        className="max-w-[720px] mt-32 w-full mx-auto items-center justify-center flex flex-col space-y-4"
+        className="max-w-[720px] mt-16 md:mt-32 w-full mx-auto items-center justify-center flex flex-col space-y-4"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
         <motion.h2
-          className="font-grok max-w-[253px] -tracking-[2px]  text-white leading-[37.51px] md:leading-12 text-[40.72px] md:text-[62px] text-center"
+          className="font-grok mt-12 max-w-[253px] md:max-w-[720px] -tracking-[2px] md:tracking-normal text-white leading-[33.51px] md:leading-[72px] text-[40.72px] md:text-[79px] text-center"
           variants={textVariants}
         >
           Be First. Be Fast. Be a{" "}
@@ -167,11 +145,11 @@ export const Hero = () => {
         </motion.h2>
 
         <motion.p
-          className="grok font-normal text-[#ffffff70] text-[19px] text-center leading-normal"
+          className="mt-4 text-[#ffffff70] text-[12px] md:text-[19px] text-center leading-[100%]"
           variants={textVariants}
         >
-          Detect viral meme tokens the moment they hit Twitter — and auto-buy
-          them before the rest of the market catches on.
+          Detect viral meme tokens the moment they hit Twitter — and auto-buy them before the rest of the market catches
+          on.
         </motion.p>
 
         <motion.div variants={buttonVariants}>
@@ -197,7 +175,7 @@ export const Hero = () => {
 
       {/* Animated Background Gradients */}
       <motion.div
-        className="absolute w-[400px] md:w-[671px] h-[671px] top-[100px] md:top-[250px] left-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
+        className="absolute w-[400px] md:w-[671px] h-[271px] top-[100px] md:top-[250px] left-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
         variants={gradientVariants}
         initial="hidden"
         animate={
@@ -225,7 +203,7 @@ export const Hero = () => {
       />
 
       <motion.div
-        className="absolute w-[450px] md:w-[671px] h-[400px] md:h-[671px] md:top-[150px] right-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
+        className="absolute w-[450px] md:w-[671px] h-[200px] md:h-[671px] md:top-[150px] right-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)]"
         variants={gradientVariants}
         initial="hidden"
         animate={
@@ -252,9 +230,9 @@ export const Hero = () => {
         }}
       />
 
-      {/* Animated Hero Image */}
+      {/* Responsive Animated Hero Image */}
       <motion.div
-        className="mx-auto w-full max-w-[1010px] h-[660px] relative pt-20"
+        className="mx-auto w-full max-w-[1010px] h-[300px] md:h-[660px] relative pt-8 md:pt-20"
         variants={imageVariants}
         initial="hidden"
         animate={
@@ -279,13 +257,23 @@ export const Hero = () => {
             scale: 1.02,
             transition: { duration: 0.3, ease: "easeOut" },
           }}
+          className="relative w-full h-full" // Changed to h-full to use all available height
         >
+          {/* Mobile Image */}
+          <img
+            src="/mobile-hero.png"
+            alt="Hero Image Mobile"
+            className="absolute bottom-0 md:hidden w-full h-full" // Removed scale-110
+          />
+
+          {/* Desktop Image */}
           <Image
             src="/heroo-img.png"
-            width={1010}
-            height={660}
-            alt="Hero Image"
-            className="drop-shadow-2xl"
+            fill
+            alt="Hero Image Desktop"
+            className="drop-shadow-2xl object-contain hidden md:block"
+            sizes="(min-width: 768px) 1010px, 0vw"
+            priority
           />
         </motion.div>
       </motion.div>
@@ -313,5 +301,5 @@ export const Hero = () => {
         />
       ))}
     </section>
-  );
-};
+  )
+}
