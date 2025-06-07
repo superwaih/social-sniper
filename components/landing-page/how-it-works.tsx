@@ -191,13 +191,13 @@ const HowitWorks = () => {
         className="absolute w-[300px] md:w-[671px] h-[371px] bottom-0 
   md:-left-[20%] -left-[40%] rounded-[335.5px] 
   [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] 
-  opacity-[0.29] md:opacity-[0.29] opacity-[0.15]"
+  opacity-[0.29] md:opacity-[0.29] "
       />
       <div
         className="absolute w-[450px] md:w-[671px] h-[400px] md:h-[671px] 
         top-auto bottom-0 md:top-0 md:right-[83px] right-[-40%] rounded-[335.5px] 
         [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] 
-        opacity-[0.29] md:opacity-[0.29] opacity-[0.15]"
+        opacity-[0.29] md:opacity-[0.29] "
       />
     </section>
   );
