@@ -18,9 +18,7 @@ const HowitWorks = () => {
       <div className="block p-4 md:hidden w-[90%] mx-auto space-y-8">
         {/* Step 1 - Track the Right Signals */}
         <div className="flex flex-col items-start   md:items-center space-y-4">
-          <h3 className="heading-text">
-            Track the Right Signals
-          </h3>
+          <h3 className="heading-text">Track the Right Signals</h3>
           <p className="description-text">
             We monitor thousands of Twitter accounts, trending memes, hashtags,
             and influencers 24/7 — so you don&apos;t have to.
@@ -54,9 +52,7 @@ const HowitWorks = () => {
 
         {/* Step 2 - Catch Drops in Real Time */}
         <div className="flex flex-col  md:items-center space-y-4">
-          <h3 className="heading-text">
-            Catch Drops in Real Time
-          </h3>
+          <h3 className="heading-text">Catch Drops in Real Time</h3>
           <p className="description-text">
             Social Sniper detects token launches, contract drops, and viral
             tweet spikes instantly — with built-in risk flags.
@@ -89,9 +85,7 @@ const HowitWorks = () => {
 
         {/* Step 3 - Buy or Snipe Instantly */}
         <div className="flex  flex-col justify-start md:items-center space-y-4">
-          <h3 className="heading-text">
-            Buy or Snipe Instantly
-          </h3>
+          <h3 className="heading-text">Buy or Snipe Instantly</h3>
           <p className="description-text">
             Set your buy amounts, risk tolerance, and let Social Sniper execute
             trades automatically when opportunities arise.
@@ -193,8 +187,18 @@ const HowitWorks = () => {
       </section>
 
       {/* Background Gradients */}
-      <div className="absolute w-[300px] md:w-[671px] h-[371px] bottom-0 -left-[20%] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />
-      <div className="absolute w-[450px] md:w-[671px] h-[400px] md:h-[671px] md:top-0 right-[83px] rounded-[335.5px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-[0.29]" />
+      <div
+        className="absolute w-[300px] md:w-[671px] h-[371px] bottom-0 
+  md:-left-[20%] -left-[40%] rounded-[335.5px] 
+  [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] 
+  opacity-[0.29] md:opacity-[0.29] opacity-[0.15]"
+      />
+      <div
+        className="absolute w-[450px] md:w-[671px] h-[400px] md:h-[671px] 
+        top-auto bottom-0 md:top-0 md:right-[83px] right-[-40%] rounded-[335.5px] 
+        [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] 
+        opacity-[0.29] md:opacity-[0.29] opacity-[0.15]"
+      />
     </section>
   );
 };
