@@ -165,7 +165,7 @@ export const BottomBanner = () => {
           </motion.h1>
 
           <motion.p
-            className="[font-family:'Space_Grotesk',Helvetica] font-normal text-[#ffffff70] text-xl text-center leading-normal"
+            className="[font-family:'Space_Grotesk',Helvetica] p-2 font-normal text-[#ffffff70] text-xl text-center leading-normal"
             variants={textVariants}
           >
             Join thousands of early snipers already securing entries. Your alpha
@@ -205,7 +205,8 @@ export const BottomBanner = () => {
           <motion.div variants={buttonVariants}>
             <Link href="/">
               <motion.div
-                className="gradient-border px-8 py-3 [font-family:'Space_Grotesk',Helvetica] gradient-text font-medium text-[16.3px] cursor-pointer relative overflow-hidden"
+                className="gradient-border px-8 py-3 font-medium text-[16.3px] cursor-pointer relative overflow-hidden"
+                style={{ fontFamily: "'Space Grotesk', Helvetica" }}
                 whileHover={{
                   scale: 1.05,
                   transition: { duration: 0.2 },
@@ -220,7 +221,16 @@ export const BottomBanner = () => {
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 />
-                <span className="relative z-10">Learn more</span>
+                <span
+                  className="relative z-10 bg-gradient-to-r from-white to-[#FF7D48] bg-clip-text text-transparent"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Learn more
+                </span>
               </motion.div>
             </Link>
           </motion.div>

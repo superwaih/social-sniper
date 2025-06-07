@@ -143,7 +143,7 @@ export const Hero = () => {
         animate={isInView ? "visible" : "hidden"}
       >
         <motion.h2
-          className="font-grok max-w-[253px] -tracking-[2px]  text-white leading-[33.51px] md:leading-12 text-[40.72px] md:text-[62px] text-center"
+          className="font-grok max-w-[253px] -tracking-[2px]  text-white leading-[37.51px] md:leading-12 text-[40.72px] md:text-[62px] text-center"
           variants={textVariants}
         >
           Be First. Be Fast. Be a{" "}

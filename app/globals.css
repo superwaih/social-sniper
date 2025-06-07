@@ -116,3 +116,28 @@ body {
  
 }
 
+/* Remove the gradient-text class and add this fallback */
+.gradient-text-fallback {
+  font-family: "Space Grotesk", Helvetica;
+  background: linear-gradient(to right, white, #ff7d48);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Chrome-specific fix */
+@supports (-webkit-background-clip: text) {
+  .gradient-text-chrome {
+    background: linear-gradient(to right, white, #ff7d48);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Ensure the element has content */
+    display: inline-block;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    /* Prevent text from disappearing */
+    backface-visibility: hidden;
+  }
+}
