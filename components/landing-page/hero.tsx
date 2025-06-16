@@ -105,7 +105,7 @@ export const Hero = () => {
   }
 
   return (
-    <section id="home" className="relative p-4 overflow-hidden md:h-screen mx-auto w-[95%] md:w-[85%]" ref={ref}>
+    <section id="home" className="relative p-4 overflow-hidden md:h-screen container-new" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

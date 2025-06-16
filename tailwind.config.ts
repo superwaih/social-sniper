@@ -60,8 +60,13 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		fontFamily:{
+			 inter: ['var(--font-inter)', 'sans-serif'],
+		},
 		backgroundImage:{
 			'hero': "url('/images/new-hero.webp')",
+			'publichero': "url('/images/public-hero.webp')",
+
 
 		}
   	},

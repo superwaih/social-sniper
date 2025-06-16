@@ -2,11 +2,12 @@
 
 import { BottomBanner } from "@/components/landing-page/bottom-banner";
 import BuiltBanner from "@/components/landing-page/built-banner";
-import Features from "@/components/landing-page/features";
 import Footer from "@/components/landing-page/footer";
-import { Hero } from "@/components/landing-page/hero";
-import HowitWorks from "@/components/landing-page/how-it-works";
+import AutoBuy from "@/components/new-landing-page/auto-buy";
+import HowitWorksNew from "@/components/new-landing-page/how-it-new";
 import NewHero from "@/components/new-landing-page/new-hero";
+import Shipped from "@/components/new-landing-page/shipped";
+// import DottedLineIcon from "@/components/shared/dotted-line-icon";
 
 
 
@@ -14,12 +15,13 @@ const Runner = () => {
   return (
   <main className="flex flex-col overflow-hidden ">
     <NewHero />
- {/* <Hero /> */}
- <HowitWorks />
- <Features />
+    <HowitWorksNew />
+    <AutoBuy />
+    <Shipped />
  <BuiltBanner />
  <BottomBanner />
- <Footer />
+ {/* <DottedLineIcon /> */}
+<Footer />
   </main>
   );
 };

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Pixelify_Sans, Space_Grotesk } from "next/font/google"
+import { Pixelify_Sans, Space_Grotesk, Inter } from "next/font/google"
 import "./globals.css"
 
 const pixelifySans = Pixelify_Sans({
@@ -17,6 +17,13 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 })
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+})
+
 export const metadata: Metadata = {
   title: "Social Sniper",
   description:
@@ -30,8 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${pixelifySans.variable} ${spaceGrotesk.variable} antialiased font-sans`}>{children}</body>
+      <body className={`${pixelifySans.variable} ${spaceGrotesk.variable} ${inter.variable} antialiased font-sans`}>{children}</body>
     </html>
   )
 }
- 

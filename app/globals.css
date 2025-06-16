@@ -101,6 +101,10 @@ body {
   .active-btn{
     @apply rounded-md border border-[rgba(255,76,2,0.8)] text-white bg-[linear-gradient(90deg,rgba(255,76,2,0.4958)_0%,rgba(35,20,15,0.67)_100%)] hover:opacity-90 transition uppercase
   }
+  .container-new{
+
+    @apply mx-auto w-[95%] md:w-[85%]
+  }
   .gradient-text{
     @apply font-['Space_Grotesk',Helvetica]  bg-gradient-to-r from-white to-[#FF7D48] bg-clip-text text-transparent;
   }
