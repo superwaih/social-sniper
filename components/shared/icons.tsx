@@ -415,6 +415,31 @@ export const Icons = {
       ></path>
     </svg>
   ),
+  divideicon: (props:LucideProps) =>(
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1512"
+    height="98"
+    {...props}
+    fill="none"
+    viewBox="0 0 1512 98"
+  >
+    <path
+      stroke="#FFA17A"
+      strokeDasharray="18 11"
+      strokeWidth="2"
+      d="M0 1c605.883 50.705 937.723 53.28 1512 0"
+      opacity="0.29"
+    ></path>
+    <path
+      stroke="#FFA17A"
+      strokeDasharray="18 11"
+      strokeWidth="2"
+      d="M0 97c605.883-50.704 937.723-53.28 1512 0"
+      opacity="0.29"
+    ></path>
+  </svg>
+  ),
   menuicon: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
