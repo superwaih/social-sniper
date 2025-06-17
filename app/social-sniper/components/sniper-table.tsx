@@ -1,56 +1,54 @@
 "use client";
-
-import { Info } from "lucide-react";
+import { EllipsisVertical} from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/shared/data-table";
+import StatusIndicator from "@/components/shared/status-indicator";
 
 type Target = {
   id: number;
   memeTrigger: string;
   tweetSource: string;
-  timeAgo: string;
-  engagementScore: number;
-  mentionsSpike: number;
-  tokenDrop: string;
+  time: string;
+  engagement: string;
+  mentionsSpike: string;
+  tokenDrop: "Not yet" | "Detected";
 };
 
 const targetData: Target[] = [
   {
     id: 1,
-    memeTrigger: "$Blaze Meme",
-    tweetSource: "@CryptoWhale",
-    timeAgo: "2 MINS AGO",
-    engagementScore: 92,
-    mentionsSpike: 640,
+    memeTrigger: "$BLAZE MEME",
+    tweetSource: "@CRYPTOWHALE",
+    time: "2 MINS AGO",
+    engagement: "92/100",
+    mentionsSpike: "+640%",
     tokenDrop: "Not yet",
   },
   {
     id: 2,
-    memeTrigger: "To the Moon",
-    tweetSource: "@ElonMusk",
-    timeAgo: "6 MINS AGO",
-    engagementScore: 83,
-    mentionsSpike: 720,
+    memeTrigger: "TO THE MOON",
+    tweetSource: "@ELONMUSK",
+    time: "6 MINS AGO",
+    engagement: "98/100",
+    mentionsSpike: "+720%",
     tokenDrop: "Detected",
   },
   {
     id: 3,
-    memeTrigger: "#KEKius",
-    tweetSource: "@ShillMaster",
-    timeAgo: "1 MIN AGO",
-    engagementScore: 80,
-    mentionsSpike: 310,
+    memeTrigger: "#KEKIUS",
+    tweetSource: "@SHILLMASTER",
+    time: "1 MIN AGO",
+    engagement: "80/100",
+    mentionsSpike: "+310%",
     tokenDrop: "Detected",
   },
   {
     id: 4,
-    memeTrigger: "Just Dropped",
-    tweetSource: "@PumpKing",
-    timeAgo: "4 MINS AGO",
-    engagementScore: 85,
-    mentionsSpike: 410,
+    memeTrigger: "JUST DROPPED",
+    tweetSource: "@PUMPKING",
+    time: "4 MINS AGO",
+    engagement: "85/100",
+    mentionsSpike: "+410%",
     tokenDrop: "Detected",
   },
 ];
@@ -62,80 +60,64 @@ export default function SniperTable() {
   const columns = [
     {
       header: "MEME / TRIGGER",
-      accessor: (target: Target) => target.memeTrigger,
-      className: "w-[180px] font-pixelify text-[#FFFFFFF2]",
+      accessor: (target: Target) => (
+        <span className="font-pixelify text-[#FFFFFFF2] font-medium">
+          {target.memeTrigger}
+        </span>
+      ),
+      className: "text-[#FFFFFFF2]",
     },
     {
       header: "TWEET SOURCE",
       accessor: (target: Target) => (
-        <span className="text-[#FFFFFFA3]">{target.tweetSource}</span>
+        <span className="text-[#FFFFFFF2]">{target.tweetSource}</span>
       ),
       className: "text-[#FFFFFFF2]",
     },
     {
       header: "TIME",
-      accessor: (target: Target) => target.timeAgo,
+      accessor: (target: Target) => (
+        <span className="text-[#FFFFFFF2] text-sm">{target.time}</span>
+      ),
       className: "text-[#FFFFFFF2]",
     },
     {
-      header: "ENGAGEMENT",
+      header: "Engagement",
       accessor: (target: Target) => (
-        <span
-          className={cn(
-            " ",
-            target.engagementScore >= 90 ? "text-green-500" : "text-red-500"
-          )}
-        >
-          {target.engagementScore}/100
-        </span>
+        <span className="text-[#FFFFFFF2]">{target.engagement}</span>
       ),
-      className: "  text-[#FFFFFFF2]",
+      className: "text-[#FFFFFFF2] text-center",
     },
     {
       header: "MENTIONS SPIKE",
       accessor: (target: Target) => (
-        <span className="text-[#FFFFFFF2]">+{target.mentionsSpike}%</span>
+        <span className="text-green-400 font-medium">{target.mentionsSpike}</span>
       ),
-      className: "text-[#FFFFFFF2]",
+      className: "text-[#FFFFFFF2] text-center",
     },
     {
       header: "TOKEN DROP",
       accessor: (target: Target) => (
-        <span
-          className={cn(
-            "text-[#FFFFFFF2]",
-            target.tokenDrop === "Not yet" ? "text-red-500" : "text-green-500"
-          )}
-        >
-          {target.tokenDrop}
-        </span>
+       <StatusIndicator status={target.tokenDrop} />
       ),
-      className: "text-[#FFFFFFF2]",
+      className: "text-[#FFFFFFF2] text-center",
     },
-    {
-      header: "DETAILS",
-      accessor: (target: Target) => (
-        <Button
-          variant="outline"
-          size="sm"
-          className="text-xs text-[#FFFFFF8A] border-[#ffffff40] flex gap-3 items-center hover:text-white bg-transparent hover:[background:linear-gradient(90deg,rgba(255,76,2,0.5)_0%,rgba(35,20,15,0.67)_100%)]"
-          onClick={(e) => {
-            e.stopPropagation();
-            setSelectedTarget(target);
-            setIsModalOpen(true);
-          }}
-        >
-          <Info className="w-4 h-4" />
-          DETAILS
-        </Button>
+   {
+      header: "▼",
+      accessor: () => (
+        <div className="border-[#779CBF6B] border rounded-[4px] p-2">
+          <EllipsisVertical className="size-3" />
+        </div>
       ),
-      className: "",
+      className: "text-[#FFFFFFF2] text-center flex justify-center items-center",
     },
   ];
-console.log("Target Data:", selectedTarget);
+
+  console.log("Target Data:", selectedTarget);
   console.log("Is Modal Open:", isModalOpen);
+
   return (
-    <div className="bg-[#1A1A1A]">
+    <div className="">
       <DataTable
         data={targetData}
         columns={columns}

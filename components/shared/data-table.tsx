@@ -20,15 +20,15 @@ interface DataTableProps<T> {
 
 export function DataTable<T>({ data, columns, onRowClick }: DataTableProps<T>) {
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="w-full overflow-x-auto rounded-[8px]  overflow-hidden">
       <Table className="w-full table-auto">
-        <TableHeader>
-          <TableRow>
+        <TableHeader className="">
+          <TableRow >
             {columns.map((column, index) => (
               <TableHead
                 key={index}
                 className={cn(
-                  "uppercase   text-[15px] !text-[#2F4857] whitespace-nowrap",
+                  "uppercase text-[15px] !text-[#2F4857] whitespace-nowrap",
                   column.className
                 )}
               >
@@ -41,13 +41,13 @@ export function DataTable<T>({ data, columns, onRowClick }: DataTableProps<T>) {
           {data.map((row, rowIndex) => (
             <TableRow
               key={rowIndex}
-              className="transition-colors rounded-[6px] cursor-pointer w-full"
+              className="transition-colors cursor-pointer w-full"
               onClick={() => onRowClick?.(row)}
             >
               {columns.map((column, colIndex) => (
                 <TableCell
                   key={colIndex}
-                  className={cn("  whitespace-nowrap", column.className)}
+                  className={cn("whitespace-nowrap bg-transparent", column.className)}
                 >
                   {typeof column.accessor === "function"
                     ? column.accessor(row)

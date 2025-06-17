@@ -21,8 +21,8 @@ const DashboardSidebar = () => {
           <Link
             className={
               pathname === navlink.href
-                ? " flex items-center gap-2 px-4 py-4 active-btn"
-                : " py-4 px-3 flex items-center gap-2  text-[#FFFFFF69] uppercase"
+                ? " flex items-center gap-2 px-4 py-3 active-btn"
+                : " py-3 px-3 flex items-center gap-2  text-[#FFFFFF69] uppercase"
             }
             href={navlink.href}
             key={navlink.id}
