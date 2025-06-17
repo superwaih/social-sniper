@@ -7,6 +7,7 @@ import AutoBuy from "@/components/new-landing-page/auto-buy";
 import HowitWorksNew from "@/components/new-landing-page/how-it-new";
 import NewHero from "@/components/new-landing-page/new-hero";
 import Shipped from "@/components/new-landing-page/shipped";
+import TweetTokens from "@/components/new-landing-page/tweet-tokens";
 // import DottedLineIcon from "@/components/shared/dotted-line-icon";
 
 
@@ -16,6 +17,7 @@ const Runner = () => {
   <main className="flex flex-col overflow-hidden ">
     <NewHero />
     <HowitWorksNew />
+    <TweetTokens />
     <AutoBuy />
     <Shipped />
  <BuiltBanner />
