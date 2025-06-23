@@ -1,40 +1,70 @@
+'use client';
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import { InfiniteStepsCarousel } from '../shared/infinite-scrolling'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { InfiniteStepsCarousel } from '../shared/infinite-scrolling';
+
+// Animation variants
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+};
 
 const TweetTokens = () => {
   return (
-    <section className='bg-black'>
-       {/* <div className='container-new flex justify-between   py-12 '>
-        {
-            steps.map((step) => (
-                <div className='flex flex-col space-y-4' key={step.step}>
-                    <div className='w-fit p-3 flex gap-2 items-center border-[#FF8F61] bg-[#FF8F61]/0 border-2 rounded-[12px]'>
-                        <p className='text-[#FF8F61]'>STEP</p>
-                    <span className='text-[#FF8F61]'>{step.step}</span>
+    <motion.section
+      className="bg-black"
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+    >
+      {/* Heading */}
+      <motion.div
+        variants={fadeUpVariant}
+        className="flex flex-col max-w-[500px] mx-auto text-center"
+      >
+        <h1 className="font-grok mt-12 -tracking-[2px] md:tracking-normal gradient-text font-bold leading-[33.51px] md:leading-[50.1px] text-[30.72px] md:text-[47.48px]">
+          From Tweet to Token. In Seconds.
+        </h1>
+        <p className="mt-6 text-[#ffffff70] font-inter text-[12px] md:text-[18.88px] leading-[100%]">
+          “Powered by real-time Twitter & on‑chain data for lightning-fast meme-token insight.”
+        </p>
+      </motion.div>
 
-                    </div>
-                    <h5 className='gradient-text text-2xl font-bold'>{step.name}</h5>
-                    <p className="mt-6 max-w-[400px] text-[#ffffff70]  font-inter text-[12px] md:text-[18.88px] leading-[100%]">{step.desc}</p>
-                    </div>
-            ))
-        }
-        </div>  */}
-        <InfiniteStepsCarousel speed="fast" direction="left" />
+      {/* Divider Image */}
+      <motion.div
+        variants={fadeUpVariant}
+        className="container-new py-5"
+      >
+        <img src="/images/line-1.png" className="h-[80px] w-full" alt="Divider" />
+      </motion.div>
 
-   <div className='container-new mt-12 2w-full'>
-            <img 
-    src={'/images/flow-chart.webp'}
-    className=''
-    // width={1000}
-    // height={800}
-    alt='heo'
-            />
+      {/* Carousel (already animated separately) */}
+      <InfiniteStepsCarousel speed="fast" direction="left" />
 
-        </div>
-    </section>
-  )
-}
+      {/* Flowchart */}
+      <motion.div
+        variants={fadeUpVariant}
+        className="container-new mt-12 w-full"
+      >
+        <img
+          src="/images/flow-chart.webp"
+          className="w-full max-w-6xl mx-auto"
+          alt="flowchart"
+        />
+      </motion.div>
+    </motion.section>
+  );
+};
 
-export default TweetTokens
-
+export default TweetTokens;

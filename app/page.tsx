@@ -17,8 +17,8 @@ const Runner = () => {
   <main className="flex flex-col overflow-hidden ">
     <NewHero />
     <HowitWorksNew />
-    <TweetTokens />
     <AutoBuy />
+    <TweetTokens />
     <Shipped />
  <BuiltBanner />
  <BottomBanner />
