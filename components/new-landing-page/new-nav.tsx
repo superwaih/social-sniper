@@ -58,7 +58,6 @@ const NewNav = () => {
     setActiveHash(href);
     closeMobileMenu();
   };
-// fixed top-0 md:top-4 left-0 md:left-1/2 md:-translate-x-1/2 z-50
   return (
     <>
       <div className=" flex justify-between  rounded-[24px] items-center w-full  px-6 py-2 md:py-1 border-[#FFFFFF2B] border  ">

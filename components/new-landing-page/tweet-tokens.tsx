@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
+import { InfiniteStepsCarousel } from '../shared/infinite-scrolling'
 
 const TweetTokens = () => {
   return (
     <section className='bg-black'>
-       <div className='container-new flex justify-between   py-12 '>
+       {/* <div className='container-new flex justify-between   py-12 '>
         {
             steps.map((step) => (
                 <div className='flex flex-col space-y-4' key={step.step}>
@@ -18,7 +19,9 @@ const TweetTokens = () => {
                     </div>
             ))
         }
-        </div> 
+        </div>  */}
+        <InfiniteStepsCarousel speed="fast" direction="left" />
+
    <div className='container-new mt-12 2w-full'>
             <img 
     src={'/images/flow-chart.webp'}
@@ -35,20 +38,3 @@ const TweetTokens = () => {
 
 export default TweetTokens
 
-const steps = [
-    {
-        step: 1,
-        name: "Detect Memes & Influencer Signals",
-        desc: "Social Sniper monitors Twitter 24/7 to detect trending memes, tweets, and potential contract drops."
-    },
-    {
-        step: 2,
-        name: "Spot Token Drops Instantly",
-        desc: "We calculate engagement scores, mention spikes, liquidity lock status, and red flags — instantly."
-    },
-    {
-        step: 3,
-        name: "Auto-Buy or Snipe Instantly",
-        desc: "When tokens are being pumped, our sniper bots instantly buy or snipe, saving you time and emotion."
-    }
-]
