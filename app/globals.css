@@ -10,17 +10,7 @@
 html{
   scroll-behavior: smooth;
 }
-body {
-  font-family: var(--font-space-grotes);
 
-}
-.font-pixelify {
-  font-family: var(--font-pixelify-sans);
-}
-.font-grok{
-  font-family: var(--font-space-grotes);
-
-}
 
 /* styles.css */
 .bg-custom-gradient {

@@ -62,6 +62,8 @@ export default {
   		},
 		fontFamily:{
 			 inter: ['var(--font-inter)', 'sans-serif'],
+			 pixel: ['var(--font-pixelify-sans)', 'sans-serif'],
+			 grok: ['var(--font-space-grotesk)', 'sans-serif']
 		},
 		backgroundImage:{
 			'hero': "url('/images/new-hero.webp')",

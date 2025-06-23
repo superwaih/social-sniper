@@ -28,12 +28,12 @@ const NewHero = () => {
         <NewNav />
         
         {/* Hero Content */}
-        <div className='flex flex-col space-y-8 sm:space-y-12 mx-auto w-full justify-center items-center    max-w-[770px] flex-1'>
-          <h1 className='font-grok mt-6 sm:mt-12 -tracking-[1px] sm:-tracking-[2px] md:tracking-normal gradient-text font-bold leading-[28px] sm:leading-[34px] md:leading-[79.48px] text-[28px] sm:text-[40.72px] md:text-[79.48px] text-center px-4'>
+        <div className='flex flex-col space-y-8 sm:space-y-12 mx-auto  justify-center items-center    w-full flex-1'>
+          <h1 className='font-grok  max-w-[800px] mt-6 sm:mt-12 -tracking-[1px] sm:-tracking-[2px] md:tracking-normal gradient-text font-bold leading-[28px] sm:leading-[34px] md:leading-[79.48px] text-[28px] sm:text-[40.72px] md:text-[79.48px] text-center px-4'>
             Snipe Meme Tokens Before They Moon.
           </h1>
           
-          <p className="text-[#ffffff70] text-[14px] sm:text-[16px] md:text-[19px] text-center leading-[120%] sm:leading-[100%] px-4 max-w-[600px]">
+          <p className="text-[#ffffff70] max-w-[800px] font-inter text-[14px] sm:text-[16px] md:text-[19px] text-center leading-[120%] sm:leading-[100%] px-4 ">
             Real-time intelligence from Twitter, meme trends, and on-chain data — enabling you to buy before the crowd even sees it.
           </p>
           
@@ -61,7 +61,7 @@ const NewHero = () => {
               key={stat.id}
             >
               <h3 className='text-[#FFFFFF] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[37.4px] font-bold text-center'>
-                ${stat.stat.toLocaleString()}
+                +${stat.stat.toLocaleString()}
               </h3>
               <p className='text-xs sm:text-sm md:text-base text-white text-center mt-1'>
                 {stat.title}
