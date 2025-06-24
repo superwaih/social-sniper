@@ -48,7 +48,7 @@ const NewHero = () => {
           variants={fadeUpVariant}
           className="flex flex-col space-y-8 mx-auto justify-center items-center w-full flex-1"
         >
-          <h1 className="font-grok max-w-[800px] mt-6 sm:mt-12 -tracking-[1px] sm:-tracking-[2px] md:tracking-normal gradient-text font-bold leading-[28px] sm:leading-[34px] md:leading-[79.48px] text-[28px] sm:text-[40.72px] md:text-[79.48px] text-center px-4">
+          <h1 className="font-grok max-w-[800px] mt-6 sm:mt-12 -tracking-[1px] sm:-tracking-[2px] z-20 md:tracking-normal gradient-text font-bold leading-[28px] sm:leading-[34px] md:leading-[79.48px] text-[28px] sm:text-[40.72px] md:text-[79.48px] text-center px-4">
             Snipe Meme Tokens Before They Moon.
           </h1>
 
