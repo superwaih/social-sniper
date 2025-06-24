@@ -84,7 +84,7 @@ export const InfiniteStepsCarousel = ({
               </span>
             </div>
             <h5 className="gradient-text text-xl md:text-[32px] font-bold mb-2">{step.name}</h5>
-            <p className="text-[#FFFFFF8A]  text-[19px] leading-snug font-inter">
+            <p className="text-[#FFFFFF8A] text-[15px] md:text-[19px] leading-snug font-inter">
               {step.desc}
             </p>
           </li>
