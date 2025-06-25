@@ -81,7 +81,7 @@ export default function UserProfileSidebar() {
                 @
               </span>
               <Input
-                defaultValue="JAAMEY_STONE"
+                defaultValue=""
                 className="bg-[#FFFFFF1C] !py-3 border-[#000000] border pl-8 text-white"
               />
             </div>

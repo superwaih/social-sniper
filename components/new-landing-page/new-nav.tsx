@@ -86,7 +86,7 @@ const NewNav = () => {
 
         {/* Desktop CTA Button */}
         <Link
-          href={"/runner"}
+          href={"/"}
           className="w-[130px] hidden h-[48px] md:w-56 md:flex justify-center items-center md:h-[54px] bg-[#ff4c02] rounded border-none text-white hover:bg-[#e63d00] transition-colors duration-300"
         >
           <div className="font-['Space_Grotesk',Helvetica] font-normal text-[16.3px] text-center tracking-[-0.65px] leading-normal">

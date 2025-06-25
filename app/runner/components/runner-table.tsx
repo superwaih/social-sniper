@@ -44,11 +44,11 @@ console.log(selectedRunner)
           </div>
         ),
       },
-      {
-        header: "TIKTOK VIDEOS",
-        accessor: (runner: Runner) => runner.tiktokVideos.toLocaleString(),
-        className: " text-[#FFFFFFF2]",
-      },
+      // {
+      //   header: "TIKTOK VIDEOS",
+      //   accessor: (runner: Runner) => runner.tiktokVideos.toLocaleString(),
+      //   className: " text-[#FFFFFFF2]",
+      // },
       {
         className: "text-[#FFFFFFF2]",
         header: "HASHTAG REACH",

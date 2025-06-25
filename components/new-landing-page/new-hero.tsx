@@ -58,7 +58,7 @@ const NewHero = () => {
 
           {/* CTA Button */}
           <Link
-            href="/runner"
+            href="/"
             className="w-[140px] h-[48px] sm:w-[160px] sm:h-[50px] md:w-56 flex justify-center items-center md:h-[54px] bg-[#ff4c02] rounded border-none text-white hover:bg-[#e63d00] transition-colors duration-300"
           >
             <div className="font-['Space_Grotesk',Helvetica] backdrop-blur-sm font-normal text-[14px] sm:text-[15px] md:text-[16.3px] text-center tracking-[-0.65px] leading-normal">
