@@ -29,7 +29,7 @@ const fadeUpVariant = {
 const HowitWorksNew = () => {
   return (
     <motion.section
-      className="bg-black p-12 flex flex-col space-y-8"
+      className="bg-black  py-12  flex flex-col space-y-8"
       variants={containerVariants}
       initial="hidden"
       animate="show"
@@ -42,7 +42,7 @@ const HowitWorksNew = () => {
         <h1 className="font-grok mt-12 -tracking-[2px] md:tracking-normal gradient-text font-bold leading-[33.51px] md:leading-[50.1px] text-[30.72px] md:text-[47.48px]">
           Your Meme Detection Engine. Built on Social + On-Chain Signals.
         </h1>
-        <p className="mt-6 text-[#ffffff70] font-inter text-[12px] md:text-[18.88px] leading-[100%]">
+        <p className="mt-6 text-[#ffffff70] font-inter text-[12px] md:text-[18.88px] leading-snug">
           We unify influencer tweets, meme hashtags, smart contract launches, and AI-powered analysis into one seamless sniper flow.
         </p>
       </motion.div>
@@ -50,7 +50,7 @@ const HowitWorksNew = () => {
       {/* Cards */}
       <motion.div
         variants={containerVariants}
-        className="container-new mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+        className="container-new  mt-8 flex lg:flex-row flex-col justify-between  "
       >
         {cards.map((card) => (
           <motion.div variants={fadeUpVariant} key={card.id}>
@@ -64,6 +64,7 @@ const HowitWorksNew = () => {
           </motion.div>
         ))}
       </motion.div>
+      
     </motion.section>
   );
 };

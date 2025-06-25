@@ -46,13 +46,13 @@ const NewHero = () => {
         {/* Hero Content */}
         <motion.div
           variants={fadeUpVariant}
-          className="flex flex-col space-y-8 mx-auto justify-center items-center w-full flex-1"
+          className="flex flex-col space-y-4 mx-auto justify-center items-center w-full flex-1"
         >
           <h1 className="font-grok max-w-[800px] mt-6 sm:mt-12 -tracking-[1px] sm:-tracking-[2px] z-20 md:tracking-normal gradient-text font-bold leading-[28px] sm:leading-[34px] md:leading-[79.48px] text-[28px] sm:text-[40.72px] md:text-[79.48px] text-center px-4">
             Snipe Meme Tokens Before They Moon.
           </h1>
 
-          <p className="text-[#ffffff70] max-w-[800px] font-inter text-[14px] sm:text-[16px] md:text-[19px] text-center leading-[120%] sm:leading-[100%] px-4 ">
+          <p className="text-[#ffffff70] max-w-[800px] font-inter text-[14px] sm:text-[16px] md:text-[19px] text-center leading-[120%] sm:leading-snug px-4 ">
             Real-time intelligence from Twitter, meme trends, and on-chain data — enabling you to buy before the crowd even sees it.
           </p>
 

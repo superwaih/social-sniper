@@ -5,12 +5,12 @@ const AutoBuy = () => {
   return (
     <section className='bg-black'>
 
-    <div className='container-new border p-8 flex justify-between border-[#FFFFFF45] rounded-[16px]'>
+    <div className='container-new border p-8 flex justify-between border-[#FFFFFF45] rounded-[27px]'>
 <div className='max-w-[400px] justify-center flex flex-col space-y-3 '>
     <h1 className='font-grok  -tracking-[2px] md:tracking-normal gradient-text font-bold leading-[33.51px] md:leading-[39.48px] text-[20.72px] md:text-[32.62px] text-start'>
 Auto Buy Execution
 </h1>
-<p className=" text-[#ffffff70]  text-[12px] md:text-[16px] text-start leading-[100%]">
+<p className=" text-[#ffffff70]  text-[15px] md:text-[18.88px] text-start leading-snug">
   Configurable sniper with stop-loss, take-profit, and gas settings.
 </p>
 </div>

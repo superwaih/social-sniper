@@ -4,7 +4,7 @@ import React from 'react'
 
 const Shipped = () => {
   return (
-    <div className='bg-black'>
+    <div className='bg-[#00090F]'>
            <div className='flex flex-col  max-w-[920px] mx-auto'>
             <h1 className='font-grok mt-12 -tracking-[2px] md:tracking-normal gradient-text font-bold leading-[33.51px] md:leading-[50.1px] text-[30.72px] md:text-[47.48px] text-center'>
 What We’ve Sniped So Far.
