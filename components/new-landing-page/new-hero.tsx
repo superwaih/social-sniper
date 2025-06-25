@@ -11,7 +11,7 @@ const stats = [
   { id: 3, stat: 104000, title: 'Total Profits' },
 ];
 
-// Animation Variants
+
 const containerVariants = {
   hidden: {},
   show: {
