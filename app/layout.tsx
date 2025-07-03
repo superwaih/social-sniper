@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Pixelify_Sans, Space_Grotesk, Inter } from "next/font/google"
 import "./globals.css"
+import { Wallet } from "./providers"
 
 const pixelifySans = Pixelify_Sans({
   variable: "--font-pixelify-sans",
@@ -37,7 +38,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${pixelifySans.variable} ${spaceGrotesk.variable} ${inter.variable} antialiased font-sans`}>{children}</body>
+      <body className={`${pixelifySans.variable} ${spaceGrotesk.variable} ${inter.variable} antialiased font-sans`}>
+        <Wallet>
+        {children}
+
+        </Wallet>
+        </body>
     </html>
   )
 }

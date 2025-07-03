@@ -68,3 +68,9 @@ export const dashboardLinks = [
         title: 'Settings'
     },
 ]
+
+export const stats = [
+  { id: 1, stat: 100000, title: 'Realized Profits' },
+  { id: 2, stat: 108000, title: 'Pending Profits' },
+  { id: 3, stat: 104000, title: 'Total Profits' },
+];
