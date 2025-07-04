@@ -74,3 +74,8 @@ export const stats = [
   { id: 2, stat: 108000, title: 'Pending Profits' },
   { id: 3, stat: 104000, title: 'Total Profits' },
 ];
+
+export function shortenAddress(address: string, chars = 4): string {
+  if (!address) return '';
+  return `${address.slice(0, chars)}...${address.slice(-chars)}`;
+}

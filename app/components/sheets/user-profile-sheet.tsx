@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link as LinkIcon } from "lucide-react";
 import AvatarIcon from "../icons/avatar-icon";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { shortenAddress } from "@/utils/constants";
 
 const colorThemes = [
   { 
@@ -35,6 +37,7 @@ const colorThemes = [
 ];
 
 export default function UserProfileSidebar() {
+    const { publicKey } = useWallet();
   const [selectedTheme, setSelectedTheme] = useState(2); // Default to purple theme
 
   const handleThemeChange = (index: number) => {
@@ -70,7 +73,7 @@ export default function UserProfileSidebar() {
               <p className="text-[#8A8A8A] text-xs">upload picture</p>
             </div>
             <div className="text-[29.41px] text-white mt-2">
-              0XFF98...7890
+              {shortenAddress(publicKey?.toBase58() ?? 'Connect Wallet')}
             </div>
           </div>
           
