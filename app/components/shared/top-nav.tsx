@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Icons } from '@/components/shared/icons';
 import UserProfileSidebar from '../sheets/user-profile-sheet';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { shortenAddress } from '@/utils/constants';
 import { useLoginFn } from '@/service/user';
+import { toast } from "sonner"
 // import { useLoginFn } from '@/service/user';
 
 const TopNav = () => {
@@ -14,18 +16,26 @@ const TopNav = () => {
 
   const handleLogin = () =>{
     const data = {
-      publicKey: '5wCnFi5khxbYS3EpgBa6Kss3yQyJ3WgoREBtdRpFiatc'
+      publicKey: publicKey?.toBase58() ?? ''
     }
     loginFn(data, {
       onSuccess: (res) =>{
         console.log(res, 'results faata')
+        toast.success(res?.message)
       },
       onError: (err) => {
         console.log(err, 'error data')
+        toast.error('An Error Occured')
       }
     })
   }
-  
+
+  useEffect(() => {
+    if(publicKey){
+      handleLogin()
+    }
+  }, [publicKey])
+
   console.log(publicKey)
   return (
     <div className="border-b py-[1.64rem] justify-end px-4 flex items-center border-brandgray">

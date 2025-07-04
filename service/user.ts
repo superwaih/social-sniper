@@ -17,8 +17,14 @@ export const useLoginFn = () =>{
     })
 }
 
-const updateProfile = async () =>{
-    const response = await api.put('/user/update-profile')
+interface IUserData {
+    publicKey: string;
+    username: string;
+    profilePicture: string
+}
+
+const updateProfile = async (user: IUserData) =>{
+    const response = await api.put('/user/update-profile', user)
     return response.data
 } 
 

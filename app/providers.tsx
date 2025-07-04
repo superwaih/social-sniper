@@ -11,6 +11,7 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "@solana/wallet-adapter-react-ui/styles.css";
+import { Toaster } from "sonner";
 
 export const Wallet = ({ children }: PropsWithChildren) => {
   const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ export const Wallet = ({ children }: PropsWithChildren) => {
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>{children}</WalletModalProvider>
+                  <Toaster richColors />
         </WalletProvider>
       </ConnectionProvider>
     </QueryClientProvider>
