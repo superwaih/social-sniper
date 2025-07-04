@@ -30,7 +30,7 @@ export const Wallet = ({ children }: PropsWithChildren) => {
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>{children}</WalletModalProvider>
-                  <Toaster richColors />
+                  <Toaster richColors position="top-right" />
         </WalletProvider>
       </ConnectionProvider>
     </QueryClientProvider>

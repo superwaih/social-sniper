@@ -19,8 +19,8 @@ export const useLoginFn = () =>{
 
 interface IUserData {
     publicKey: string;
-    username: string;
-    profilePicture: string
+    username?: string;
+    profilePicture?: string
 }
 
 const updateProfile = async (user: IUserData) =>{

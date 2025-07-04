@@ -8,11 +8,11 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { shortenAddress } from '@/utils/constants';
 import { useLoginFn } from '@/service/user';
 import { toast } from "sonner"
-// import { useLoginFn } from '@/service/user';
+import { Loader2 } from 'lucide-react';
 
 const TopNav = () => {
   const { publicKey } = useWallet();
-  const {mutate: loginFn} = useLoginFn()
+  const {mutate: loginFn, isPending: isLoading} = useLoginFn()
 
   const handleLogin = () =>{
     const data = {
@@ -42,22 +42,20 @@ const TopNav = () => {
       <div className='gap-4 flex '>
      <WalletMultiButton className="rounded-md border border-[rgba(255,76,2,0.8)] text-white bg-[linear-gradient(90deg,rgba(255,76,2,0.4958)_0%,rgba(35,20,15,0.67)_100%)] hover:opacity-90 transition uppercase flex gap-3 items-center px-4 py-2">
  {
-  publicKey ?
-
-  <>
-  <p>{shortenAddress(publicKey?.toBase58() ?? '')}</p>
-  </>
-  :
-  <>
-   <Icons.walletIcon />
-  <p className="max-w-[70px] text-start leading-[11.08px] font-medium text-[11.01px]">
-    Connect wallet
-  </p>
-  </>
+  isLoading ? (
+    <Loader2 className='animate-spin' />
+  ) : publicKey ? (
+    <p>{shortenAddress(publicKey?.toBase58() ?? '')}</p>
+  ) : (
+    <>
+      <Icons.walletIcon />
+      <p className="max-w-[70px] text-start leading-[11.08px] font-medium text-[11.01px]">
+        Connect wallet
+      </p>
+    </>
+  )
  }
      </WalletMultiButton>
-{/* <button className='active-btn' onClick={handleLogin}>login</button> */}
-
 <UserProfileSidebar />
         
       </div>

@@ -79,3 +79,31 @@ export function shortenAddress(address: string, chars = 4): string {
   if (!address) return '';
   return `${address.slice(0, chars)}...${address.slice(-chars)}`;
 }
+
+export const colorThemes = [
+  { 
+    color: "bg-[#1DA1F2]", 
+    gradient: "linear-gradient(135deg, rgba(29, 161, 242, 0.2) 0%, rgba(29, 161, 242, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Twitter Blue"
+  },
+  { 
+    color: "bg-[#FF9500]", 
+    gradient: "linear-gradient(135deg, rgba(255, 149, 0, 0.2) 0%, rgba(255, 149, 0, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Orange"
+  },
+  { 
+    color: "bg-[#7C3AED]", 
+    gradient: "linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(124, 58, 237, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Purple"
+  },
+  { 
+    color: "bg-[#4F46E5]", 
+    gradient: "linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(79, 70, 229, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Indigo"
+  },
+  { 
+    color: "bg-[#e05c14]", 
+    gradient: "linear-gradient(135deg, rgba(224, 92, 20, 0.2) 0%, rgba(224, 92, 20, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Brand Orange"
+  },
+];
