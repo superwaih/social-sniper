@@ -13,7 +13,8 @@ import { Loader2 } from 'lucide-react';
 const TopNav = () => {
   const { publicKey, disconnecting } = useWallet();
   const {mutate: loginFn, isPending: isLoading} = useLoginFn()
-  const { mutate: disconnectUser } = useDisconnectUser(); const {data} = useGetUserProfile()
+  const { mutate: disconnectUser } = useDisconnectUser(); 
+  const {data} = useGetUserProfile()
 
 console.log(data, 'uae profile')
   const handleLogin = () =>{
