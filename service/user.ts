@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { api } from "./api"
 
 interface Ilogin {
@@ -35,3 +35,28 @@ export const useUpdateProfile = () =>{
     })
 }
 
+const getUser = async () =>{
+    const response = await api.get('/user/get-userprofile', {
+        withCredentials: true
+    })
+    return response.data
+}
+
+export const useGetUser = () =>{
+    return useQuery({
+        queryKey: ['get-user'],
+        queryFn: getUser
+    })
+}
+
+const disconnectWallet = async () =>{
+    const response = await api.post('/user/disconnect-wallet')
+    return response.data
+}
+
+export const useDisconnectUser = () =>{
+    return useMutation({
+        mutationKey: ['disconnect-wallet'],
+        mutationFn: disconnectWallet
+    })
+}

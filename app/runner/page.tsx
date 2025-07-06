@@ -4,10 +4,13 @@ import React, { useState } from "react";
 
 import TokenFilterSheet from "../components/sheets/token-filter-sheet";
 import RunnerTable from "./components/runner-table";
+import { useGetTargets } from "@/service/target";
 
 
 const Runner = () => {
   const [showfilters, setShowFilters] = useState(false);
+  const {data} = useGetTargets()
+  console.log(data, 'target runners')
   return (
       <section className="flex flex-col space-y-4">
         <h2 className="text-[40.41px]   -leading-[1%] text-[#FFFFFFBF]">

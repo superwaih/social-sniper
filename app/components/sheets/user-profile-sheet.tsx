@@ -59,7 +59,7 @@ export default function UserProfileSidebar() {
     const userData: IUserData = {
       publicKey: publicKey.toBase58(),
       username: username || undefined,
-      profilePicture: '',
+      profilePicture: profilePicture || undefined,
     };
 
     updateProfile(userData, {

@@ -6,14 +6,14 @@ import UserProfileSidebar from '../sheets/user-profile-sheet';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { shortenAddress } from '@/utils/constants';
-import { useLoginFn } from '@/service/user';
+import { useDisconnectUser, useGetUser, useLoginFn } from '@/service/user';
 import { toast } from "sonner"
 import { Loader2 } from 'lucide-react';
 
 const TopNav = () => {
-  const { publicKey } = useWallet();
+  const { publicKey, disconnecting } = useWallet();
   const {mutate: loginFn, isPending: isLoading} = useLoginFn()
-
+  const { mutate: disconnectUser } = useDisconnectUser(); 
   const handleLogin = () =>{
     const data = {
       publicKey: publicKey?.toBase58() ?? ''
@@ -35,8 +35,21 @@ const TopNav = () => {
       handleLogin()
     }
   }, [publicKey])
+    useEffect(() => {
+    if (!publicKey && !disconnecting) {
+      disconnectUser(undefined, {
+        onSuccess: () => {
+          toast.success('Wallet disconnected successfully');
+        },
+        onError: () => {
+          toast.error('Failed to disconnect wallet on server');
+        }
+      });
+    }
+  }, [publicKey, disconnecting]);
 
-  console.log(publicKey)
+const {data: userprofile} = useGetUser()
+console.log(userprofile, 'user dayta')
   return (
     <div className="border-b py-[1.64rem] justify-end px-4 flex items-center border-brandgray">
       <div className='gap-4 flex '>
