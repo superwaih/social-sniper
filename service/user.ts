@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { api } from "./api"
 
 interface Ilogin {
@@ -24,7 +24,10 @@ interface IUserData {
 }
 
 const updateProfile = async (user: IUserData) =>{
-    const response = await api.put('/user/update-profile', user)
+    const response = await api.put('/user/update-profile', {
+        withCredentials: true,
+        ...user
+    })
     return response.data
 } 
 
@@ -35,3 +38,18 @@ export const useUpdateProfile = () =>{
     })
 }
 
+const getUserProfile = async() =>{
+    const response = await api.get('/user/get-userProfile',{
+        withCredentials: true
+    })
+    return response.data
+
+}
+
+export const useGetUserProfile = () =>{
+    return useQuery({
+        queryKey: ['user-profile'],
+        queryFn: getUserProfile,
+        
+    })
+}
