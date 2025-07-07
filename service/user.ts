@@ -64,9 +64,10 @@ export const useDisconnectUser = () =>{
     })
 }
 
-export const useGetUserProfile = () =>{
+export const useGetUserProfile = (publicKey: string) =>{
     return useQuery({
         queryKey: ['get-user-update'],
-        queryFn: getUser
+        queryFn: getUser,
+        enabled: !!publicKey
     })
 }

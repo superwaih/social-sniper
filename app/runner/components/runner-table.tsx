@@ -8,9 +8,12 @@ import { Runner } from "@/types/runner";
 import { runnerData } from "@/utils/data";
 import { useState } from "react";
 import { TokenDetail } from "./token-detail";
+// import { useGetTargets } from "@/service/target";
 
 
 export default function RunnerTable() {
+  // const {data} = useGetTargets()
+
     const [selectedRunner, setSelectedRunner] = useState<Runner | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 console.log(selectedRunner)
