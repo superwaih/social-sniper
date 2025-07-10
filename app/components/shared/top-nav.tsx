@@ -16,7 +16,7 @@ const TopNav = () => {
   const { mutate: loginFn, isPending: isLoading } = useLoginFn();
   const { mutate: disconnectUser } = useDisconnectUser(); 
 
-  const { hasLoggedIn, setLoggedIn, resetLogin } = useAuthStore();
+  const { hasLoggedIn, setLoggedIn, resetLogin,setPublicKey  } = useAuthStore();
 
   const handleLogin = () => {
     if (!publicKey) return;
@@ -29,6 +29,8 @@ const TopNav = () => {
       onSuccess: (res) => {
         toast.success(res?.message || 'Login successful');
         setLoggedIn(true);
+              const pubKeyStr = publicKey.toBase58();
+      setPublicKey(pubKeyStr);
       },
       onError: (err) => {
         console.error('Login error', err);
@@ -40,11 +42,11 @@ const TopNav = () => {
   // Handle login once per session
   useEffect(() => {
     if (publicKey && !hasLoggedIn) {
+      
       handleLogin();
     }
   }, [publicKey, hasLoggedIn]);
 
-  // On wallet disconnect, reset auth state and inform server
   useEffect(() => {
     if (!publicKey && !disconnecting) {
       disconnectUser(undefined, {
