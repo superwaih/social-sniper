@@ -1,12 +1,13 @@
 import axios from 'axios';
-const BASEURL = 'https://socialsnipper.onrender.com/api/v1'
+// import Cookies from 'js-cookie'; 
+
+const BASEURL = 'https://socialsnipper.onrender.com/api/v1';
 
 export const api = axios.create({
-    baseURL: BASEURL,
-    withCredentials: true, 
-    
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  baseURL: BASEURL,
+  withCredentials: true, // Keep for cookie-based auth if needed
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 

@@ -24,7 +24,7 @@ const TopNav = () => {
     const data = {
       publicKey: publicKey.toBase58()
     };
-
+console.log(data)
     loginFn(data, {
       onSuccess: (res) => {
         toast.success(res?.message || 'Login successful');
@@ -39,7 +39,7 @@ const TopNav = () => {
     });
   };
 
-  // Handle login once per session
+ 
   useEffect(() => {
     if (publicKey && !hasLoggedIn) {
       
@@ -50,7 +50,8 @@ const TopNav = () => {
   useEffect(() => {
     if (!publicKey && !disconnecting) {
       disconnectUser(undefined, {
-        onSuccess: () => {
+        onSuccess: (res) => {
+          console.log(res)
           toast.success('Wallet disconnected successfully');
           resetLogin(); // reset login flag in store
         },
