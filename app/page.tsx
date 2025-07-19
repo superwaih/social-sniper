@@ -8,6 +8,7 @@ import HowitWorksNew from "@/components/new-landing-page/how-it-new";
 import NewHero from "@/components/new-landing-page/new-hero";
 import Shipped from "@/components/new-landing-page/shipped";
 import TweetTokens from "@/components/new-landing-page/tweet-tokens";
+import PricingSection from "./components/shared/pricing-section";
 // import DottedLineIcon from "@/components/shared/dotted-line-icon";
 
 
@@ -20,6 +21,7 @@ const Runner = () => {
     <AutoBuy />
     <TweetTokens />
     <Shipped />
+    <PricingSection />
  <BuiltBanner />
  <BottomBanner />
  {/* <DottedLineIcon /> */}
