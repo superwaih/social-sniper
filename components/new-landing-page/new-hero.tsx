@@ -25,15 +25,15 @@ const fadeUpVariant = {
 
 const dividerVariant = {
   hidden: { opacity: 0, scale: 0.8 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: 'easeOut', delay: 1.6 } },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: 'easeOut', delay: 2.8 } }, // increased delay
 };
 
 const NewHero = () => {
   return (
-    <section className="bg-publichero relative bg-cover bg-center w-full min-h-[900px] flex flex-col">
+    <section className="bg-publichero  relative bg-cover bg-center  w-screen min-h-[900px] flex flex-col">
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        // initial="show"
         animate="show"
         className="p-4 sm:p-6 lg:p-8 mx-auto flex justify-between flex-col space-y-6 sm:space-y-8 w-[95%] md:w-[85%] flex-1"
       >
@@ -84,14 +84,17 @@ const NewHero = () => {
           ))}
         </motion.div>
 
-        <motion.div
-          variants={dividerVariant}
-          className="absolute bottom-[20%] sm:bottom-[15%]  transform   w-screen left-0 right-0 flex justify-center"
-        >
-          <Icons.divideicon />
-        </motion.div>
+        
       
       </motion.div>
+      <motion.div
+          variants={dividerVariant}
+          className="absolute bottom-[20%] sm:bottom-[10%] left-0 right-0 w-full flex justify-center items-center"
+        >
+          <div className="w-full">
+            <Icons.divideicon className="w-full h-auto" />
+          </div>
+        </motion.div>
     </section>
   );
 };

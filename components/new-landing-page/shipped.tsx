@@ -15,7 +15,7 @@ What We’ve Sniped So Far.
         </div>
         <div className='container-new mt-12 2w-full'>
             <img 
-    src={'/images/runner-img.webp'}
+    src={'/images/new-runnner.webp'}
     className=''
     // width={1000}
     // height={800}
