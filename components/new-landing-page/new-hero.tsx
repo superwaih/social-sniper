@@ -84,10 +84,9 @@ const NewHero = () => {
           ))}
         </motion.div>
 
-        {/* Divider Icon (comes in last) */}
         <motion.div
           variants={dividerVariant}
-          className="absolute bottom-[20%] sm:bottom-[15%]  transform   min-w-[1500px] w-full flex justify-center"
+          className="absolute bottom-[20%] sm:bottom-[15%]  transform   w-screen left-0 right-0 flex justify-center"
         >
           <Icons.divideicon />
         </motion.div>

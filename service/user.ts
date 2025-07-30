@@ -25,7 +25,7 @@ interface IUserData {
 
 const updateProfile = async (user: IUserData) =>{
     const response = await api.put('/user/update-profile', {
-        withCredentials: true,
+      
         ...user
     })
     return response.data
@@ -39,9 +39,7 @@ export const useUpdateProfile = () =>{
 }
 
 const getUser = async () =>{
-    const response = await api.get('/user/get-userprofile', {
-        withCredentials: true
-    })
+    const response = await api.get('/user/get-userprofile')
     return response.data
 }
 

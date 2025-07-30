@@ -4,16 +4,13 @@ import React, { useState } from "react";
 
 import TokenFilterSheet from "../components/sheets/token-filter-sheet";
 import RunnerTable from "./components/runner-table";
-import { useGetTargets } from "@/service/target";
-import { useWallet } from "@solana/wallet-adapter-react";
 
 
 const Runner = () => {
   const [showfilters, setShowFilters] = useState(false);
-  const {publicKey} = useWallet()
-  const {data, error} = useGetTargets(publicKey?.toBase58() ?? '')
-  console.log(data, 'target data')
-  console.log(error, 'target data error')
+  
+  
+  
   return (
       <section className="flex flex-col space-y-4">
         <h2 className="text-[40.41px]   -leading-[1%] text-[#FFFFFFBF]">
@@ -42,7 +39,7 @@ const Runner = () => {
             </button>
           </div>
         </div>
-        <RunnerTable />
+        <RunnerTable  />
 
         <TokenFilterSheet open={showfilters} onOpenChange={setShowFilters} />
       </section>

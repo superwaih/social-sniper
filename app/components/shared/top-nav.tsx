@@ -10,6 +10,7 @@ import { useDisconnectUser, useLoginFn } from '@/service/user';
 import { toast } from "sonner";
 import { Loader2 } from 'lucide-react';
 import { useAuthStore } from '@/store/store';
+import { setToken } from '@/service/token';
 
 const TopNav = () => {
   const { publicKey, disconnecting } = useWallet();
@@ -29,6 +30,8 @@ console.log(data)
       onSuccess: (res) => {
         toast.success(res?.message || 'Login successful');
         setLoggedIn(true);
+        console.log(res?.token)
+        setToken(res?.token, 7)
               const pubKeyStr = publicKey.toBase58();
       setPublicKey(pubKeyStr);
       },

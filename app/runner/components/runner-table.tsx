@@ -12,7 +12,6 @@ import { TokenDetail } from "./token-detail";
 
 
 export default function RunnerTable() {
-  // const {data} = useGetTargets()
 
     const [selectedRunner, setSelectedRunner] = useState<Runner | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,6 +82,7 @@ console.log(selectedRunner)
       <DataTable
         data={runnerData}
         columns={columns}
+      
         onRowClick={(runner) => {
           setSelectedRunner(runner);
           setIsModalOpen(true);

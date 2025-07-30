@@ -1,9 +1,25 @@
+"use client"
 import React from 'react'
 import DashboardLayout from '../components/shared/dashboard-layout'
 import { Icons } from '@/components/shared/icons'
 import TargetsTable from './components/targets-table'
+import { TwitterTargetFilters, useGetTargets } from '@/service/target'
+import { useWallet } from '@solana/wallet-adapter-react'
 
 const Twitter = () => {
+  const {publicKey} = useWallet()
+    const filters: TwitterTargetFilters = {
+    engagement_score: 0,
+    min_followers: 1404,
+    username: "TheCryptoCajun",
+    verification_status: true,
+    account_age: 2,
+    startDate: "2025-06-01",
+    endDate: "2025-06-28"
+  };
+  
+  const { data, isLoading} = useGetTargets(publicKey?.toBase58() ?? '', filters);
+  console.log(data)
   return (
     <DashboardLayout>
 
@@ -28,7 +44,10 @@ const Twitter = () => {
             </div>
           </div>
 
-          <TargetsTable />
+          <TargetsTable
+          isLoading={isLoading}
+          data={data?.result ?? []}
+          />
         </section>
     </DashboardLayout>
   )
