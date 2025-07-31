@@ -5,7 +5,7 @@ const AutoBuy = () => {
   return (
     <section className='bg-black'>
 
-    <div className='container-new border p-8 flex justify-between border-[#FFFFFF45] rounded-[27px]'>
+    <div className='container-new border p-8 flex md:flex-row flex-col  justify-between border-[#FFFFFF45] rounded-[27px]'>
 <div className='max-w-[400px] justify-center flex flex-col space-y-3 '>
     <h1 className='font-grok  -tracking-[2px] md:tracking-normal gradient-text font-bold leading-[33.51px] md:leading-[39.48px] text-[20.72px] md:text-[32.62px] text-start'>
 Auto Buy Execution

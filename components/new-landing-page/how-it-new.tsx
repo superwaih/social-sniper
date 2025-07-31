@@ -50,7 +50,7 @@ const HowitWorksNew = () => {
       {/* Cards */}
       <motion.div
         variants={containerVariants}
-        className="container-new  mt-8 flex lg:flex-row flex-col justify-between  "
+        className="container-new gap-8  mt-8 flex lg:flex-row flex-col justify-between  "
       >
         {cards.map((card) => (
           <motion.div variants={fadeUpVariant} key={card.id}>
