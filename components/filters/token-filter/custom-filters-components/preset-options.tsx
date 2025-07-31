@@ -2,16 +2,22 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CheckIcon } from "lucide-react";
 import React from "react";
 
-export const PresetOptionsSection = () => {
+export const PresetOptionsSection = ({
+  isSelected,
+  onSelect,
+}: {
+  isSelected: boolean;
+  onSelect: () => void;
+}) => {
   // Data for the criteria list
   const criteriaList = [
-    "Liquidity locked: $50K*",
-    "Market cap: $1M+",
-    "Engagement score: 80+/100",
+    "Liquidity locked: $30K*",
+    "Market cap: $10k+",
+    "Engagement score: 50+/100",
     "Big accounts mentioned: At least 2 verified / 100K+ followers",
-    "Buy/sell ratio: 55%+ buys",
+    "Buy/sell ratio: 10%+ buys",
     "Trend maturity: Established (<7 days trending)",
-    "Minimum 10,000 holders",
+    "Minimum 1,000 holders",
   ];
 
   return (
@@ -20,6 +26,9 @@ export const PresetOptionsSection = () => {
         <div className="inline-flex items-center gap-2">
           <Checkbox
             id="degen-play"
+            checked={isSelected}
+            onCheckedChange={onSelect}
+
             className="w-5 h-5 rounded-[5.34px] border-[1.5px] border-[#ffffff96]"
           />
           <label

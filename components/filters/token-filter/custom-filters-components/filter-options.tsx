@@ -2,7 +2,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CheckIcon } from "lucide-react";
 import React from "react";
 
-export const FilterSection = () => {
+export const FilterSection = ({
+  isSelected,
+  onSelect,
+}: {
+  isSelected: boolean;
+  onSelect: () => void;
+}) => {
   // Filter criteria data for mapping
   const filterCriteria = [
     "Liquidity locked: $50K*",
@@ -19,6 +25,9 @@ export const FilterSection = () => {
       <div className="flex flex-col items-start gap-2">
         <div className="inline-flex items-center gap-2">
           <Checkbox
+          checked={isSelected}
+            onCheckedChange={onSelect}
+
             id="nanocap-gamble"
             className="w-5 h-5 rounded-[5.34px] border-[1.5px] border-[#ffffff96]"
           />

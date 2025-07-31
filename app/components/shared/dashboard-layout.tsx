@@ -6,7 +6,7 @@ import Footer from "./footer";
 const DashboardLayout = ({ children }: PropsWithChildren) => {
   
   return (
-    <main className="h-screen flex max-w-[90%] mx-auto">
+    <main className="h-screen flex  max-w-[1600px] mx-auto">
       <DashboardSidebar />
       <div className="flex-1 w-full flex flex-col h-screen">
         <TopNav />

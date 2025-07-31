@@ -2,8 +2,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CheckIcon } from "lucide-react";
 import React from "react";
 
-export const MarketDetailsSection = () => {
-  // Market details data for mapping
+export const MarketDetailsSection = ({
+  isSelected,
+  onSelect,
+}: {
+  isSelected: boolean;
+  onSelect: () => void;
+}) => {
   const marketCriteria = [
     { id: 1, text: "Liquidity locked: $50K*" },
     { id: 2, text: "Market cap: $1M+" },
@@ -21,7 +26,10 @@ export const MarketDetailsSection = () => {
     <div className="flex flex-col w-full items-start gap-[18px] pt-[13px] pb-[23px] px-0 border-b border-[#ffffff36]">
       <div className="flex flex-col items-start gap-2">
         <div className="inline-flex items-center gap-2">
-          <Checkbox className="w-5 h-5 rounded-[5.34px] border-[1.5px] border-[#ffffff96]" />
+          <Checkbox
+                      checked={isSelected}
+                                  onCheckedChange={onSelect}
+          className="w-5 h-5 rounded-[5.34px] border-[1.5px] border-[#ffffff96]" />
           <div className="[font-family:'Space_Grotesk',Helvetica] font-normal text-white text-lg">
             BLUE-CHIP
           </div>

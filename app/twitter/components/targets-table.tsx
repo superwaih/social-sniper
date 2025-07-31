@@ -24,9 +24,7 @@ interface ITargetTableProps {
 }
 
 export default function TargetsTable({ data, isLoading }: ITargetTableProps) {
-  // const [selectedToken, setSelectedToken] = useState<Token | null>(null);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
+ 
   const columns = [
     {
       header: "TOKEN NAME",

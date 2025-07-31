@@ -4,62 +4,62 @@ import { DataTable } from "@/components/shared/data-table";
 import { Icons } from "@/components/shared/icons";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Runner } from "@/types/runner";
-import { runnerData } from "@/utils/data";
+import {  RunnerReport } from "@/types/runner";
 import { useState } from "react";
 import { TokenDetail } from "./token-detail";
 // import { useGetTargets } from "@/service/target";
 
+interface IRunnerTableProps {
+  data: RunnerReport[];
+  isLoading: boolean;
+}
+export default function RunnerTable({data, isLoading}: IRunnerTableProps) {
 
-export default function RunnerTable() {
-
-    const [selectedRunner, setSelectedRunner] = useState<Runner | null>(null);
+    const [selectedRunner, setSelectedRunner] = useState<RunnerReport | null>(null);
+    console.log(selectedRunner)
     const [isModalOpen, setIsModalOpen] = useState(false);
-console.log(selectedRunner)
     const columns = [
       {
         header: "#MEME TREND",
-        accessor: (runner: Runner) => runner.name,
+        accessor: (runner: RunnerReport) => runner.tokenName,
         className: "w-[180px] font-pixelify text-[#FFFFFFF2]",
       },
       {
         header: "ENGAGEMENT",
-        accessor: (runner: Runner) => (
+        accessor: (runner: RunnerReport) => (
           <span
             className={cn(
-              runner.engagement.score >= 94 ? "text-green-500" : "text-red-500"
+              runner.engagementScore >= 94 ? "text-green-500" : "text-red-500"
             )}
           >
-            {runner.engagement.score}/100
+            {runner.engagementScore}/100
           </span>
         ),
       },
       {
         header: "BIG MENTIONS",
-        accessor: (runner: Runner) => (
-          <div className="flex flex-row w-full gap-3 items-center flex-wrap max-w-[300px]">
-            {runner.mentions.map((mention, i) => (
-              <span key={i} className="text-[#FFFFFFA3]">
-                @{mention}
+        accessor: (runner: RunnerReport) => (
+          <span  className="text-[#FFFFFFA3]">
+                @{runner.mentions}
               </span>
-            ))}
-          </div>
-        ),
+        )
+
+       
       },
-      // {
-      //   header: "TIKTOK VIDEOS",
-      //   accessor: (runner: Runner) => runner.tiktokVideos.toLocaleString(),
-      //   className: " text-[#FFFFFFF2]",
-      // },
+      {
+        header: "TIKTOK VIDEOS",
+        accessor: (runner: RunnerReport) => runner.tiktokVideos ?? 0,
+        className: " text-[#FFFFFFF2]",
+      },
       {
         className: "text-[#FFFFFFF2]",
         header: "HASHTAG REACH",
-        accessor: (runner: Runner) => runner.hashtagReach,
+        accessor: (runner: RunnerReport) => runner.hashtagReach
       },
       
       {
         header: "TOKENS GENERATED",
-        accessor: (runner: Runner) => (
+        accessor: (runner: RunnerReport) => (
           <Button
             variant="outline"
             size="sm"
@@ -80,12 +80,13 @@ console.log(selectedRunner)
   return (
     <div className=" overflow-x-auto">
       <DataTable
-        data={runnerData}
+        data={data}
         columns={columns}
-      
-        onRowClick={(runner) => {
-          setSelectedRunner(runner);
-          setIsModalOpen(true);
+      isLoading={isLoading}
+        onRowClick={(runner: RunnerReport) => {
+          // setSelectedRunner(runner);
+          // setIsModalOpen(true);
+          console.log(runner)
         }}
       />
       <TokenDetail 
