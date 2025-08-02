@@ -1,4 +1,5 @@
 import { Runner } from "@/types/runner";
+import { Stat } from "@/types/types";
 
 export const runnerData: Runner[] = [
   {
@@ -72,4 +73,28 @@ export const runnerData: Runner[] = [
   //   tiktokVideos: 789,
   //   hashtagReach: '42M IMPRESSIONS'
   // }
+];
+
+
+export const overviewStats: Stat[] = [
+  {
+    title: 'Total Tokens Sniped',
+    value: 18,
+    subtitle: 'Tokens',
+  },
+  {
+    title: 'Overall Portfolio PNL',
+    value: '+42.7%',
+    subtitle: '',
+  },
+  {
+    title: 'Auto Buy Active',
+    value: 4,
+    subtitle: 'Targets',
+  },
+  {
+    title: 'Rug Warnings',
+    value: 2,
+    subtitle: 'Tokens Flagged',
+  },
 ];

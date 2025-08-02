@@ -1,3 +1,4 @@
+import { OverviewReport } from "@/app/overview/components/overview-table";
 import { Icons } from "@/components/shared/icons"
 
 export const footerLinks = [
@@ -30,12 +31,12 @@ export const footerLinks = [
 
 
 export const dashboardLinks = [
-    // {
-    //     id: 1,
-    //     href: '/',
-    //     icon: Icons.runnerIcon ,
-    //     title: 'Dashboard'
-    // },
+    {
+        id: 1,
+        href: '/overview',
+        icon: Icons.overview ,
+        title: 'Snipe Overview'
+    },
     {
         id: 2,
         href: '/runner',
@@ -108,3 +109,37 @@ export const colorThemes = [
   },
 ];
 
+export const dummyOverviewData: OverviewReport[] = [
+  {
+    memeTrigger: "$GLAZE MEME",
+    snipeSource: "Runner Reports",
+    time: "2 MINS AGO",
+    engagement: 92,
+    mentionsSpike: 640,
+    tokenDrop: "Not yet",
+  },
+  {
+    memeTrigger: "TO THE MOON",
+    snipeSource: "Twitter Targets",
+    time: "6 MINS AGO",
+    engagement: 98,
+    mentionsSpike: 720,
+    tokenDrop: "Detected",
+  },
+  {
+    memeTrigger: "#KEKUS",
+    snipeSource: "Runner Reports",
+    time: "1 MIN AGO",
+    engagement: 80,
+    mentionsSpike: 310,
+    tokenDrop: "Detected",
+  },
+  {
+    memeTrigger: "JUST DROPPED",
+    snipeSource: "Twitter Targets",
+    time: "4 MINS AGO",
+    engagement: 85,
+    mentionsSpike: 410,
+    tokenDrop: "Detected",
+  },
+];

@@ -634,4 +634,55 @@ export const Icons = {
       ></path>
     </svg>
   ),
+  overview: (props: LucideProps) =>(
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="none"
+    {...props}
+    viewBox="0 0 24 24"
+  >
+    <path
+      fill="#fff"
+      fillOpacity="0.41"
+      d="M11.35 1v2.38a9.2 9.2 0 0 0-7.97 7.97H1v2.3h2.38a9.2 9.2 0 0 0 7.97 7.97V24h2.3v-2.38a9.2 9.2 0 0 0 7.97-7.97H24v-2.3h-2.38a9.2 9.2 0 0 0-7.97-7.97V1m-2.3 4.692V7.9h2.3V5.703c2.875.472 5.175 2.772 5.658 5.647H17.1v2.3h2.197c-.472 2.875-2.772 5.175-5.647 5.658V17.1h-2.3v2.197c-2.875-.472-5.175-2.772-5.658-5.647H7.9v-2.3H5.703c.472-2.875 2.772-5.175 5.647-5.658m1.15 5.658a1.15 1.15 0 1 0 0 2.3 1.15 1.15 0 0 0 0-2.3"
+    ></path>
+  </svg>
+  ),
+  snipeOverviewIcon: (props: LucideProps) =>(
+     <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    height="25"
+    fill="none"
+    {...props}
+    viewBox="0 0 25 25"
+  >
+    <rect
+      width="24"
+      height="24"
+      x="0.5"
+      y="0.5"
+      fill="#FF4C02"
+      fillOpacity="0.14"
+      rx="2.5"
+    ></rect>
+    <rect
+      width="24"
+      height="24"
+      x="0.5"
+      y="0.5"
+      stroke="#FF4C02"
+      rx="2.5"
+    ></rect>
+    <path
+      stroke="#FF4C02"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.563"
+      d="m7.04 17.961 5.462-5.461 5.461 5.461m0-10.923L12.501 12.5 7.04 7.04"
+    ></path>
+  </svg>
+  )
 };

@@ -68,6 +68,7 @@ export default {
 		backgroundImage:{
 			'hero': "url('/images/new-hero.webp')",
 			'price': "url('/images/price-bg.png')",
+			'card': "url('/images/card-bg.png')",
 
 			'publichero': "url('/images/public-hero.webp')",
 
