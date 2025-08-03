@@ -1,10 +1,74 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, Plus, Target, CircleUserRound, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import AvatarIcon from "@/app/components/icons/avatar-icon";
+import { useAddTarget } from "@/service/target";
+import { toast } from "sonner";
+
+// A placeholder for  avatar icon, styled to match the design
+const NewAvatarIcon = () => (
+  <div className="w-8 h-8 rounded-full flex items-center justify-center">
+    <AvatarIcon />
+  </div>
+);
+  // Mock data for demonstration
+  const allAccounts = [
+    "ELONMUSK",
+    "CRYPTOGOD",
+    "VITALIK",
+    "SBF_FTX",
+    "CZ_BINANCE",
+  ];
+  const suggestedAccounts = ["CRYPTOGOD", "ELONMUSK",     "VITALIK",
+    "SBF_FTX",
+    "CZ_BINANCE",];
+
+// Zod schema for form validation, ensuring at least one account is selected
+const targetSchema = z.object({
+  selectedAccounts: z
+    .array(z.string())
+    .min(1, "Please select at least one target account."),
+});
+
+// A reusable component for displaying an account item in the list
+const AccountItem = ({
+  account,
+  onAdd,
+  isSelected,
+}: {
+  account: string;
+  onAdd: (account: string) => void;
+  isSelected: boolean;
+}) => (
+  <div className="flex items-center justify-between py-3 border-[#333333]">
+    <div className="flex items-center gap-4">
+      <NewAvatarIcon />
+      <span className="font-mono text-[#FFFFFFA3]">@{account}</span>
+    </div>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => onAdd(account)}
+      className="text-[#779cbf] hover:text-[#ff4c02] disabled:text-gray-500"
+      disabled={isSelected}
+    >
+      <Plus className="w-5 h-5" />
+    </Button>
+  </div>
+);
 
 export default function TargetAddDialog({
   open,
@@ -14,108 +78,182 @@ export default function TargetAddDialog({
   setOpen: (open: boolean) => void;
 }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedAccounts, setSelectedAccounts] = useState<string[]>([]);
 
-  const searchedAccounts = ["@ELONMUSK", "@CRYPTOGOD"].filter((account) =>
-    account.toLowerCase().includes(searchTerm.toLowerCase())
+  const {
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<z.infer<typeof targetSchema>>({
+    resolver: zodResolver(targetSchema),
+    defaultValues: {
+      selectedAccounts: [],
+    },
+  });
+
+  const selectedAccounts = watch("selectedAccounts");
+const {mutate: addTarget, isPending} = useAddTarget()
+
+  const searchedAccounts = allAccounts.filter(
+    (account) =>
+      account.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm
   );
-  const suggestedAccounts = ["@CRYPTOGOD", "@ELONMUSK", "@ELONMUSK"];
 
   const handleAddAccount = (account: string) => {
+    if(selectedAccounts.length === 1){
+      toast.error('You can only add one target')
+      return
+    }
     if (!selectedAccounts.includes(account)) {
-      setSelectedAccounts([...selectedAccounts, account]);
+      setValue("selectedAccounts", [...selectedAccounts, account], {
+        shouldValidate: true,
+      });
     }
   };
 
+  const onSubmit = (data: z.infer<typeof targetSchema>) => {
+    console.log("Confirmed Targets:", data.selectedAccounts);
+    if(data.selectedAccounts.length === 0){
+      toast.error('Please Select A Target')
+      return
+    }
+    console.log(data?.selectedAccounts)
+    
+    addTarget({username: data?.selectedAccounts[0]?.toLowerCase()},{
+      onSuccess: () =>{
+        toast.success("Target Successfully Added!")
+    setOpen(false);
+
+      },
+      onError: ()=>{
+        toast.error('Failed To Add Target')
+      }
+    })
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    reset();
+  };
+
+  const gradientSvg = `url("data:image/svg+xml,%3csvg width='470' height='250' viewBox='0 0 470 250' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle opacity='0.13' cx='273' cy='-23.001' r='273' fill='url(%23paint0_radial_1006_4635)'/%3e%3cdefs%3e%3cradialGradient id='paint0_radial_1006_4635' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(273 -23.001) rotate(90) scale(273)'%3e%3cstop stop-color='%23FF4C02'/%3e%3cstop offset='1' stop-color='%23FF4C02' stop-opacity='0'/%3e%3c/radialGradient%3e%3c/defs%3e%3c/svg%3e")`;
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="bg-[#05121a] text-white border-2 border-solid border-transparent rounded-lg p-0 max-w-[400px]">
-        <DialogHeader className="p-6 border-b border-[#ffffff40]">
-          <DialogTitle className="[font-family:'Space_Grotesk',Helvetica] text-xl font-bold uppercase">
-            ADD TARGET
-          </DialogTitle>
-        </DialogHeader>
-        <div className="p-6">
-          <div className="relative mb-4">
-            <Input
-              type="text"
-              placeholder="SEARCH ACCOUNT EG. (@CRYPTOGOD)"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-[#1a2a38] text-[#FFFFFFF2] border-[#ffffff26] placeholder-[#779cbf] pl-10 pr-4 py-2 rounded-md"
-            />
-            <Search className="absolute left-3 top-2.5 text-[#779cbf] w-5 h-5" />
-          </div>
-          {searchedAccounts.length > 0 && (
-            <div className="mb-4">
-              {searchedAccounts.map((account) => (
-                <div
-                  key={account}
-                  className="flex items-center justify-between py-2 border-b border-[#ffffff26]"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-[#2a3b4d] rounded-full" />
-                    <span className="[font-family:'DM_Mono',Helvetica] text-[#FFFFFFA3]">
-                      {account}
-                    </span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleAddAccount(account)}
-                    className="text-[#779cbf] hover:text-[#ff4c02]"
-                  >
-                    <span className="text-xl">+</span>
-                  </Button>
-                </div>
-              ))}
-            </div>
-          )}
-          <div className="mb-4">
-            <h3 className="[font-family:'Space_Grotesk',Helvetica] text-sm text-[#FFFFFFF2] mb-2">
-              SUGGESTED ACCOUNTS
-            </h3>
-            {suggestedAccounts.map((account) => (
-              <div
-                key={account}
-                className="flex items-center justify-between py-2 border-b border-[#ffffff26]"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-[#2a3b4d] rounded-full" />
-                  <span className="[font-family:'DM_Mono',Helvetica] text-[#FFFFFFA3]">
-                    {account}
-                  </span>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleAddAccount(account)}
-                  className="text-[#779cbf] hover:text-[#ff4c02]"
-                >
-                  <span className="text-xl">+</span>
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-        <DialogFooter className="p-6 border-t border-[#ffffff40] flex justify-end gap-4">
-          <Button
-            variant="outline"
-            onClick={() => setOpen(false)}
-            className="text-[#FFFFFFA3] [font-family:'DM_Mono',Helvetica] border-[#ffffff40] bg-transparent hover:bg-[#2a3b4d] rounded-full px-6 py-2"
-          >
-            CANCEL
-          </Button>
-          <Button
-            onClick={() => {
-              // Handle confirm logic here
-              setOpen(false);
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent className="bg-[#020C12] text-white border border-[#333333] rounded-lg  overflow-hidden ">
+        {/* Background Gradients */}
+
+        {/* Content Wrapper */}
+        <div className="relative z-10 bg-transparent">
+          <DialogHeader className="p-6 border-b border-[#333333]">
+            <DialogTitle className="[font-family:'Space_Grotesk',Helvetica] text-[17.59px]  uppercase">
+              ADD TARGET
+            </DialogTitle>
+          </DialogHeader>
+          <div
+            className="absolute top-0 right-0 pointer-events-none z-0"
+            style={{
+              width: "470px",
+              height: "250px",
+              backgroundImage: gradientSvg,
+              backgroundRepeat: "no-repeat",
+              transform: "translate(35%, -35%)",
             }}
-            className="bg-[#ff4c02] text-white [font-family:'DM_Mono',Helvetica] rounded-full px-6 py-2 hover:bg-[#e64a00]"
-          >
-            CONFIRM TARGET
-          </Button>
-        </DialogFooter>
+          />
+          <div
+            className="absolute bottom-0 left-0 pointer-events-none z-0"
+            style={{
+              width: "270px",
+              height: "250px",
+              backgroundImage: gradientSvg,
+              backgroundRepeat: "no-repeat",
+              transform: "translate(-35%, 35%) rotate(180deg)",
+            }}
+          />
+
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="p-6">
+              <div className="relative mb-4">
+                <Input
+                  type="text"
+                  placeholder="SEARCH ACCOUNT EG. (@CRYPTOGOD)"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full bg-[#0A141A] text-white border border-[#333333] placeholder:text-white/40 pl-10 pr-4 py-5 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 w-5 h-5" />
+              </div>
+
+              {/* Searched Accounts */}
+              {searchedAccounts.length > 0 && (
+                <div className="mb-4">
+                  {searchedAccounts.map((account) => (
+                    <AccountItem
+                      key={`search-${account}`}
+                      account={account}
+                      onAdd={handleAddAccount}
+                      isSelected={selectedAccounts.includes(account)}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Suggested Accounts */}
+              <div className="mb-4">
+                <h3 className="[font-family:'Space_Grotesk',Helvetica] text-sm text-[#FFFFFFF2] mb-2 uppercase flex justify-between items-center">
+                  SUGGESTED ACCOUNTS
+                  
+                </h3>
+                {suggestedAccounts.map((account) => (
+                  <AccountItem
+                    key={`suggest-${account}`}
+                    account={account}
+                    onAdd={handleAddAccount}
+                    isSelected={selectedAccounts.includes(account)}
+                  />
+                ))}
+              </div>
+              {errors.selectedAccounts && (
+                <p className="text-red-500 text-sm mt-2">
+                  {errors.selectedAccounts.message}
+                </p>
+              )}
+            </div>
+
+            <DialogFooter className="py-5 flex flex-col sm:flex-row justify-end gap-4 border-t border-[#333333]">
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="w-fit bg-[#ff4c02] text-white [font-family:'DM_Mono',Helvetica] rounded-[9.73px] px-4 py-4 text-sm font-bold hover:bg-[#e64a00] flex items-center justify-center gap-2"
+              >
+                {
+                  isPending ?
+
+                  <>
+                  <Loader2 className="animate-spin" />
+
+                  </>
+                  :
+                  <>
+                  <Target className="w-5 h-5" />
+                CONFIRM TARGET</>
+                }
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={isPending}
+
+                onClick={handleClose}
+                className="w-fit text-white/80 [font-family:'DM_Mono',Helvetica] border-[#333333] bg-[#EDEDED08] hover:bg-[#2a2a2a] hover:text-white rounded-[9.73px] px-3 py-4 text-sm font-bold flex items-center justify-center gap-2"
+              >
+                <CircleUserRound className="w-5 h-5" />
+                CANCEL
+              </Button>
+            </DialogFooter>
+          </form>
+        </div>
       </DialogContent>
     </Dialog>
   );

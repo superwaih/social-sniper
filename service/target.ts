@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { api } from "./api"
 // Request body type
 export type TwitterTargetFilters = {
@@ -47,3 +47,25 @@ export const useGetTargets = (publicKey: string, filters: TwitterTargetFilters) 
     enabled: !!publicKey,
   });
 };
+
+
+
+
+const addTarget = async ({username}: {username: string}) => {
+  const res = await api.post('/twittertarget/twitterTarget', {
+      twitterUsername: username,
+      buyAmount: 1,
+      takeProfit: 1,
+      stopLoss: 1,
+      autoBuy: false
+    })
+
+  return res.data
+}
+
+export const useAddTarget = () =>{
+  return useMutation({
+    mutationFn: addTarget,
+    mutationKey: ['add-target']
+  })
+}

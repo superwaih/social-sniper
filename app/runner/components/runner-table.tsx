@@ -16,8 +16,8 @@ interface IRunnerTableProps {
 export default function RunnerTable({data, isLoading}: IRunnerTableProps) {
 
     const [selectedRunner, setSelectedRunner] = useState<RunnerReport | null>(null);
-    console.log(selectedRunner)
     const [isModalOpen, setIsModalOpen] = useState(false);
+    console.log(selectedRunner)
     const columns = [
       {
         header: "#MEME TREND",

@@ -1,10 +1,12 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import DashboardLayout from '../components/shared/dashboard-layout'
 import { Icons } from '@/components/shared/icons'
 import TargetsTable from './components/targets-table'
 import { TwitterTargetFilters, useGetTargets } from '@/service/target'
 import { useWallet } from '@solana/wallet-adapter-react'
+import TargetAddDialog from './components/add-new-target'
+// import { toast } from 'sonner'
 
 const Twitter = () => {
   const {publicKey} = useWallet()
@@ -19,7 +21,7 @@ const Twitter = () => {
   };
   
   const { data, isLoading} = useGetTargets(publicKey?.toBase58() ?? '', filters);
-  console.log(data)
+const [isOpen, setIsOpen] = useState(false)
   return (
     <DashboardLayout>
 
@@ -29,14 +31,24 @@ const Twitter = () => {
           </h2>
           <div className="bg-[#091820] p-[14px] flex justify-between items-center">
             <p className="flex gap-2  text-[#FFFFFF94] items-center">
-              {/* <span className="text-lg  "></span> */}
+          
               <Icons.refresh className="text-[#FFFFFF94]" />
             </p>
             <div className='flex gap-4 items-center'>
-              <div className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px]">
-                <Icons.filterIcon className="text-[#FFFFFF8A] text-sm" />
-                <p className="text-[#FFFFFF8A] text-sm">ACCOUNT FILTERS</p>
-              </div>
+              <button onClick={() => {
+                  setIsOpen(true)
+
+                if(!publicKey){
+                  // toast.error('Login First')
+                  // return 
+                }else{
+                  setIsOpen(true)
+                }
+              }} className="rounded-md border border-[rgba(255,76,2,0.8)] text-white bg-[linear-gradient(90deg,rgba(255,76,2,0.4958)_0%,rgba(35,20,15,0.67)_100%)] hover:opacity-90 transition uppercase flex gap-3 items-center px-4 py-2">
+              <Icons.refresh className="text-[#FFFFFF94]" />
+
+                <p className="text-[#FFFFFF8A] text-sm">ADD TARGET</p>
+              </button>
               <div className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px]">
                 <Icons.filterIcon className="text-[#FFFFFF8A] text-sm" />
                 <p className="text-[#FFFFFF8A] text-sm">FILTER MEANING</p>
@@ -48,6 +60,8 @@ const Twitter = () => {
           isLoading={isLoading}
           data={data?.result ?? []}
           />
+
+          <TargetAddDialog open={isOpen}  setOpen={setIsOpen} />
         </section>
     </DashboardLayout>
   )

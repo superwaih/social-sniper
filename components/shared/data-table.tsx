@@ -37,6 +37,7 @@ export function DataTable<T>({
   emptyButtonText,
   onEmptyButtonClick,
 }: DataTableProps<T>) {
+  
   const skeletonRows = Array.from({ length: 10 });
 
   return (
