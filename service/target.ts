@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { api } from "./api"
 // Request body type
 export type TwitterTargetFilters = {
@@ -64,9 +64,13 @@ const addTarget = async ({username, buyAmount, takeProfit, stopLoss, autoBuy}: {
 }
 
 export const useAddTarget = () =>{
+  const queryClient = useQueryClient()
   return useMutation({
     mutationFn: addTarget,
-    mutationKey: ['add-target']
+    mutationKey: ['add-target'],
+    onSuccess: () =>{
+queryClient.invalidateQueries({ queryKey: ['get-all-targets'] })
+    }
   })
 }
 
