@@ -52,14 +52,14 @@ export const dashboardLinks = [
 
         title: 'Twitter Targets'
     },
-    {
-        id: 4,
-        href: '/social-sniper',
-        icon: Icons.sniperIcon ,
+    // {
+    //     id: 4,
+    //     href: '/social-sniper',
+    //     icon: Icons.sniperIcon ,
         
 
-        title: 'Social Sniper'
-    },
+    //     title: 'Social Sniper'
+    // },
     {
         id: 5,
         href: '/settings',

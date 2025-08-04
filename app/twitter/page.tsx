@@ -3,25 +3,26 @@ import React, { useState } from 'react'
 import DashboardLayout from '../components/shared/dashboard-layout'
 import { Icons } from '@/components/shared/icons'
 import TargetsTable from './components/targets-table'
-import { TwitterTargetFilters, useGetTargets } from '@/service/target'
+import { useGetAllTargets } from '@/service/target'
 import { useWallet } from '@solana/wallet-adapter-react'
 import TargetAddDialog from './components/add-new-target'
 // import { toast } from 'sonner'
 
 const Twitter = () => {
   const {publicKey} = useWallet()
-    const filters: TwitterTargetFilters = {
-    engagement_score: 0,
-    min_followers: 1404,
-    username: "TheCryptoCajun",
-    verification_status: true,
-    account_age: 2,
-    startDate: "2025-06-01",
-    endDate: "2025-06-28"
-  };
+  //   const filters: TwitterTargetFilters = {
+  //   engagement_score: 0,
+  //   min_followers: 1404,
+  //   username: "TheCryptoCajun",
+  //   verification_status: true,
+  //   account_age: 2,
+  //   startDate: "2025-06-01",
+  //   endDate: "2025-06-28"
+  // };
   
-  const { data, isLoading} = useGetTargets(publicKey?.toBase58() ?? '', filters);
+  const { data, isLoading} = useGetAllTargets(publicKey?.toBase58() ?? '');
 const [isOpen, setIsOpen] = useState(false)
+console.log(data)
   return (
     <DashboardLayout>
 

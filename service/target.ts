@@ -51,13 +51,13 @@ export const useGetTargets = (publicKey: string, filters: TwitterTargetFilters) 
 
 
 
-const addTarget = async ({username}: {username: string}) => {
+const addTarget = async ({username, buyAmount, takeProfit, stopLoss, autoBuy}: {username: string, buyAmount: number, takeProfit: number, stopLoss: number, autoBuy: boolean}) => {
   const res = await api.post('/twittertarget/twitterTarget', {
       twitterUsername: username,
-      buyAmount: 1,
-      takeProfit: 1,
-      stopLoss: 1,
-      autoBuy: false
+      buyAmount: buyAmount,
+      takeProfit: takeProfit,
+      stopLoss:  stopLoss,
+      autoBuy: autoBuy
     })
 
   return res.data
@@ -67,5 +67,19 @@ export const useAddTarget = () =>{
   return useMutation({
     mutationFn: addTarget,
     mutationKey: ['add-target']
+  })
+}
+
+const getAllTargets = async () => {
+  const res = await api.get('/twittertarget/getAllTargets')
+  return res.data
+
+}
+export const useGetAllTargets = (publicKey: string) => {
+  return useQuery({
+    queryKey: ['get-all-targets', publicKey],
+    queryFn: getAllTargets,
+    enabled: !!publicKey,
+    
   })
 }

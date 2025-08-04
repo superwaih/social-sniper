@@ -17,9 +17,23 @@ export type Token = {
   mentions: string;
   currentPrice: number;
 };
-
+export interface AutoBuyTarget {
+  _id: string;
+  userId: string;
+  twitterUsername: string;
+  mentionHour: number;
+  followers: string; // you may want to change this to number if it’s always numeric
+  lastActivity: number;
+  autoBuy: boolean;
+  buyAmount: number;
+  stopLoss: number;
+  takeProfit: number;
+  status: 'active' | 'inactive' | string; // adjust as needed based on your enum values
+  createdAt: string; // or `Date` if you parse it
+  __v: number;
+}
 interface ITargetTableProps {
-  data: Token[];
+  data: AutoBuyTarget[];
   isLoading: boolean;
 }
 
@@ -27,46 +41,46 @@ export default function TargetsTable({ data, isLoading }: ITargetTableProps) {
  
   const columns = [
     {
-      header: "TOKEN NAME",
-      accessor: (token: Token) => (
-        <span className="font-semibold  text-white">{token.tokenName}</span>
+      header: "ACCOUNT",
+      accessor: (token: AutoBuyTarget) => (
+        <span className="font-semibold  text-white">{token.twitterUsername}</span>
       ),
       className: "text-white font-pixel",
     },
     {
-      header: "PRICE",
-      accessor: (token: Token) => (
-        <span className="text-white">${token.currentPrice.toFixed(6)}</span>
+      header: "MENTIONS 24H",
+      accessor: (token: AutoBuyTarget) => (
+        <span className="text-white">{token.mentionHour}</span>
       ),
       className: "text-white font-grok",
     },
     {
-      header: "MARKET CAP",
-      accessor: (token: Token) => (
-        <span className="text-white">${token.marketCap.toLocaleString()}</span>
+      header: "FOLLOWERS",
+      accessor: (token: AutoBuyTarget) => (
+        <span className="text-white">${token.followers}</span>
       ),
       className: "text-white font-grok",
     },
     {
-      header: "LIQUIDITY",
-      accessor: (token: Token) => (
+      header: "LAST ACTIVITY",
+      accessor: (token: AutoBuyTarget) => (
         <span className="text-white">
-          ${token.liquidityLocked.toLocaleString()}
+          {token.lastActivity}
         </span>
       ),
       className: "text-white font-grok" ,
     },
     {
-      header: "HOLDERS",
-      accessor: (token: Token) => (
-        <span className="text-white">{token.tokenHolder ?? "N/A"}</span>
+      header: "AUTO BUY",
+      accessor: (token: AutoBuyTarget) => (
+        <span className="text-white">{token.autoBuy ?  "✅ ON" : "❌ OFF" }</span>
       ),
       className: "text-white font-grok",
     },
     {
       header: "STATUS",
-      accessor: (token: Token) => (
-        <StatusIndicator status={token.currentPrice > 0 ? "Active" : "Idle"} />
+      accessor: (token: AutoBuyTarget) => (
+        <StatusIndicator status={token.status === "active" ?  "Active" : "Idle"} />
       ),
       className: "text-white",
     },

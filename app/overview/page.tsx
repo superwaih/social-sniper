@@ -3,8 +3,9 @@
 
 import StatCard from "../components/shared/overview-stat-card";
 import { overviewStats } from "@/utils/data";
-import OverviewTable from "./components/overview-table";
-import { dummyOverviewData } from "@/utils/constants";
+// import OverviewTable from "./components/overview-table";
+// import { dummyOverviewData } from "@/utils/constants";
+import SniperTable from "../social-sniper/components/sniper-table";
 
 
 const Runner = () => {
@@ -20,8 +21,9 @@ const Runner = () => {
   ))
 }
       </div>
-<OverviewTable data={dummyOverviewData} isLoading={false} />
+{/* <OverviewTable data={dummyOverviewData} isLoading={false} /> */}
       
+        <SniperTable />
 
      
     </section>

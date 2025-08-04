@@ -16,6 +16,7 @@ import PricingSection from "./components/shared/pricing-section";
 const Runner = () => {
   return (
   <main className="flex flex-col overflow-hidden ">
+    {/* <Frame /> */}
     <NewHero />
     <HowitWorksNew />
     <AutoBuy />
