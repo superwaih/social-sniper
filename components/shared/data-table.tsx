@@ -41,8 +41,8 @@ export function DataTable<T>({
   const skeletonRows = Array.from({ length: 10 });
 
   return (
-    <div className="w-full overflow-x-auto rounded-[8px] overflow-hidden">
-      <Table className="w-full table-auto">
+    <div className="w-full  overflow-x-auto rounded-[8px] overflow-hidden">
+      <Table className="w-full  table-auto">
         <TableHeader>
           <TableRow>
             {columns.map((column, index) => (
