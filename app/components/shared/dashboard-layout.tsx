@@ -9,13 +9,14 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
   const { getThemeStyles } = useAppTheme();
   
   return (
-    <main 
-      className="h-screen flex max-w-[1600px] mx-auto"
-      style={{
+    <section style={{
         background: getThemeStyles().background,
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-      }}
+      }}>
+    <main 
+      className="h-screen flex max-w-[1600px] mx-auto"
+      
     >
       <DashboardSidebar />
       <div className="flex-1 w-full flex flex-col h-screen">
@@ -24,6 +25,8 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
         <Footer />
       </div>
     </main>
+
+    </section>
   );
 };
 

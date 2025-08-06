@@ -57,7 +57,7 @@ export default function TargetsTable({ data, isLoading }: ITargetTableProps) {
     {
       header: "FOLLOWERS",
       accessor: (token: AutoBuyTarget) => (
-        <span className="text-white">${token.followers}</span>
+        <span className="text-white">{token.followers}</span>
       ),
       className: "text-white font-grok",
     },

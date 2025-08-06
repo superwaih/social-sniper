@@ -126,11 +126,7 @@ export default function UserProfileSidebar() {
           <div className="flex gap-4 py-5 border-b border-[#FFFFFF3B] items-center">
             <div className="flex flex-col gap-2">
               {profilePicture ? (
-                // <img
-                //   src={profilePicture}
-                //   alt="Profile"
-                //   className="w-12 h-12 rounded-full object-cover"
-                // />
+          
                 <AvatarIcon />
 
               ) : (
@@ -190,17 +186,20 @@ export default function UserProfileSidebar() {
               Choose a preferred theme for background gradient
             </div>
             <div className="flex gap-3">
-              {colorThemes.map((theme, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => handleThemeChange(index)}
-                  className={`w-10 h-10 rounded-full ${theme.color} transition-all duration-200 hover:scale-110 ${
-                    index === selectedTheme ? "ring-2 ring-white ring-offset-2 ring-offset-transparent" : ""
-                  }`}
-                  title={theme.name}
-                />
-              ))}
+              {colorThemes.map((theme, index) => {
+                return(
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => handleThemeChange(index)}
+                    className={`w-10 h-10 rounded-full transition-all duration-200 hover:scale-110 ${
+                      index === selectedTheme ? "ring-2 ring-white ring-offset-2 ring-offset-transparent" : ""
+                    }`}
+                    style={{ backgroundColor: theme.color }}
+                    title={theme.name}
+                  />
+                )
+              })}
             </div>
           </div>
 

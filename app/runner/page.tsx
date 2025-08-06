@@ -10,15 +10,15 @@ import { RunnerFilters } from "@/types/runner";
 
 const defaultFilters: RunnerFilters = {
   engagement_score: 0,
-  min_followers: 1404,
-  min_market_cap: 1000,
+  min_followers: 100,
+  min_market_cap: 100,
   max_market_cap: "",
-  buy_ratio: 45,
-  sell_ratio: 100,
-  minimum_holders: 300,
-  account_age: 2,
+  buy_ratio: 10,
+  sell_ratio: 10,
+  minimum_holders: 30,
+  account_age: 1,
   startDate: "2025-06-01",
-  endDate: "2025-06-28",
+  endDate: "2025-08-28",
   liquidity_locked: 0,
 };
 

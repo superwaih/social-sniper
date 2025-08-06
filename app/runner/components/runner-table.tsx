@@ -88,6 +88,7 @@ export default function RunnerTable({data, isLoading}: IRunnerTableProps) {
           // setIsModalOpen(true);
           console.log(runner)
         }}
+        emptyText="Login Your Account And See Runner Tokens"
       />
       <TokenDetail 
       open={isModalOpen}
