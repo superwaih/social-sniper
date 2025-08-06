@@ -1,7 +1,7 @@
 // Shared theme configuration for the application
 export interface ThemeConfig {
   color: string;
-  gradient: string;
+  gradient?: string;
   name: string;
   // Additional theme properties for unified styling
   primaryColor: string;
@@ -12,6 +12,16 @@ export interface ThemeConfig {
 }
 
 export const colorThemes: ThemeConfig[] = [
+  { 
+    color: "#061016", 
+    // gradient: "linear-gradient(135deg, rgba(29, 161, 242, 0.2) 0%, rgba(29, 161, 242, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Default",
+    primaryColor: "#1DA1F2",
+    accentColor: "#1DA1F2",
+    backgroundColor: "#061016",
+    textColor: "#FFFFFF",
+    mutedTextColor: "#FFFFFF70"
+  },
   { 
     color: "#1DA1F2", 
     gradient: "linear-gradient(135deg, rgba(29, 161, 242, 0.2) 0%, rgba(29, 161, 242, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
@@ -64,4 +74,4 @@ export const colorThemes: ThemeConfig[] = [
   },
 ];
 
-export const DEFAULT_THEME_INDEX = 2; // Purple theme as default
+export const DEFAULT_THEME_INDEX = 3; // Purple theme as default
