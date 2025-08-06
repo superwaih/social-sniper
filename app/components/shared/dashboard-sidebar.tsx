@@ -4,9 +4,11 @@ import { dashboardLinks } from '@/utils/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react'
+import { useAppTheme } from '@/hooks/useAppTheme';
 
 const DashboardSidebar = () => {
     const pathname = usePathname()
+    const { currentTheme } = useAppTheme();
 
   return (
     <section className="border-r flex flex-col  w-full  pl-6 max-w-[338px] border-brandgray  ">
@@ -21,8 +23,16 @@ const DashboardSidebar = () => {
           <Link
             className={
               pathname === navlink.href
-                ? " flex items-center gap-2 px-4 py-3 active-btn"
+                ? " flex items-center gap-2 px-4 py-3 rounded-md border transition uppercase text-white"
                 : " py-3 px-3 flex items-center gap-2  text-[#FFFFFF69] uppercase"
+            }
+            style={
+              pathname === navlink.href 
+                ? {
+                    borderColor: `${currentTheme.primaryColor}80`,
+                    background: `linear-gradient(90deg, ${currentTheme.primaryColor}4C 0%, rgba(35, 20, 15, 0.67) 100%)`,
+                  }
+                : {}
             }
             href={navlink.href}
             key={navlink.id}
