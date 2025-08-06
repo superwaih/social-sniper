@@ -115,14 +115,30 @@ export default function UserProfileSidebar() {
           borderImageSource:
             "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(153, 153, 153, 0.08) 100%)",
           borderImageSlice: 1,
-          background: currentTheme.gradient,
+          background: currentTheme.gradient || "#05121A",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
         }}
         side="right"
-        className="text-white"
+        className="text-white  overflow-hidden"
       >
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+        {/* Background Gradients for Default Theme */}
+        {selectedTheme === 0 && (
+          <>
+            {/* Top Right Gradient */}
+            <div
+              className="w-[648px] h-[648px] top-[-349px] right-[-200px] rounded-[324px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-30"
+            />
+            {/* Bottom Left Gradient */}
+            <div
+              className="w-[648px] h-[648px] bottom-[-349px] left-[-200px] rounded-[324px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-30"
+            />
+          </>
+        )}
+        
+        {/* Main Content */}
+        <div className="relative z-10">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
           <div className="flex gap-4 py-5 border-b border-[#FFFFFF3B] items-center">
             <div className="flex flex-col gap-2">
               {profilePicture ? (
@@ -211,6 +227,7 @@ export default function UserProfileSidebar() {
             </Button>
           </div>
         </form>
+        </div>
       </SheetContent>
     </Sheet>
   );

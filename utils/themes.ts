@@ -17,7 +17,7 @@ export const colorThemes: ThemeConfig[] = [
     // gradient: "linear-gradient(135deg, rgba(29, 161, 242, 0.2) 0%, rgba(29, 161, 242, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
     name: "Default",
     primaryColor: "#1DA1F2",
-    accentColor: "#1DA1F2",
+    accentColor: "rgba(255,76,2,0.8)",
     backgroundColor: "#061016",
     textColor: "#FFFFFF",
     mutedTextColor: "#FFFFFF70"
@@ -74,4 +74,4 @@ export const colorThemes: ThemeConfig[] = [
   },
 ];
 
-export const DEFAULT_THEME_INDEX = 3; // Purple theme as default
+export const DEFAULT_THEME_INDEX = 0; // Purple theme as default
