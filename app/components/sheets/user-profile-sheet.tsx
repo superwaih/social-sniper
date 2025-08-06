@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,9 +13,33 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { shortenAddress } from "@/utils/constants";
 import { useGetUserProfile, useUpdateProfile } from "@/service/user";
 import { toast } from "sonner";
-import { colorThemes } from "@/utils/themes";
-import { useAppTheme } from "@/hooks/useAppTheme";
-
+export const colorThemes = [
+  { 
+    color: "bg-[#1DA1F2]", 
+    gradient: "linear-gradient(135deg, rgba(29, 161, 242, 0.2) 0%, rgba(29, 161, 242, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Twitter Blue"
+  },
+  { 
+    color: "bg-[#FF9500]", 
+    gradient: "linear-gradient(135deg, rgba(255, 149, 0, 0.2) 0%, rgba(255, 149, 0, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Orange"
+  },
+  { 
+    color: "bg-[#7C3AED]", 
+    gradient: "linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(124, 58, 237, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Purple"
+  },
+  { 
+    color: "bg-[#4F46E5]", 
+    gradient: "linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(79, 70, 229, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Indigo"
+  },
+  { 
+    color: "bg-[#e05c14]", 
+    gradient: "linear-gradient(135deg, rgba(224, 92, 20, 0.2) 0%, rgba(224, 92, 20, 0.05) 50%, rgba(5, 18, 26, 0.6) 100%)",
+    name: "Brand Orange"
+  },
+];
 const formSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters").optional(),
   profilePicture: z.string().optional(), // base64 or URL
@@ -27,7 +52,7 @@ export default function UserProfileSidebar() {
   const pubKey = publicKey?.toBase58() ?? "";
   const { data: userprofile } = useGetUserProfile(pubKey);
   const { mutate: updateProfile, isPending: isUpdating } = useUpdateProfile();
-  const { selectedTheme, setSelectedTheme, currentTheme } = useAppTheme();
+  const [selectedTheme, setSelectedTheme] = useState<number>(2);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -115,7 +140,7 @@ export default function UserProfileSidebar() {
           borderImageSource:
             "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(153, 153, 153, 0.08) 100%)",
           borderImageSlice: 1,
-          background: currentTheme.gradient,
+          background: colorThemes[selectedTheme].gradient,
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
         }}

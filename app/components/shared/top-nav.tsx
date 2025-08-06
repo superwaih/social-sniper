@@ -11,13 +11,11 @@ import { toast } from "sonner";
 import { Loader2 } from 'lucide-react';
 import { useAuthStore } from '@/store/store';
 import { setToken } from '@/service/token';
-import { useAppTheme } from '@/hooks/useAppTheme';
 
 const TopNav = () => {
   const { publicKey, disconnecting } = useWallet();
   const { mutate: loginFn, isPending: isLoading } = useLoginFn();
   const { mutate: disconnectUser } = useDisconnectUser(); 
-  const { currentTheme } = useAppTheme();
 
   const { hasLoggedIn, setLoggedIn, resetLogin,setPublicKey  } = useAuthStore();
 
@@ -70,13 +68,7 @@ console.log(data)
   return (
     <div className="border-b py-[1.44rem] justify-end px-4 flex items-center border-brandgray">
       <div className="gap-4 flex">
-        <WalletMultiButton 
-          className="rounded-md border text-white hover:opacity-90 transition uppercase flex gap-3 items-center px-4 py-2"
-          style={{
-            borderColor: `${currentTheme.primaryColor}80`,
-            background: `linear-gradient(90deg, ${currentTheme.primaryColor}4C 0%, rgba(35, 20, 15, 0.67) 100%)`,
-          }}
-        >
+        <WalletMultiButton className="rounded-md border border-[rgba(255,76,2,0.8)] text-white bg-[linear-gradient(90deg,rgba(255,76,2,0.4958)_0%,rgba(35,20,15,0.67)_100%)] hover:opacity-90 transition uppercase flex gap-3 items-center px-4 py-2">
           {isLoading ? (
             <Loader2 className="animate-spin" />
           ) : publicKey ? (
