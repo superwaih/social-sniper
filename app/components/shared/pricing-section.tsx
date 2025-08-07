@@ -43,6 +43,7 @@ const PricingSection = () => {
 
   return (
     <motion.section
+      id="pricing"
       className="bg-[#00090F] py-16 px-4 min-h-[60vh]"
       initial="hidden"
       whileInView="show"

@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
+import { scrollToPricing } from "@/utils/scroll";
 
 export const BottomBanner = () => {
   const ref = React.useRef(null);
@@ -178,28 +179,27 @@ export const BottomBanner = () => {
           variants={buttonContainerVariants}
         >
           <motion.div variants={buttonVariants}>
-            <Link href="/">
+            <motion.div
+              onClick={scrollToPricing}
+              className="px-6 md:px-12 py-3 md:py-3 bg-[#ff4c02] [font-family:'Space_Grotesk',Helvetica] font-normal text-white text-[16.3px] tracking-[-0.65px] rounded cursor-pointer relative overflow-hidden"
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: "#e64400",
+                boxShadow: "0 10px 30px rgba(255, 76, 2, 0.4)",
+                transition: { duration: 0.2 },
+              }}
+              whileTap={{
+                scale: 0.98,
+                transition: { duration: 0.1 },
+              }}
+            >
               <motion.div
-                className="px-6 md:px-12 py-3 md:py-3 bg-[#ff4c02] [font-family:'Space_Grotesk',Helvetica] font-normal text-white text-[16.3px] tracking-[-0.65px] rounded cursor-pointer relative overflow-hidden"
-                whileHover={{
-                  scale: 1.05,
-                  backgroundColor: "#e64400",
-                  boxShadow: "0 10px 30px rgba(255, 76, 2, 0.4)",
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{
-                  scale: 0.98,
-                  transition: { duration: 0.1 },
-                }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[#ff4c02] to-[#ff6b2b] opacity-0"
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <span className="relative z-10">Snipe now</span>
-              </motion.div>
-            </Link>
+                className="absolute inset-0 bg-gradient-to-r from-[#ff4c02] to-[#ff6b2b] opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <span className="relative z-10">Snipe now</span>
+            </motion.div>
           </motion.div>
 
           <motion.div variants={buttonVariants}>

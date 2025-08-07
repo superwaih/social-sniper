@@ -3,9 +3,9 @@
 
 import React from "react"
 import Image from "next/image"
-import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import LandingNavbar from "./landing-navbar"
+import { scrollToPricing } from "@/utils/scroll"
 
 export const Hero = () => {
   const ref = React.useRef(null)
@@ -153,23 +153,22 @@ export const Hero = () => {
         </motion.p>
 
         <motion.div variants={buttonVariants}>
-          <Link href="/">
+          <motion.div
+            onClick={scrollToPricing}
+            className="w-56 flex items-center justify-center h-[54px] bg-[#ff4c02] rounded border-none text-white cursor-pointer relative overflow-hidden"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+          >
             <motion.div
-              className="w-56 flex items-center justify-center h-[54px] bg-[#ff4c02] rounded border-none text-white cursor-pointer relative overflow-hidden"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#ff4c02] to-[#ff6b2b] opacity-0"
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-              <div className="font-['Space_Grotesk',Helvetica] font-normal text-[16.3px] text-center tracking-[-0.65px] leading-normal relative z-10">
-                Snipe now
-              </div>
-            </motion.div>
-          </Link>
+              className="absolute inset-0 bg-gradient-to-r from-[#ff4c02] to-[#ff6b2b] opacity-0"
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+            <div className="font-['Space_Grotesk',Helvetica] font-normal text-[16.3px] text-center tracking-[-0.65px] leading-normal relative z-10">
+              Snipe now
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
 
