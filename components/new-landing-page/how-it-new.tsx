@@ -29,6 +29,7 @@ const fadeUpVariant = {
 const HowitWorksNew = () => {
   return (
     <motion.section
+      id="how-it-works-content"
       className="bg-black  py-12  flex flex-col space-y-8"
       variants={containerVariants}
       initial="hidden"

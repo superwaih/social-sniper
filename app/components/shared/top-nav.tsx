@@ -12,12 +12,14 @@ import { Loader2 } from 'lucide-react';
 import { useAuthStore } from '@/store/store';
 import { setToken } from '@/service/token';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { useWalletBalance } from '@/hooks/useWalletBalance';
 
 const TopNav = () => {
   const { publicKey, disconnecting } = useWallet();
   const { mutate: loginFn, isPending: isLoading } = useLoginFn();
   const { mutate: disconnectUser } = useDisconnectUser(); 
   const { currentTheme } = useAppTheme();
+  const { formattedBalance, isLoading: balanceLoading } = useWalletBalance();
 
   const { hasLoggedIn, setLoggedIn, resetLogin,setPublicKey  } = useAuthStore();
 
@@ -80,7 +82,16 @@ console.log(data)
           {isLoading ? (
             <Loader2 className="animate-spin" />
           ) : publicKey ? (
-            <p>{shortenAddress(publicKey?.toBase58() ?? '')}</p>
+            <div className="flex flex-row gap-4 justify-between  items-center">
+              <p className="font-mono">{shortenAddress(publicKey?.toBase58() ?? '')}</p>
+              <p className="text-xs opacity-80">
+                {balanceLoading ? (
+                  <Loader2 className="animate-spin w-3 h-3 inline" />
+                ) : (
+                  `${formattedBalance} SOL`
+                )}
+              </p>
+            </div>
           ) : (
             <>
               <Icons.walletIcon />

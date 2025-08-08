@@ -17,16 +17,24 @@ const Runner = () => {
   return (
   <main className="flex flex-col overflow-hidden ">
     {/* <Frame /> */}
-    <NewHero />
-    <HowitWorksNew />
-    <AutoBuy />
-    <TweetTokens />
-    <Shipped />
-    <PricingSection />
- <BuiltBanner />
- <BottomBanner />
- {/* <DottedLineIcon /> */}
-<Footer />
+    <section id="home">
+      <NewHero />
+    </section>
+    <section id="how-it-works">
+      <HowitWorksNew />
+    </section>
+    <section id="features">
+      <AutoBuy />
+      <TweetTokens />
+      <Shipped />
+    </section>
+    <section id="pricing">
+      <PricingSection />
+    </section>
+    <BuiltBanner />
+    <BottomBanner />
+    {/* <DottedLineIcon /> */}
+    <Footer />
   </main>
   );
 };

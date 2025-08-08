@@ -3,7 +3,7 @@ import React from 'react'
 
 const AutoBuy = () => {
   return (
-    <section className='bg-black'>
+    <section id="auto-buy-content" className='bg-black'>
 
     <div className='container-new border p-8 flex md:flex-row flex-col  justify-between border-[#FFFFFF45] rounded-[27px]'>
 <div className='max-w-[400px] justify-center flex flex-col space-y-3 '>

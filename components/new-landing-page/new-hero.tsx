@@ -30,7 +30,7 @@ const dividerVariant = {
 
 const NewHero = () => {
   return (
-    <section className="bg-publichero  relative bg-cover bg-center  w-screen min-h-[900px] flex flex-col">
+    <section id="hero-content" className="bg-publichero  relative bg-cover bg-center  w-screen min-h-[900px] flex flex-col">
       <motion.div
         variants={containerVariants}
         // initial="show"

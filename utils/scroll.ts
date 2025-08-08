@@ -9,3 +9,6 @@ export const scrollToSection = (sectionId: string) => {
 };
 
 export const scrollToPricing = () => scrollToSection('pricing');
+export const scrollToHome = () => scrollToSection('home');
+export const scrollToHowItWorks = () => scrollToSection('how-it-works');
+export const scrollToFeatures = () => scrollToSection('features');

@@ -5,44 +5,83 @@
 import { useState, useEffect } from "react";
 import { Icons } from "../shared/icons";
 import { X } from "lucide-react";
-import { scrollToPricing } from "@/utils/scroll";
+import { scrollToPricing, scrollToSection } from "@/utils/scroll";
 
 const navlinks = [
   {
     id: 1,
     href: "#home",
     title: "Home",
+    sectionId: "home",
   },
   {
     id: 2,
     href: "#how-it-works",
     title: "How it works",
+    sectionId: "how-it-works",
   },
   {
     id: 3,
     href: "#features",
     title: "Features",
+    sectionId: "features",
+  },
+  {
+    id: 4,
+    href: "#pricing",
+    title: "Pricing",
+    sectionId: "pricing",
   },
 ];
 
 const NewNav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState("");
+  const [activeHash, setActiveHash] = useState("#home");
 
-  // Track hash changes for active state
+  // Track hash changes and section visibility for active state
   useEffect(() => {
     const handleHashChange = () => {
-      setActiveHash(window.location.hash);
+      setActiveHash(window.location.hash || "#home");
     };
 
     // Set initial hash
-    setActiveHash(window.location.hash);
+    setActiveHash(window.location.hash || "#home");
 
     // Listen for hash changes
     window.addEventListener("hashchange", handleHashChange);
 
+    // Intersection Observer to update active section based on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          const newHash = `#${sectionId}`;
+          setActiveHash(newHash);
+          // Update URL without triggering scroll
+          window.history.replaceState({}, '', newHash);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    navlinks.forEach((link) => {
+      const element = document.getElementById(link.sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
+      observer.disconnect();
     };
   }, []);
 
@@ -54,9 +93,13 @@ const NewNav = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, sectionId: string, event?: React.MouseEvent) => {
     setActiveHash(href);
     closeMobileMenu();
+    
+    // Prevent default anchor behavior and use smooth scroll
+    event?.preventDefault();
+    scrollToSection(sectionId);
   };
   return (
     <>
@@ -64,7 +107,7 @@ const NewNav = () => {
         <Icons.logo className="size-16 md:size-[70px]" />
 
         {/* Desktop Navigation */}
-        <div className="hidden bg-[#020D13] px-6 py-3 justify-between rounded-[9px] w-full max-w-[400px] md:flex items-center">
+        <div className="hidden bg-[#020D13] px-6 py-3 justify-between rounded-[9px] w-full max-w-[500px] md:flex items-center">
           {navlinks.map((navlink) => {
             const isCurrent = activeHash === navlink.href;
             const linkClass = isCurrent
@@ -75,7 +118,7 @@ const NewNav = () => {
               <a
                 key={navlink.id}
                 href={navlink.href}
-                onClick={() => handleNavClick(navlink.href)}
+                onClick={(e) => handleNavClick(navlink.href, navlink.sectionId, e)}
                 className={`${linkClass} text-[16.3px] font-["Space_Grotesk",Helvetica] font-normal tracking-[-0.65px] leading-normal mr-6 hover:text-[#ff4c02] transition-colors duration-300`}
               >
                 {navlink.title}
@@ -147,7 +190,7 @@ const NewNav = () => {
                 <a
                   key={navlink.id}
                   href={navlink.href}
-                  onClick={() => handleNavClick(navlink.href)}
+                  onClick={(e) => handleNavClick(navlink.href, navlink.sectionId, e)}
                   className={`${linkClass} text-lg font-["Space_Grotesk",Helvetica] font-normal tracking-[-0.65px] leading-normal hover:text-[#ff4c02] transition-colors duration-300 block`}
                 >
                   {navlink.title}
