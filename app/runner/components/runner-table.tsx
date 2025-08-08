@@ -46,11 +46,11 @@ export default function RunnerTable({data, isLoading}: IRunnerTableProps) {
 
        
       },
-      {
-        header: "TIKTOK VIDEOS",
-        accessor: (runner: RunnerReport) => runner.tiktokVideos ?? 0,
-        className: " text-[#FFFFFFF2]",
-      },
+      // {
+      //   header: "TIKTOK VIDEOS",
+      //   accessor: (runner: RunnerReport) => runner.tiktokVideos ?? 0,
+      //   className: " text-[#FFFFFFF2]",
+      // },
       {
         className: "text-[#FFFFFFF2]",
         header: "HASHTAG REACH",

@@ -11,13 +11,13 @@ export const PresetOptionsSection = ({
 }) => {
   // Data for the criteria list
   const criteriaList = [
-    "Liquidity locked: $30K*",
-    "Market cap: $10k+",
-    "Engagement score: 50+/100",
-    "Big accounts mentioned: At least 2 verified / 100K+ followers",
-    "Buy/sell ratio: 10%+ buys",
-    "Trend maturity: Established (<7 days trending)",
-    "Minimum 1,000 holders",
+    "LIQUIDITY LOCKED: $25K+",
+    "MARKET CAP: $250K - $1M",
+    "ENGAGEMENT SCORE: 65+/100",
+    "BIG ACCOUNTS MENTIONED: AT LEAST 1 VERIFIED / 100K+ FOLLOWERS",
+    "BUY/SELL RATIO: 45%+ BUYS",
+    "TREND MATURITY: EARLY-STAGE (2-7 DAYS TRENDING)",
+    "MINIMUM 2,500 HOLDERS",
   ];
 
   return (
@@ -40,7 +40,7 @@ export const PresetOptionsSection = ({
         </div>
 
         <p className="font-['Space_Grotesk',Helvetica] font-normal text-[#838383] text-sm tracking-[-0.14px]">
-          For traders who want high confidence meme plays
+          FOR TRADERS LOOKING FOR FASTER, RISKIER ENTRIES BEFORE A MEME IS FULLY MAINSTREAM
         </p>
       </div>
 

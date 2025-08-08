@@ -10,16 +10,16 @@ export const MarketDetailsSection = ({
   onSelect: () => void;
 }) => {
   const marketCriteria = [
-    { id: 1, text: "Liquidity locked: $50K*" },
-    { id: 2, text: "Market cap: $1M+" },
-    { id: 3, text: "Engagement score: 80+/100" },
+    { id: 1, text: "LIQUIDITY LOCKED: $50K+" },
+    { id: 2, text: "MARKET CAP: $1M+" },
+    { id: 3, text: "ENGAGEMENT SCORE: 80+/100" },
     {
       id: 4,
-      text: "Big accounts mentioned: At least 2 verified / 100K+ followers",
+      text: "BIG ACCOUNTS MENTIONED: AT LEAST 2 VERIFIED / 100K+ FOLLOWERS",
     },
-    { id: 5, text: "Buy/sell ratio: 55%+ buys" },
-    { id: 6, text: "Trend maturity: Established (<7 days trending)" },
-    { id: 7, text: "Minimum 10,000 holders" },
+    { id: 5, text: "BUY/SELL RATIO: 55%+ BUYS" },
+    { id: 6, text: "TREND MATURITY: ESTABLISHED (7+ DAYS TRENDING)" },
+    { id: 7, text: "MINIMUM 10,000 HOLDERS" },
   ];
 
   return (
@@ -36,7 +36,7 @@ export const MarketDetailsSection = ({
         </div>
 
         <div className="[font-family:'Space_Grotesk',Helvetica] font-normal text-[#838383] text-sm tracking-[-0.14px]">
-          For traders who want high confidence meme plays
+          FOR TRADERS WHO WANT HIGH-CONFIDENCE MEME PLAYS
         </div>
       </div>
 
