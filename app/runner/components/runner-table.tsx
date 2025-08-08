@@ -88,7 +88,7 @@ export default function RunnerTable({data, isLoading}: IRunnerTableProps) {
           // setIsModalOpen(true);
           console.log(runner)
         }}
-        emptyText="Login Your Account And See Runner Tokens"
+        emptyText="We're monitoring the blockchain and social trends — once a potential meme token starts gaining traction, it’ll show up here."
       />
       <TokenDetail 
       open={isModalOpen}

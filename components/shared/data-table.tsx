@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 
-// Optional: Simple Skeleton component
+// Skeleton loader
 const Skeleton = ({ className }: { className?: string }) => (
-  <div className={cn("bg-gray-200 animate-pulse rounded-md", className)} />
+  <div className={cn("bg-[#1A1F2E] animate-pulse rounded-md", className)} />
 );
 
 interface DataTableProps<T> {
@@ -23,9 +23,9 @@ interface DataTableProps<T> {
   }[];
   isLoading?: boolean;
   onRowClick?: (row: T) => void;
-  emptyText?: string; // Optional empty state text
-  emptyButtonText?: string; // Optional button label
-  onEmptyButtonClick?: () => void; // Optional button click handler
+  emptyText?: string;
+  emptyButtonText?: string;
+  onEmptyButtonClick?: () => void;
 }
 
 export function DataTable<T>({
@@ -41,15 +41,16 @@ export function DataTable<T>({
   const skeletonRows = Array.from({ length: 10 });
 
   return (
-    <div className="w-full  overflow-x-auto rounded-[8px] overflow-hidden">
-      <Table className="w-full  table-auto">
-        <TableHeader>
+    <div className="w-full overflow-x-auto rounded-lg border border-[#1F2937] bg-[#0B0E14]">
+      <Table className="w-full table-auto text-sm">
+        {/* Table Header */}
+        <TableHeader className="bg-[#0F1621] border-b border-[#1F2937]">
           <TableRow>
             {columns.map((column, index) => (
               <TableHead
                 key={index}
                 className={cn(
-                  "uppercase text-[13px] tracking-wider text-[#779CBF] whitespace-nowrap",
+                  "uppercase text-[11px] font-semibold tracking-wider text-[#779CBF] py-3 px-4 whitespace-nowrap",
                   column.className
                 )}
               >
@@ -58,14 +59,16 @@ export function DataTable<T>({
             ))}
           </TableRow>
         </TableHeader>
+
+        {/* Table Body */}
         <TableBody>
           {isLoading ? (
             skeletonRows.map((_, rowIndex) => (
-              <TableRow key={rowIndex}>
+              <TableRow key={rowIndex} className="border-b border-[#1F2937]">
                 {columns.map((column, colIndex) => (
                   <TableCell
                     key={colIndex}
-                    className={cn("whitespace-nowrap bg-transparent", column.className)}
+                    className={cn("py-3 px-4 whitespace-nowrap bg-transparent", column.className)}
                   >
                     <Skeleton className="h-4 w-full max-w-[120px]" />
                   </TableCell>
@@ -76,10 +79,10 @@ export function DataTable<T>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="text-center py-10 text-[#779CBF] font-mono tracking-wide"
+                className="text-center py-10 text-[#779CBF]"
               >
                 <div className="space-y-2 flex flex-col p-8 items-center justify-center">
-                  {emptyText && <p  className="text-[#BEBEBE] capitalize">{emptyText}</p>}
+                  {emptyText && <p className="text-[#BEBEBE]">{emptyText}</p>}
                   {emptyButtonText && onEmptyButtonClick && (
                     <button
                       onClick={onEmptyButtonClick}
@@ -95,13 +98,16 @@ export function DataTable<T>({
             data.map((row, rowIndex) => (
               <TableRow
                 key={rowIndex}
-                className="transition-colors cursor-pointer w-full"
+                className="border-b border-[#152E3D] hover:bg-[#0A141A] transition-colors cursor-pointer"
                 onClick={() => onRowClick?.(row)}
               >
                 {columns.map((column, colIndex) => (
                   <TableCell
                     key={colIndex}
-                    className={cn("whitespace-nowrap bg-transparent", column.className)}
+                    className={cn(
+                      "py-3 px-4 whitespace-nowrap text-[#FFFFFF]",
+                      column.className
+                    )}
                   >
                     {typeof column.accessor === "function"
                       ? column.accessor(row)

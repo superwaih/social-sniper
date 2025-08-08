@@ -28,7 +28,7 @@ const Runner = () => {
   const { publicKey } = useWallet();
 
   const { data, isLoading } = useGetRunners(publicKey?.toBase58(), filters);
-
+console.log(data, 'data')
   return (
     <section className="flex flex-col space-y-4">
       <h2 className="text-[40.41px] -leading-[1%] text-[#FFFFFFBF]">RUNNER REPORTS</h2>
