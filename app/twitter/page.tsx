@@ -6,6 +6,7 @@ import TargetsTable from './components/targets-table'
 import { useGetAllTargets } from '@/service/target'
 import { useWallet } from '@solana/wallet-adapter-react'
 import TargetAddDialog from './components/add-new-target'
+import { TwitterFilterMeaningSheet } from './components/twitter-filter-meaning-sheet'
 import { toast } from 'sonner'
 
 const Twitter = () => {
@@ -14,6 +15,7 @@ const Twitter = () => {
   
   const { data, isLoading} = useGetAllTargets(publicKey?.toBase58() ?? '');
 const [isOpen, setIsOpen] = useState(false)
+const [showFilterMeaning, setShowFilterMeaning] = useState(false)
   return (
     <DashboardLayout>
 
@@ -41,10 +43,13 @@ const [isOpen, setIsOpen] = useState(false)
 
                 <p className="text-[#FFFFFF8A] text-sm">ADD TARGET</p>
               </button>
-              <div className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px]">
+              <button 
+                onClick={() => setShowFilterMeaning(true)}
+                className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px] hover:bg-[#779CBF6B]/20 transition-colors cursor-pointer"
+              >
                 <Icons.filterIcon className="text-[#FFFFFF8A] text-sm" />
                 <p className="text-[#FFFFFF8A] text-sm">FILTER MEANING</p>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -54,6 +59,11 @@ const [isOpen, setIsOpen] = useState(false)
           />
 
           <TargetAddDialog open={isOpen}  setOpen={setIsOpen} />
+          
+          <TwitterFilterMeaningSheet 
+            open={showFilterMeaning} 
+            onOpenChange={setShowFilterMeaning} 
+          />
         </section>
     </DashboardLayout>
   )
