@@ -37,9 +37,9 @@ const suggestedAccounts = ["CRYPTOGOD", "ELONMUSK", "VITALIK", "SBF_FTX", "CZ_BI
 
 // Zod schema for form validation
 const targetSchema = z.object({
-  selectedAccounts: z
-    .array(z.string())
-    .min(1, "Please select at least one target account."),
+  selectedAccount: z
+    .string()
+    .min(1, "Please select or enter a target account."),
   buyAmount: z.string().min(1, "Buy amount is required"),
   takeProfit: z.string().min(1, "Take profit is required"),
   stopLoss: z.string().min(1, "Stop loss is required"),
@@ -55,7 +55,22 @@ const AccountItem = ({
   onAdd: (account: string) => void;
   isSelected: boolean;
 }) => (
-  <div className="flex items-center justify-between py-3 border-[#333333]">
+  <div
+    className={`flex items-center justify-between py-3 px-3 rounded-md  transition-colors cursor-pointer ${
+      isSelected
+        ? "border-[#ff4c02] border bg-white/5"
+        : " "
+    }`}
+    onClick={() => onAdd(account)}
+    role="button"
+    tabIndex={0}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onAdd(account);
+      }
+    }}
+  >
     <div className="flex items-center gap-4">
       <NewAvatarIcon />
       <span className="font-mono text-[#FFFFFFA3]">@{account}</span>
@@ -63,7 +78,10 @@ const AccountItem = ({
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => onAdd(account)}
+      onClick={(e) => {
+        e.stopPropagation();
+        onAdd(account);
+      }}
       className="text-[#779cbf] hover:text-[#ff4c02] disabled:text-gray-500"
       disabled={isSelected}
     >
@@ -156,14 +174,14 @@ export default function TargetAddDialog({
   } = useForm<z.infer<typeof targetSchema>>({
     resolver: zodResolver(targetSchema),
     defaultValues: {
-      selectedAccounts: [],
+    selectedAccount: "",
       buyAmount: "",
       takeProfit: "",
       stopLoss: "",
     },
   });
 
-  const selectedAccounts = watch("selectedAccounts");
+  const selectedAccount = watch("selectedAccount");
   const buyAmount = watch("buyAmount");
   const takeProfit = watch("takeProfit");
   const stopLoss = watch("stopLoss");
@@ -176,20 +194,13 @@ export default function TargetAddDialog({
   );
 
   const handleAddAccount = (account: string) => {
-    if (selectedAccounts.length === 1) {
-      toast.error('You can only add one target');
-      return;
-    }
-    if (!selectedAccounts.includes(account)) {
-      setValue("selectedAccounts", [...selectedAccounts, account], {
-        shouldValidate: true,
-      });
-    }
+    if (!account) return;
+    setValue("selectedAccount", account, { shouldValidate: true });
   };
 
   const handleNextStep = () => {
-    if (selectedAccounts.length === 0) {
-      toast.error('Please Select A Target');
+    if (!selectedAccount) {
+      toast.error('Please select or enter a target');
       return;
     }
     setCurrentStep(2);
@@ -202,13 +213,12 @@ export default function TargetAddDialog({
   };
 
   const onSubmit = (data: z.infer<typeof targetSchema>) => {
-    // Show errors when user tries to submit
     setShowErrors(true);
     
     console.log("Confirmed Target Data:", data);
     
     addTarget({
-      username: data.selectedAccounts[0]?.toLowerCase(),
+      username: data.selectedAccount?.toLowerCase(),
       buyAmount: parseFloat(data.buyAmount) || 1,
       takeProfit: parseFloat(data.takeProfit) || 1,
       stopLoss: parseFloat(data.stopLoss) || 1,
@@ -288,13 +298,31 @@ export default function TargetAddDialog({
                   <div className="relative mb-4">
                     <Input
                       type="text"
-                      placeholder="SEARCH ACCOUNT EG. (@CRYPTOGOD)"
+                      placeholder="SEARCH OR ENTER USERNAME EG. (@CRYPTOGOD)"
                       value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onChange={(e) => setSearchTerm(e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          const username = searchTerm.trim().replace(/^@/, '');
+                          if (username) handleAddAccount(username);
+                        }
+                      }}
                       className="w-full bg-[#0A141A] text-white border border-[#333333] placeholder:text-white/40 pl-10 pr-4 py-5 rounded-md focus:ring-orange-500 focus:border-orange-500"
                     />
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 w-5 h-5" />
                   </div>
+
+                  {/* Quick add from manual input */}
+                  {searchTerm.trim() && (
+                    <div className="mb-4">
+                      <AccountItem
+                        account={searchTerm.trim().replace(/^@/, '')}
+                        onAdd={handleAddAccount}
+                        isSelected={selectedAccount === searchTerm.trim().replace(/^@/, '')}
+                      />
+                    </div>
+                  )}
 
                   {/* Searched Accounts */}
                   {searchedAccounts.length > 0 && (
@@ -304,7 +332,7 @@ export default function TargetAddDialog({
                           key={`search-${account}`}
                           account={account}
                           onAdd={handleAddAccount}
-                          isSelected={selectedAccounts.includes(account)}
+                          isSelected={selectedAccount === account}
                         />
                       ))}
                     </div>
@@ -320,25 +348,25 @@ export default function TargetAddDialog({
                         key={`suggest-${account}`}
                         account={account}
                         onAdd={handleAddAccount}
-                        isSelected={selectedAccounts.includes(account)}
+            isSelected={selectedAccount === account}
                       />
                     ))}
                   </div>
-                  {errors.selectedAccounts && (
+          {errors.selectedAccount && (
                     <p className="text-red-500 text-sm mt-2">
-                      {errors.selectedAccounts.message}
+            {errors.selectedAccount.message}
                     </p>
                   )}
                 </>
               ) : (
                 // Step 2: Auto Buy Settings
                 <>
-                  {selectedAccounts.length > 0 && (
+          {selectedAccount && (
                     <div className="mb-6 p-4 bg-[#0A141A] rounded-md border border-[#C6C6C6]">
                       <h3 className="text-sm text-white/70 uppercase mb-2">Selected Target:</h3>
                       <div className="flex items-center gap-3">
                         <NewAvatarIcon />
-                        <span className="font-mono text-[#FFFFFFA3]">@{selectedAccounts[0]}</span>
+            <span className="font-mono text-[#FFFFFFA3]">@{selectedAccount}</span>
                       </div>
                     </div>
                   )}
