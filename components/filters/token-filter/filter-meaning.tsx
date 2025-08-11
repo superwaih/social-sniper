@@ -45,7 +45,7 @@ export const FilterMeaningSection = () => {
       <div className="flex flex-col items-start gap-2">
         <h3 className="[font-family:'Space_Grotesk',Helvetica] font-semibold text-white text-xl">
           SOCIAL ANALYSIS FILTERS
-        </h3>
+      </h3>
         <p className="[font-family:'Space_Grotesk',Helvetica] font-normal text-[#838383] text-sm">
           Understanding what each filter means and how it affects your token selection
         </p>

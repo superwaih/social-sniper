@@ -291,7 +291,7 @@ export const CustomFilterSection = () => {
       </div>
 
       <div className="mt-8">
-        <Button className="w-full bg-[#FF4C02] hover:bg-[#ff4c02]/90 text-white font-medium py-4 font-grok rounded-md">
+        <Button onClick={ () => console.log(filterValues)} className="w-full bg-[#FF4C02] hover:bg-[#ff4c02]/90 text-white font-medium py-4 font-grok rounded-md">
            GET NEW RUNNERS
         </Button>
       </div>

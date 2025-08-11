@@ -1,4 +1,3 @@
-import { OverviewReport } from "@/app/overview/components/overview-table";
 import { Icons } from "@/components/shared/icons"
 
 export const footerLinks = [
@@ -109,7 +108,7 @@ export const colorThemes = [
   },
 ];
 
-export const dummyOverviewData: OverviewReport[] = [
+export const dummyOverviewData = [
   {
     memeTrigger: "$GLAZE MEME",
     snipeSource: "Runner Reports",
