@@ -28,7 +28,7 @@ const LabeledInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full bg-[#1c1c1c] text-white border-[#333333] placeholder:text-white/40 pr-12 py-6 rounded-md focus:ring-orange-500 focus:border-orange-500"
+        className="w-full text-white placeholder:text-white/40 pr-12 py-6 rounded-md focus:ring-orange-500 focus:border-orange-500"
       />
       <span className="absolute right-4 text-white/60 text-sm font-mono">
         SOL

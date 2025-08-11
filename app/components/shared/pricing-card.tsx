@@ -12,6 +12,7 @@ interface PricingCardProps {
   buttonText: string
   isPro?: boolean
   delay?: number // optional delay for staggered cards
+  onPurchase?: () => void
 }
 
 export default function PricingCard({
@@ -21,6 +22,7 @@ export default function PricingCard({
   features,
   buttonText,
   delay = 0,
+  onPurchase,
 }: PricingCardProps) {
   return (
     <motion.div
@@ -64,7 +66,7 @@ export default function PricingCard({
           </div>
         </div>
 
-        <Button className="w-full h-12 flex justify-center items-center bg-[#ff4c02] text-white rounded border-none hover:bg-[#e63d00] transition-colors duration-300">
+  <Button onClick={onPurchase} className="w-full h-12 flex justify-center items-center bg-[#ff4c02] text-white rounded border-none hover:bg-[#e63d00] transition-colors duration-300">
           {buttonText}
         </Button>
       </div>

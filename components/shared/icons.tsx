@@ -684,5 +684,29 @@ export const Icons = {
       d="m7.04 17.961 5.462-5.461 5.461 5.461m0-10.923L12.501 12.5 7.04 7.04"
     ></path>
   </svg>
+  ),
+  newTooltip: (props: LucideProps) =>(
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="11"
+    height="12"
+    fill="none"
+    viewBox="0 0 11 12"
+    {...props}
+  >
+    <g clipPath="url(#clip0_1189_3838)">
+      <path
+        fill="#FF4C02"
+        fillRule="evenodd"
+        d="M5.5 1.447a5.042 5.042 0 1 0 0 10.084 5.042 5.042 0 0 0 0-10.084M5.272 3.74a.458.458 0 0 0 0 .917h.23a.458.458 0 1 0 0-.917zm-.687 1.833a.458.458 0 1 0 0 .917h.458v1.375h-.458a.458.458 0 0 0 0 .917h1.833a.458.458 0 0 0 0-.917H5.96V6.03a.46.46 0 0 0-.458-.459z"
+        clipRule="evenodd"
+      ></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_1189_3838">
+        <path fill="#fff" d="M0 .99h11v11H0z"></path>
+      </clipPath>
+    </defs>
+  </svg>
   )
 };

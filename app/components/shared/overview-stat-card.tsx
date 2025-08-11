@@ -11,7 +11,7 @@ type StatCardProps = {
 
 
 const StatCard: FC<StatCardProps> = ({ title, value, subtitle }) => (
-  <div className="relative border-[#779CBF38] space-y-6 h-[158px]  rounded-[6px] pt-[16px] px-[19px] bg-[#06131B] border overflow-hidden">
+  <div className="relative border-[#779CBF38] space-y-6 h-[158px]  rounded-[6px] pt-[10px] px-[19px] bg-[#06131B] border overflow-hidden">
     <div
       className="w-[200px] h-[120px] overflow-hidden -top-2 -right-24 rounded-full absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-30 pointer-events-none"
     />

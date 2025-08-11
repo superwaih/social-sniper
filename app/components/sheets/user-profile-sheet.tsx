@@ -176,7 +176,7 @@ export default function UserProfileSidebar() {
               </span>
               <Input
                 {...register("username")}
-                className="bg-[#FFFFFF1C] !py-3 border-[#000000] border pl-8 text-white"
+                className="!py-3 pl-8 text-white"
                 placeholder="Enter username"
               />
               {errors.username && (

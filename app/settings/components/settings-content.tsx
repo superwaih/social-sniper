@@ -277,7 +277,7 @@ export default function SettingsContent() {
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">@</span>
                     <Input
                       {...profileForm.register("username")}
-                      className="bg-[#FFFFFF1C] py-3 border-[#000000] pl-8 text-white"
+                      className="py-3 pl-8 text-white"
                       placeholder="Enter username"
                     />
                     {profileForm.formState.errors.username && (
@@ -366,7 +366,7 @@ export default function SettingsContent() {
                     placeholder="0.1"
                     value={autoBuyForm.watch("buyAmount")}
                     onChange={(e) => handleNumericInput(e.target.value, "buyAmount")}
-                    className="w-full bg-[#0A141A] text-white border border-[#333333] placeholder:text-white/40 pr-12 py-6 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full text-white placeholder:text-white/40 pr-12 py-6 rounded-md focus:ring-orange-500 focus:border-orange-500"
                   />
                   <span className="absolute right-4 text-white/60 text-sm font-mono">SOL</span>
                 </div>
@@ -387,7 +387,7 @@ export default function SettingsContent() {
                     placeholder="2.0"
                     value={autoBuyForm.watch("takeProfit")}
                     onChange={(e) => handleNumericInput(e.target.value, "takeProfit")}
-                    className="w-full bg-[#0A141A] text-white border border-[#333333] placeholder:text-white/40 pr-12 py-6 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full text-white placeholder:text-white/40 pr-12 py-6 rounded-md focus:ring-orange-500 focus:border-orange-500"
                   />
                   <span className="absolute right-4 text-white/60 text-sm font-mono">SOL</span>
                 </div>
@@ -408,7 +408,7 @@ export default function SettingsContent() {
                     placeholder="0.5"
                     value={autoBuyForm.watch("stopLoss")}
                     onChange={(e) => handleNumericInput(e.target.value, "stopLoss")}
-                    className="w-full bg-[#0A141A] text-white border border-[#333333] placeholder:text-white/40 pr-12 py-6 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full text-white placeholder:text-white/40 pr-12 py-6 rounded-md focus:ring-orange-500 focus:border-orange-500"
                   />
                   <span className="absolute right-4 text-white/60 text-sm font-mono">SOL</span>
                 </div>

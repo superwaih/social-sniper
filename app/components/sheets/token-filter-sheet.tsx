@@ -77,15 +77,30 @@ export default function TokenFilterSheet({
     <Sheet open={open} onOpenChange={onOpenChange} modal>
       <SheetTitle />
       <SheetContent
-        style={{ width: "648px", background: "#05121a" }}
+      style={{
+          width: "540px",
+          border: "1px solid",
+          borderImageSource:
+            "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(153, 153, 153, 0.08) 100%)",
+          borderImageSlice: 1,
+          background:  "#05121A",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+        }}
         side="right"
-        className="text-white gap-6 py-12 px-11 bg-[#05121a]  border-2 border-solid border-transparent"
+  className="text-white bg-[#05121a] m border-2 border-solid border-transparent flex h-full flex-col"
       >
-        <section className="flex flex-col space-y-5 overflow-y-scroll no-scrollbar w-full relative z-20">
-          {/* Radial Gradient */}
-          <div className="absolute top-[-235px] left-[43px] opacity-[0.11] w-[546px] h-[546px] rounded-full z-[-1] bg-gradient-to-r from-orange-500/80 to-transparent pointer-events-none" />
-          <div className="absolute top-[463px] -left-40 opacity-[0.13] w-[546px] h-[546px] rounded-full z-[-1] bg-gradient-to-r from-orange-500/80 to-transparent pointer-events-none" />
-
+        <div
+              className="w-[648px] h-[648px] top-[-349px] right-[-200px] rounded-[324px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-30"
+            />
+            {/* Bottom Left Gradient */}
+            <div
+              className="w-[648px] h-[648px] bottom-[-349px] left-[-200px] rounded-[324px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-30"
+            />
+          
+  <div className="no-scrollbar flex-1 overflow-y-auto px-5 py-6">
+  <section className="flex flex-col space-y-5 w-full relative z-20">
+       
           <MemePlaySection currentTab={currentTab} setCurrentTab={setCurrentTab} />
 
           {currentTab === "preset" && (
@@ -118,7 +133,8 @@ export default function TokenFilterSheet({
           {currentTab === "filter-meaning" && (
             <FilterMeaningSection />
           )}
-        </section>
+  </section>
+  </div>
       </SheetContent>
     </Sheet>
   );

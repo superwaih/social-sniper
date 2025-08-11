@@ -2,8 +2,12 @@
 
 import { motion } from "framer-motion"
 import PricingCard from './pricing-card'
+import { useState } from 'react'
+import SubscriptionModal from './subscription-modal'
 
 const PricingSection = () => {
+  const [open, setOpen] = useState(false)
+  const [selectedPlan, setSelectedPlan] = useState<"SNIPER BASIC" | "SNIPER PRO" | null>(null)
   const basicPlan = {
     title: "SNIPER BASIC",
     description: "Perfect for trendspotters who want insights without automation.",
@@ -12,7 +16,7 @@ const PricingSection = () => {
       "Runner Reports (AI-powered meme & trend signals)",
       "Twitter Target Scanning",
     ],
-    buttonText: "Snipe now",
+    buttonText: "Purchase Plan",
   }
 
   const proPlan = {
@@ -23,7 +27,7 @@ const PricingSection = () => {
       "Everything in Basic",
       "Auto Sniping (Pre-set triggers, auto-execute)",
     ],
-    buttonText: "Snipe now",
+    buttonText: "Purchase Plan",
     isPro: true,
   }
 
@@ -67,12 +71,14 @@ const PricingSection = () => {
         variants={containerVariants}
       >
         <motion.div variants={childVariants}>
-          <PricingCard {...basicPlan} delay={0.1} />
+      <PricingCard {...basicPlan} delay={0.1} onPurchase={() => { setSelectedPlan('SNIPER BASIC'); setOpen(true) }} />
         </motion.div>
         <motion.div variants={childVariants}>
-          <PricingCard {...proPlan} delay={0.3} />
+      <PricingCard {...proPlan} delay={0.3} onPurchase={() => { setSelectedPlan('SNIPER PRO'); setOpen(true) }} />
         </motion.div>
       </motion.div>
+
+    <SubscriptionModal open={open} onOpenChange={(v)=>{ if(!v) setSelectedPlan(null); setOpen(v) }} plan={selectedPlan} />
     </motion.section>
   )
 }

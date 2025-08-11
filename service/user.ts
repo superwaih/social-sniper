@@ -69,3 +69,22 @@ export const useGetUserProfile = (publicKey: string) =>{
         enabled: !!publicKey
     })
 }
+
+interface ISubscriptionData {
+
+    "signature": string,
+    "plan": string,
+    "referralCode": string
+}
+
+const makeSubscription = async (data: ISubscriptionData) =>{
+    const response = await api.post('/payment/subscribe', data)
+    return response.data
+}
+
+export const useMakeSubscription = () =>{
+    return useMutation({
+        mutationFn: makeSubscription,
+        mutationKey: ['make-subscription']
+    })
+}
