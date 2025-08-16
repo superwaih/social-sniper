@@ -39,17 +39,17 @@ const presets: Record<string, Partial<RunnerFilters>> = {
     liquidity_locked: 25000, // $25K+
   },
   "nanocap-gamble": {
-    engagement_score: 50,
-    min_followers: 0, // Not required
+    engagement_score: 30,
+    min_followers: 0, 
     min_market_cap: 25000, // $25K
     max_market_cap: "250000", // - $250K
     buy_ratio: 40, // 40%+ buys
     sell_ratio: 100,
-    minimum_holders: 500, // Minimum 500 holders
-    account_age: 0, // 0-2 days trending
+    minimum_holders: 500, 
+    account_age: 0, 
     startDate: "2025-06-01",
     endDate: "2025-08-28",
-    liquidity_locked: 15000, // $15K+
+    liquidity_locked: 15000, 
   },
 };
 interface TokenFilterSheetProps {
@@ -93,7 +93,6 @@ export default function TokenFilterSheet({
         <div
               className="w-[648px] h-[648px] top-[-349px] right-[-200px] rounded-[324px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-30"
             />
-            {/* Bottom Left Gradient */}
             <div
               className="w-[648px] h-[648px] bottom-[-349px] left-[-200px] rounded-[324px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,76,2,1)_0%,rgba(255,76,2,0)_100%)] opacity-30"
             />
@@ -127,7 +126,19 @@ export default function TokenFilterSheet({
           )}
 
           {currentTab === "custom-filter" && (
-            <CustomFilterSection  />
+            <CustomFilterSection 
+              setFilters={(updatedValues: Record<string, unknown>) => {
+                // Only update keys present in updatedValues
+                const newFilters = { ...filters };
+                Object.keys(updatedValues).forEach((key) => {
+                  // Only update if the key exists in newFilters
+                  if (key in newFilters) {
+                    (newFilters as Record<string, unknown>)[key] = updatedValues[key];
+                  }
+                });
+                onFiltersChange(newFilters);
+              }}
+            />
           )}
 
           {currentTab === "filter-meaning" && (

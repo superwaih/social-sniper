@@ -17,8 +17,8 @@ const defaultFilters: RunnerFilters = {
   sell_ratio: 10,
   minimum_holders: 30,
   account_age: 1,
-  startDate: "2025-06-01",
-  endDate: "2025-08-28",
+  startDate: "2025-01-01",
+  endDate: "2025-12-31",
   liquidity_locked: 0,
 };
 
@@ -42,7 +42,7 @@ console.log(data, 'data')
           <button
             onClick={() => setShowFilters(true)}
             className="border-[#779CBF6B] flex gap-3 items-center border p-3 rounded-[4px]"
-          >
+        >
             <Icons.filterIcon className="text-[#FFFFFF8A] text-sm" />
             <p className="text-[#FFFFFF8A] text-sm">RUNNER FILTERS</p>
           </button>

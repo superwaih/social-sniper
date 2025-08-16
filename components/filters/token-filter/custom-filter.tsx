@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client"
+"use client";
 
-import { Slider } from "@/components/ui/slider"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { ChevronDown, ChevronUp } from "lucide-react"
-import { useState } from "react"
-import { Icons } from "@/components/shared/icons"
+import { useState } from "react";
+import { Slider } from "@/components/ui/slider";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Icons } from "@/components/shared/icons";
+// import { RunnerFilters } from "@/types/runner";
+import { RunnerFilters } from "@/types/runner";
 
 const filterSections = [
   {
@@ -164,11 +167,18 @@ const filterSections = [
       },
     ],
   },
-]
+];
+     
 
-export const CustomFilterSection = () => {
+
+
+interface CustomFilterSectionProps {
+  setFilters: (filters: Partial<RunnerFilters>) => void;
+}
+
+export const CustomFilterSection = ({ setFilters }: CustomFilterSectionProps) => {
   const [sections, setSections] = useState(filterSections)
-  const [filterValues, setFilterValues] = useState<Record<string, any>>({})
+  const [filterValues, setFilterValues] = useState<Record<string, unknown>>({})
 
   const toggleSection = (sectionId: string) => {
     setSections(
@@ -176,7 +186,7 @@ export const CustomFilterSection = () => {
     )
   }
 
-  const updateFilterValue = (filterId: string, value: any) => {
+  const updateFilterValue = (filterId: string, value: unknown) => {
     setFilterValues((prev) => ({
       ...prev,
       [filterId]: value,
@@ -192,7 +202,8 @@ export const CustomFilterSection = () => {
               <Input
                 placeholder="MIN FOLLOWERS"
                 className="text-[#838383] text-xs h-12 placeholder:text-[#FFFFFF4D] placeholder:text-xs"
-                value={filterValues[`${filter.id}-min`] || ""}
+                //@ts-ignore
+                value={typeof filterValues[`${filter.id}-min`] === "string" || typeof filterValues[`${filter.id}-min`] === "number" ? filterValues[`${filter.id}-min`] : ""}
                 onChange={(e) => updateFilterValue(`${filter.id}-min`, e.target.value)}
               />
             </div>
@@ -200,7 +211,8 @@ export const CustomFilterSection = () => {
               <Input
                 placeholder="MAX FOLLOWERS"
                 className="text-[#838383] text-xs h-12 placeholder:text-[#838383] placeholder:text-xs"
-                value={filterValues[`${filter.id}-max`] || ""}
+                //@ts-ignore
+                value={typeof filterValues[`${filter.id}-max`] === "string" || typeof filterValues[`${filter.id}-max`] === "number" ? filterValues[`${filter.id}-max`] : ""}
                 onChange={(e) => updateFilterValue(`${filter.id}-max`, e.target.value)}
               />
             </div>
@@ -258,8 +270,6 @@ export const CustomFilterSection = () => {
 
   return (
     <div className="w-full  text-white">
-   
-
       {/* Filter Sections */}
       <div className="space-y-0">
         {sections.map((section) => (
@@ -291,7 +301,7 @@ export const CustomFilterSection = () => {
       </div>
 
       <div className="mt-8">
-        <Button onClick={ () => console.log(filterValues)} className="w-full bg-[#FF4C02] hover:bg-[#ff4c02]/90 text-white font-medium py-4 font-grok rounded-md">
+        <Button onClick={() => setFilters(filterValues)} className="w-full bg-[#FF4C02] hover:bg-[#ff4c02]/90 text-white font-medium py-4 font-grok rounded-md">
            GET NEW RUNNERS
         </Button>
       </div>
