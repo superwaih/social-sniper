@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link as LinkIcon, Loader2 } from "lucide-react";
+import { Link as LinkIcon, Loader2, Copy, Share2 } from "lucide-react";
 import AvatarIcon from "../icons/avatar-icon";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { shortenAddress } from "@/utils/constants";
@@ -120,6 +120,71 @@ export default function UserProfileSidebar() {
         },
       }
     );
+  };
+
+  const handleCopyReferral = async () => {
+    const code = (userprofile as UserProfileResponse)?.results?.referralCode;
+    if (!code) {
+      toast.error("No referral code available to copy");
+      return;
+    }
+
+    try {
+      if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(code);
+      } else {
+        // fallback
+        const el = document.createElement('textarea');
+        el.value = code;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+      }
+      toast.success('Referral code copied to clipboard');
+    } catch {
+      toast.error('Failed to copy referral code');
+    }
+  };
+
+  const handleShareReferral = async () => {
+    const code = (userprofile as UserProfileResponse)?.results?.referralCode;
+    if (!code) {
+      toast.error("No referral code available to share");
+      return;
+    }
+
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const shareUrl = origin ? `${origin}/?ref=${code}` : code;
+
+    try {
+      const nav = navigator as Navigator & {
+        share?: (data: { title?: string; text?: string; url?: string }) => Promise<void>;
+      };
+      if (nav.share) {
+        await nav.share({
+          title: 'Join using my referral code',
+          text: `Use my referral code: ${code}`,
+          url: shareUrl,
+        });
+        toast.success('Shared successfully');
+      } else {
+        // fallback to copy
+        if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(shareUrl || code);
+        } else {
+          const el = document.createElement('textarea');
+          el.value = shareUrl || code;
+          document.body.appendChild(el);
+          el.select();
+          document.execCommand('copy');
+          document.body.removeChild(el);
+        }
+        toast.success('Share link copied to clipboard');
+      }
+    } catch {
+      toast.error('Failed to share referral code');
+    }
   };
 console.log(profilePicture, 'rpofiel')
   return (
@@ -253,7 +318,27 @@ console.log(profilePicture, 'rpofiel')
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-sm text-gray-300">REFERRAL CODE</div>
-                  <div className="text-white font-mono">{(userprofile as UserProfileResponse)?.results?.referralCode ?? "-"}</div>
+                  <div className="flex items-center gap-3">
+                    <div className="text-white font-mono">{(userprofile as UserProfileResponse)?.results?.referralCode ?? "-"}</div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={handleCopyReferral}
+                        className="p-2 rounded bg-white/5 hover:bg-white/10"
+                        title="Copy referral code"
+                      >
+                        <Copy className="w-4 h-4 text-white" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleShareReferral}
+                        className="p-2 rounded bg-white/5 hover:bg-white/10"
+                        title="Share referral code"
+                      >
+                        <Share2 className="w-4 h-4 text-white" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div>
                   <button
