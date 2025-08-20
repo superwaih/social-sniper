@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -44,18 +45,27 @@ export default function UserProfileSidebar() {
       profilePicture: "",
     },
   });
-
   const profilePicture = watch("profilePicture");
 
-  // Set default values from userprofile when loaded
+
+  const initialProfilePictureUrl = useMemo(() => {
+    const res = userprofile?.results as unknown;
+    if (!res) return "";
+    const pic = (res as { profilePicture?: unknown }).profilePicture;
+    if (!pic) return "";
+    if (typeof pic === "string") return pic;
+    if (typeof pic === "object" && pic !== null) return (pic as { url?: string }).url ?? "";
+    return "";
+  }, [userprofile]);
+
   useEffect(() => {
     if (userprofile?.results) {
       reset({
         username: userprofile.results.username ?? "",
-        profilePicture: userprofile.results.profilePicture ?? "",
+        profilePicture: initialProfilePictureUrl,
       });
     }
-  }, [userprofile, reset]);
+  }, [userprofile, reset, initialProfilePictureUrl]);
 
   const handleThemeChange = (index: number) => {
     setSelectedTheme(index);
@@ -63,7 +73,8 @@ export default function UserProfileSidebar() {
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file && file.type === "image/png") {
+  // Accept common image types (png, jpeg, webp, etc.)
+  if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
       reader.onload = (e) => {
         const result = e.target?.result;
@@ -73,7 +84,7 @@ export default function UserProfileSidebar() {
       };
       reader.readAsDataURL(file);
     } else {
-      toast.error("Please select a PNG image");
+      toast.error("Please select an image file");
     }
   };
 
@@ -86,7 +97,7 @@ export default function UserProfileSidebar() {
     updateProfile(
       {
         publicKey: pubKey,
-        profilePicture: '',
+        profilePicture: data.profilePicture,
         username: data.username
       },
       {
@@ -99,12 +110,20 @@ export default function UserProfileSidebar() {
       }
     );
   };
-
+console.log(profilePicture, 'rpofiel')
   return (
     <Sheet modal>
       <SheetTrigger asChild>
         <div className="ml-4 cursor-pointer text-gray-400 hover:text-white">
-          <AvatarIcon />
+          {(profilePicture || initialProfilePictureUrl) ? (
+            <img
+              src={profilePicture || initialProfilePictureUrl}
+              alt="profile"
+              className="size-12 rounded-full object-cover"
+            />
+          ) : (
+            <AvatarIcon />
+          )}
         </div>
       </SheetTrigger>
       <SheetTitle></SheetTitle>
@@ -142,15 +161,13 @@ export default function UserProfileSidebar() {
           <div className="flex gap-4 py-5 border-b border-[#FFFFFF3B] items-center">
             <div className="flex flex-col gap-2">
               {profilePicture ? (
-          
-                <AvatarIcon />
-
+                <img className="size-[60px] rounded-full object-cover" src={profilePicture} alt="auth image" />
               ) : (
                 <AvatarIcon />
               )}
               <input
                 type="file"
-                accept="image/png"
+                accept="image/*"
                 ref={fileInputRef}
                 onChange={handleImageUpload}
                 className="hidden"

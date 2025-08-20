@@ -84,8 +84,7 @@ export default function RunnerTable({data, isLoading}: IRunnerTableProps) {
         columns={columns}
       isLoading={isLoading}
         onRowClick={(runner: RunnerReport) => {
-          // setSelectedRunner(runner);
-          // setIsModalOpen(true);
+  
           console.log(runner)
         }}
         emptyText="We're monitoring the blockchain and social trends — once a potential meme token starts gaining traction, it’ll show up here."

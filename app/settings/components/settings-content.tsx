@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -65,15 +66,25 @@ export default function SettingsContent() {
 
   const profilePicture = profileForm.watch("profilePicture");
 
+  const initialProfilePictureUrl = useMemo(() => {
+    const res = userprofile?.results as unknown;
+    if (!res) return "";
+    const pic = (res as { profilePicture?: unknown }).profilePicture;
+    if (!pic) return "";
+    if (typeof pic === "string") return pic;
+    if (typeof pic === "object" && pic !== null) return (pic as { url?: string }).url ?? "";
+    return "";
+  }, [userprofile]);
+
   // Set default values from userprofile when loaded
   useEffect(() => {
     if (userprofile?.results) {
       profileForm.reset({
         username: userprofile.results.username ?? "",
-        profilePicture: userprofile.results.profilePicture ?? "",
+  profilePicture: initialProfilePictureUrl,
       });
     }
-  }, [userprofile, profileForm]);
+  }, [userprofile, profileForm, initialProfilePictureUrl]);
 
   // Load saved auto buy settings from localStorage
   useEffect(() => {
@@ -92,7 +103,8 @@ export default function SettingsContent() {
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file && file.type === "image/png") {
+    // Accept common image types (png, jpeg, webp, etc.)
+    if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
       reader.onload = (e) => {
         const result = e.target?.result;
@@ -102,7 +114,7 @@ export default function SettingsContent() {
       };
       reader.readAsDataURL(file);
     } else {
-      toast.error("Please select a PNG image");
+      toast.error("Please select an image file");
     }
   };
 
@@ -246,9 +258,13 @@ export default function SettingsContent() {
             <div className="flex gap-6 items-start">
               <div className="flex flex-col gap-2">
                 <div className="w-16 h-16">
-                  {profilePicture ? (
+                  {(profilePicture || initialProfilePictureUrl) ? (
                     <div className="w-full h-full rounded-full bg-gray-600 flex items-center justify-center overflow-hidden">
-                      <AvatarIcon />
+                      <img
+                        src={profilePicture || initialProfilePictureUrl}
+                        alt="profile"
+                        className="w-full h-full object-cover rounded-full"
+                      />
                     </div>
                   ) : (
                     <AvatarIcon />
@@ -256,7 +272,7 @@ export default function SettingsContent() {
                 </div>
                 <input
                   type="file"
-                  accept="image/png"
+                  accept="image/*"
                   ref={fileInputRef}
                   onChange={handleImageUpload}
                   className="hidden"

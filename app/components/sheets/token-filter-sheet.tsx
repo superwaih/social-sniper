@@ -14,20 +14,20 @@ import { RunnerFilters } from "@/types/runner";
 const presets: Record<string, Partial<RunnerFilters>> = {
   "blue-chip": {
     engagement_score: 80,
-    min_followers: 100000, // 100K+ followers
+    min_followers: 10000, // 100K+ followers
     min_market_cap: 1000000, // $1M+
     max_market_cap: "",
     buy_ratio: 55, // 55%+ buys
     sell_ratio: 100,
     minimum_holders: 10000, // Minimum 10,000 holders
-    account_age: 7, // 7+ days trending
+    account_age: 2, 
     startDate: "2025-06-01",
     endDate: "2025-08-28",
     liquidity_locked: 50000, // $50K+
   },
   "degen-play": {
     engagement_score: 65,
-    min_followers: 100000, // 100K+ followers (at least 1 verified)
+    min_followers: 10000, 
     min_market_cap: 250000, // $250K
     max_market_cap: "1000000", // - $1M
     buy_ratio: 45, // 45%+ buys
@@ -46,7 +46,7 @@ const presets: Record<string, Partial<RunnerFilters>> = {
     buy_ratio: 40, // 40%+ buys
     sell_ratio: 100,
     minimum_holders: 500, 
-    account_age: 0, 
+    account_age: 2, 
     startDate: "2025-06-01",
     endDate: "2025-08-28",
     liquidity_locked: 15000, 

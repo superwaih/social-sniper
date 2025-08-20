@@ -6,7 +6,8 @@ import { RunnerFilters } from "@/types/runner";
 
 // POST request to fetch filtered runners
 export const getRunners = async (filters: RunnerFilters) => {
-  const response = await api.post('/runnerhistory/create-runnerHistory', {
+  // Build payload but strip out empty/undefined values so API doesn't receive empty filters
+  const payload: Record<string, unknown> = {
     engagement_score: filters.engagement_score,
     min_followers: filters.min_followers,
     min_market_cap: filters.min_market_cap,
@@ -17,8 +18,17 @@ export const getRunners = async (filters: RunnerFilters) => {
     account_age: filters.account_age,
     startDate: filters.startDate,
     endDate: filters.endDate,
-    liquidity_locked: filters.liquidity_locked
+    liquidity_locked: filters.liquidity_locked,
+  };
+
+  Object.keys(payload).forEach((key) => {
+    const val = payload[key];
+    if (val === undefined || val === "") {
+      delete payload[key];
+    }
   });
+
+  const response = await api.post('/runnerhistory/create-runnerHistory', payload);
 
   return response.data;
 };

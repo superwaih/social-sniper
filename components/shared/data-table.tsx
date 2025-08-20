@@ -98,7 +98,7 @@ export function DataTable<T>({
             data.map((row, rowIndex) => (
               <TableRow
                 key={rowIndex}
-                className="border-b border-[#152E3D] hover:bg-[#0A141A] transition-colors cursor-pointer"
+                className="border border-[#152E3D] hover:bg-[#0A141A] transition-colors cursor-pointer"
                 onClick={() => onRowClick?.(row)}
               >
                 {columns.map((column, colIndex) => (

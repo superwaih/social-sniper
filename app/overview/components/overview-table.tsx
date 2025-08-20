@@ -103,10 +103,10 @@ export default function OverviewTable() {
       className: "text-[#FFFFFFF2] text-center",
     },
    {
-      header: "▼",
-      accessor: () => (
+      header: "ACTION",
+    accessor: () => (
         <div className="border-[#779CBF6B] border rounded-[4px] p-2">
-          <EllipsisVertical className="size-3" />
+          <EllipsisVertical className="size-3 rotate-90" />
         </div>
       ),
       className: "text-[#FFFFFFF2] text-center flex justify-center items-center",
