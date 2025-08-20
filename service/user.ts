@@ -88,3 +88,16 @@ export const useMakeSubscription = () =>{
         mutationKey: ['make-subscription']
     })
 }
+
+
+const createReferralCode = async () => {
+    const response = await api.post('/user/create-referralcode')
+    return response.data
+}
+
+export const useCreateReferralCode = () =>{
+    return useMutation({
+        mutationFn: createReferralCode,
+        mutationKey: ['create-referral-code']
+    })
+}

@@ -11,7 +11,8 @@ import { Link as LinkIcon, Loader2 } from "lucide-react";
 import AvatarIcon from "../icons/avatar-icon";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { shortenAddress } from "@/utils/constants";
-import { useGetUserProfile, useUpdateProfile } from "@/service/user";
+import { useGetUserProfile, useUpdateProfile, useCreateReferralCode } from "@/service/user";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { colorThemes } from "@/utils/themes";
 import { useAppTheme } from "@/hooks/useAppTheme";
@@ -23,11 +24,21 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+type UserProfileResponse = {
+  results?: {
+    referralCode?: string;
+    username?: string;
+    profilePicture?: string | { url?: string };
+  };
+};
+
 export default function UserProfileSidebar() {
   const { publicKey } = useWallet();
   const pubKey = publicKey?.toBase58() ?? "";
   const { data: userprofile } = useGetUserProfile(pubKey);
   const { mutate: updateProfile, isPending: isUpdating } = useUpdateProfile();
+  const queryClient = useQueryClient();
+  const { mutate: createReferralCode, isPending: isCreatingReferral } = useCreateReferralCode();
   const { selectedTheme, setSelectedTheme, currentTheme } = useAppTheme();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -238,10 +249,37 @@ console.log(profilePicture, 'rpofiel')
 
           <div className="space-y-4">
             <label className="text-sm text-gray-400">TWITTER ACCOUNT</label>
-            <Button className="w-full py-3 bg-[#FF4C02] hover:bg-[#FF4C02] text-white">
-              <LinkIcon className="mr-2 h-4 w-4" />
-              CONNECT TWITTER
-            </Button>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-sm text-gray-300">REFERRAL CODE</div>
+                  <div className="text-white font-mono">{(userprofile as UserProfileResponse)?.results?.referralCode ?? "-"}</div>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    disabled={!!(userprofile as UserProfileResponse)?.results?.referralCode || isCreatingReferral || !publicKey}
+                    onClick={() => {
+                      createReferralCode(undefined, {
+                        onSuccess: (res: { message?: string }) => {
+                          toast.success(res?.message || "Referral code created");
+                          queryClient.invalidateQueries({ queryKey: ["get-user-update"] });
+                        },
+                        onError: () => toast.error("Failed to create referral code"),
+                      });
+                    }}
+                    className="px-3 py-2 bg-[#FF4C02] text-white rounded disabled:opacity-50"
+                  >
+                    {isCreatingReferral ? "Creating..." : ( (userprofile as UserProfileResponse)?.results?.referralCode ? "Created" : "Create Referral Code" )}
+                  </button>
+                </div>
+              </div>
+
+              <Button className="w-full py-3 bg-[#FF4C02] hover:bg-[#FF4C02] text-white">
+                <LinkIcon className="mr-2 h-4 w-4" />
+                CONNECT TWITTER
+              </Button>
+            </div>
           </div>
         </form>
         </div>

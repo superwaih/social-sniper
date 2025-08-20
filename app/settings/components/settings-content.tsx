@@ -11,7 +11,8 @@ import { Link as LinkIcon, Loader2, Wallet, User, Palette, Target, DollarSign } 
 import AvatarIcon from "@/app/components/icons/avatar-icon";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { shortenAddress } from "@/utils/constants";
-import { useGetUserProfile, useUpdateProfile } from "@/service/user";
+import { useGetUserProfile, useUpdateProfile, useCreateReferralCode } from "@/service/user";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { colorThemes } from "@/utils/themes";
 import { useAppTheme } from "@/hooks/useAppTheme";
@@ -33,11 +34,21 @@ const autoBuySchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 type AutoBuyFormData = z.infer<typeof autoBuySchema>;
 
+type UserProfileResponse = {
+  results?: {
+    referralCode?: string;
+    username?: string;
+    profilePicture?: string | { url?: string };
+  };
+};
+
 export default function SettingsContent() {
   const { publicKey, connect, disconnect, wallet } = useWallet();
   const pubKey = publicKey?.toBase58() ?? "";
   const { data: userprofile } = useGetUserProfile(pubKey);
   const { mutate: updateProfile, isPending: isUpdating } = useUpdateProfile();
+  const queryClient = useQueryClient();
+  const { mutate: createReferralCode, isPending: isCreatingReferral } = useCreateReferralCode();
   const { selectedTheme, setSelectedTheme } = useAppTheme();
   const { formattedBalance, isLoading: balanceLoading } = useWalletBalance();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -304,20 +315,46 @@ export default function SettingsContent() {
                   </div>
                 </div>
 
-                <Button
-                  type="submit"
-                  disabled={isUpdating || !publicKey}
-                  className="bg-[#FF4C02] hover:bg-[#e64a00] text-white disabled:opacity-50"
-                >
-                  {isUpdating ? (
-                    <>
-                      <Loader2 className="animate-spin w-4 h-4 mr-2" />
-                      Updating...
-                    </>
-                  ) : (
-                    "Update Profile"
-                  )}
-                </Button>
+                <div className="space-y-4">
+                  <Button
+                    type="submit"
+                    disabled={isUpdating || !publicKey}
+                    className="bg-[#FF4C02] hover:bg-[#e64a00] text-white disabled:opacity-50"
+                  >
+                    {isUpdating ? (
+                      <>
+                        <Loader2 className="animate-spin w-4 h-4 mr-2" />
+                        Updating...
+                      </>
+                    ) : (
+                      "Update Profile"
+                    )}
+                  </Button>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <div>
+                      <div className="text-sm text-gray-300">REFERRAL CODE</div>
+                      <div className="text-white font-mono">{(userprofile as UserProfileResponse)?.results?.referralCode ?? "-"}</div>
+                    </div>
+                    <div>
+                      <Button
+                        onClick={() => {
+                          createReferralCode(undefined, {
+                            onSuccess: (res: { message?: string }) => {
+                              toast.success(res?.message || "Referral code created");
+                              queryClient.invalidateQueries({ queryKey: ["get-user-update"] });
+                            },
+                            onError: () => toast.error("Failed to create referral code"),
+                          });
+                        }}
+                        disabled={!!(userprofile as UserProfileResponse)?.results?.referralCode || isCreatingReferral || !publicKey}
+                        className="px-3 py-2 bg-[#FF4C02] text-white rounded disabled:opacity-50"
+                      >
+                        {isCreatingReferral ? "Creating..." : ((userprofile as UserProfileResponse)?.results?.referralCode ? "Created" : "Create Referral Code")}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </form>
