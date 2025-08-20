@@ -57,6 +57,8 @@ interface TokenFilterSheetProps {
   onOpenChange: (open: boolean) => void;
   filters: RunnerFilters;
   onFiltersChange: (filters: RunnerFilters) => void;
+  // optional callback to inform a parent which preset key was selected
+  onPresetSelect?: (presetKey: keyof typeof presets | string) => void;
 }
 
 export default function TokenFilterSheet({
@@ -64,6 +66,7 @@ export default function TokenFilterSheet({
   onOpenChange,
   filters,
   onFiltersChange,
+  onPresetSelect,
 }: TokenFilterSheetProps) {
   const [currentTab, setCurrentTab] = useState("preset");
   const [selectedPreset, setSelectedPreset] = useState<keyof typeof presets | null>("blue-chip");
@@ -72,6 +75,9 @@ export default function TokenFilterSheet({
     setSelectedPreset(presetKey);
     const newFilters = { ...filters, ...presets[presetKey] };
     onFiltersChange(newFilters);
+    if (typeof onPresetSelect === "function") {
+      onPresetSelect(presetKey);
+    }
   };
   return (
     <Sheet open={open} onOpenChange={onOpenChange} modal>

@@ -1,6 +1,6 @@
 // Runner.tsx
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icons } from "@/components/shared/icons";
 import RunnerTable from "./components/runner-table";
 import TokenFilterSheet from "../components/sheets/token-filter-sheet";
@@ -22,9 +22,73 @@ const defaultFilters: RunnerFilters = {
   liquidity_locked: 0,
 };
 
+
+const blueChipFilters: Partial<RunnerFilters> = {
+    engagement_score: 0,
+  min_followers: 1404,
+  min_market_cap: 1000,
+  max_market_cap: "",
+  buy_ratio: 45,
+  sell_ratio: 100,
+  minimum_holders: 300,
+  account_age: 2,
+  startDate: "2025-06-01",
+  endDate: "2025-08-28",
+  liquidity_locked: 0,
+};
+
+const degenFilters: Partial<RunnerFilters> = {
+  engagement_score: 65,
+  min_followers: 10000,
+  min_market_cap: 250000,
+  max_market_cap: "1000000",
+  buy_ratio: 45,
+  sell_ratio: 100,
+  minimum_holders: 2500,
+  account_age: 2,
+  startDate: "2025-06-01",
+  endDate: "2025-08-28",
+  liquidity_locked: 25000,
+};
+
+const nanocapGambleFilters: Partial<RunnerFilters> = {
+  engagement_score: 30,
+  min_followers: 0,
+  min_market_cap: 25000,
+  max_market_cap: "250000",
+  buy_ratio: 40,
+  sell_ratio: 100,
+  minimum_holders: 500,
+  account_age: 2,
+  startDate: "2025-06-01",
+  endDate: "2025-08-28",
+  liquidity_locked: 15000,
+};
+
+const FILTER_PRESETS: Record<string, Partial<RunnerFilters>> = {
+  default: defaultFilters,
+  "blue-chip": blueChipFilters,
+  "degen-play": degenFilters,
+  "nanocap-gamble": nanocapGambleFilters,
+};
+
 const Runner = () => {
   const [showFilters, setShowFilters] = useState(false);
-  const [filters, setFilters] = useState<RunnerFilters>(defaultFilters);
+  // selected preset key controls which preset is currently active on the page.
+  // Change this initial value to pick a different preset on load (e.g. "blue-chip").
+  const [selectedPreset, setSelectedPreset] = useState<keyof typeof FILTER_PRESETS>(
+    "default"
+  );
+
+  const [filters, setFilters] = useState<RunnerFilters>(() => {
+    // merge with defaultFilters to ensure all required fields exist
+    return { ...(defaultFilters as RunnerFilters), ...(FILTER_PRESETS["default"] as Partial<RunnerFilters>) } as RunnerFilters;
+  });
+
+  // update filters whenever the selected preset changes
+  useEffect(() => {
+    setFilters({ ...(defaultFilters as RunnerFilters), ...(FILTER_PRESETS[selectedPreset] as Partial<RunnerFilters>) } as RunnerFilters);
+  }, [selectedPreset]);
   const { publicKey } = useWallet();
 
   const { data, isLoading } = useGetRunners(publicKey?.toBase58(), filters);
@@ -55,7 +119,8 @@ console.log(data, 'data')
         open={showFilters}
         onOpenChange={setShowFilters}
         filters={filters}
-        onFiltersChange={setFilters}
+  onFiltersChange={setFilters}
+  onPresetSelect={(key: keyof typeof FILTER_PRESETS) => setSelectedPreset(key)}
       />
     </section>
   );
