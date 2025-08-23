@@ -69,7 +69,7 @@ export const useAddTarget = () =>{
     mutationFn: addTarget,
     mutationKey: ['add-target'],
     onSuccess: () =>{
-queryClient.invalidateQueries({ queryKey: ['get-all-targets'] })
+queryClient.invalidateQueries({ queryKey: ['get-all-targets', 'get-targets'] })
     }
   })
 }
@@ -85,5 +85,23 @@ export const useGetAllTargets = (publicKey: string) => {
     queryFn: getAllTargets,
     enabled: !!publicKey,
     
+  })
+}
+
+
+const deleteTarget = async (username: string) =>{
+  const res = await api.delete(`/twittertarget/deleteTarget/${username}`)
+  return res.data
+}
+
+export const useDeleteTarget = () =>{
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: deleteTarget,
+    mutationKey: ['delete-target'],
+    onSuccess: () =>{
+queryClient.invalidateQueries({ queryKey: ['get-all-targets', 'get-targets'] })
+  
+    }
   })
 }

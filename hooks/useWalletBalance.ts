@@ -1,3 +1,4 @@
+import { RPC_URL } from '@/lib/solanaConfig';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { LAMPORTS_PER_SOL, PublicKey, Connection } from '@solana/web3.js';
 import { useQuery } from '@tanstack/react-query';
@@ -6,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 export const useWalletBalance = () => {
   const { publicKey } = useWallet();
   // Use the provided Solana RPC endpoint
-  const rpcUrl = 'https://rough-stylish-waterfall.solana-mainnet.quiknode.pro/b2e47d45f95fa1cfc6d6e8f3c07fe9af03157103';
+  const rpcUrl = RPC_URL
   const connection = new Connection(rpcUrl, 'confirmed');
 
   const { data: balance, isLoading, error } = useQuery({

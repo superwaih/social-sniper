@@ -15,7 +15,7 @@ import { Toaster } from "sonner";
 
 export const Wallet = ({ children }: PropsWithChildren) => {
   const queryClient = new QueryClient();
-  const network = WalletAdapterNetwork.Mainnet;
+  const network = WalletAdapterNetwork.Devnet;
 
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 

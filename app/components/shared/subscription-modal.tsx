@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useState } from "react"
+import { createPortal } from "react-dom"
 import { useRouter } from "next/navigation"
 import { PublicKey, Transaction } from "@solana/web3.js"
 import {
@@ -10,15 +11,17 @@ import {
 } from "@solana/spl-token"
 import { useConnection, useWallet } from "@solana/wallet-adapter-react"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
 import { Loader2, ShieldCheck, Wallet2, ArrowRight, Lock } from "lucide-react"
 import { useAuthStore } from "@/store/store"
+import { USDC_MINT, TREASURY_ADDRESS } from "@/lib/solanaConfig"
 import { useLoginFn, useMakeSubscription } from "@/service/user"
 import { setToken } from "@/service/token"
 import { shortenAddress } from "@/utils/constants"
+import useTokenBalance from '@/hooks/useTokenBalance'
 
 type Plan = "SNIPER BASIC" | "SNIPER PRO"
 
@@ -27,15 +30,35 @@ const PLAN_PRICES_USDC: Record<Plan, number> = {
   "SNIPER PRO": 50,
 }
 
-// Treasury / recipient address for receiving payments
-const TREASURY_ADDRESS = process.env.NEXT_PUBLIC_TREASURY_ADDRESS || "qoALXCmcmtDkPJ7wCpfHTY9deYmNnfQeNaU3Q1nyAz8"
-const USDC_MINT = process.env.NEXT_PUBLIC_USDC_MINT || "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v" // Mainnet USDC
+// USDC decimals (same across networks)
 const USDC_DECIMALS = 6
 
 interface SubscriptionModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   plan: Plan | null
+}
+
+function Modal({ open, onOpenChange, children, className }: { open: boolean; onOpenChange: (open: boolean) => void; children: React.ReactNode; className?: string }) {
+  useEffect(() => {
+    if (open) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
+  if (!open) return null
+
+  const modal = (
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="absolute inset-0 bg-black/60" onClick={() => onOpenChange(false)} />
+      <div className={`relative mx-4 w-full max-w-2xl rounded-md ${className ?? ''}`} role="dialog" aria-modal="true">
+        {children}
+      </div>
+    </div>
+  )
+
+  if (typeof window === 'undefined') return null
+  return createPortal(modal, document.body)
 }
 
 export default function SubscriptionModal({ open, onOpenChange, plan }: SubscriptionModalProps) {
@@ -49,7 +72,8 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
   const [referral, setReferral] = useState("")
   const [isPaying, setIsPaying] = useState(false)
   const [treasuryValid, setTreasuryValid] = useState<boolean>(true)
-  const [usdcBalance, setUsdcBalance] = useState<number>(0)
+  // useTokenBalance will fetch the user's USDC balance (uiAmount) by ATA
+  const { balance: usdcBalance, refetch: refetchUsdc } = useTokenBalance(publicKey ?? null, USDC_MINT, true)
   const priceUsdc = useMemo(() => (plan ? PLAN_PRICES_USDC[plan] : 0), [plan])
 
   const insufficientUSDC = useMemo(() => connected && priceUsdc > 0 && usdcBalance < priceUsdc, [connected, priceUsdc, usdcBalance])
@@ -142,7 +166,7 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
       try {
         const bal = await connection.getTokenAccountBalance(userAta)
         const uiAmount = bal?.value?.uiAmount || 0
-        setUsdcBalance(uiAmount)
+        // setUsdcBalance(uiAmount)
         if (uiAmount < priceUsdc) {
           toast.error("Insufficient USDC balance")
           setIsPaying(false)
@@ -152,7 +176,7 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
         // ignore; will fail on transfer anyway
       }
 
-      // Transfer USDC
+     
       tx.add(
         createTransferInstruction(
           userAta,
@@ -169,7 +193,7 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
       toast.success("Payment confirmed on-chain")
 
       // Notify backend
-      await subscribeFn({ signature: sig, plan, referralCode: referral })
+      await subscribeFn({ signature: sig, plan: "pro", referralCode: referral })
       toast.success("Subscription activated")
 
       onOpenChange(false)
@@ -185,31 +209,20 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
 
   // Fetch USDC balance when wallet connects or modal opens/plan changes
   useEffect(() => {
-    const fetchBalance = async () => {
-      try {
-        if (!connected || !publicKey) return setUsdcBalance(0)
-        const mint = new PublicKey(USDC_MINT)
-        const ata = await getAssociatedTokenAddress(mint, publicKey)
-        const info = await connection.getAccountInfo(ata)
-        if (!info) return setUsdcBalance(0)
-        const bal = await connection.getTokenAccountBalance(ata)
-        setUsdcBalance(bal?.value?.uiAmount || 0)
-      } catch {
-        setUsdcBalance(0)
-      }
-    }
-    fetchBalance()
-  }, [connected, publicKey, plan, open, connection])
-
+    
+    if (publicKey) void refetchUsdc()
+  }, [publicKey, connected, plan, open, refetchUsdc])
+console.log(usdcBalance, 'usdc balance')
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-[#050d12] border border-[#FFFFFF12] text-white sm:max-w-2xl">
-        <DialogHeader>
-          <DialogTitle className="text-xl flex items-center gap-2">
+    <Modal open={open} onOpenChange={onOpenChange} className="bg-[#050d12] border border-[#FFFFFF12] text-white sm:max-w-2xl">
+      <div className="p-4">
+        <div className="flex items-center justify-between">
+          <div className="text-xl flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-[#ff4c02]" />
-            {plan ? `Confirm ${plan}` : "Select a plan"}
-          </DialogTitle>
-        </DialogHeader>
+            <span>{plan ? `Confirm ${plan}` : "Select a plan"}</span>
+          </div>
+          <button aria-label="Close" onClick={() => onOpenChange(false)} className="text-white opacity-80 hover:opacity-100">✕</button>
+        </div>
 
         <div className="mt-1 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Summary */}
@@ -240,10 +253,10 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
                   <span className="opacity-80">USDC Balance</span>
                   <span className={insufficientUSDC ? 'text-red-400' : 'opacity-90'}>{usdcBalance.toFixed(2)} USDC</span>
                 </div>
-                <div className="flex items-center justify-between text-sm">
+                {/* <div className="flex items-center justify-between text-sm">
                   <span className="opacity-80">Recipient</span>
                   <span className="font-mono opacity-90">{treasuryValid ? shortenAddress(TREASURY_ADDRESS) : 'Not configured'}</span>
-                </div>
+                </div> */}
                 <div className="flex items-center gap-2 text-[11px] opacity-70">
                   <Lock className="w-3 h-3" />
                   Payment is secured on Solana; a small SOL network fee applies.
@@ -288,9 +301,7 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
             <div className="h-px bg-[#FFFFFF14]" />
 
             <div className="flex gap-3">
-              <DialogClose asChild>
-                <Button variant="secondary" className="w-1/3 bg-transparent border border-[#FFFFFF24] text-white hover:bg-white/10">Cancel</Button>
-              </DialogClose>
+              <Button variant="secondary" onClick={() => onOpenChange(false)} className="w-1/3 bg-transparent border border-[#FFFFFF24] text-white hover:bg-white/10">Cancel</Button>
               <Button
                 onClick={pay}
                 disabled={!connected || isPaying || subscribing || !plan || !treasuryValid || insufficientUSDC}
@@ -305,7 +316,7 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
             </div>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </Modal>
   )
 }
