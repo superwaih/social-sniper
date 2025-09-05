@@ -29,7 +29,7 @@ const TopNav = () => {
     const data = {
       publicKey: publicKey.toBase58()
     };
-console.log(data)
+
     loginFn(data, {
       onSuccess: (res) => {
         toast.success(res?.message || 'Login successful');

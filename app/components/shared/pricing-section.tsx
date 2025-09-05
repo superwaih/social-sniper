@@ -51,7 +51,7 @@ const PricingSection = () => {
       className="bg-[#00090F] py-16 px-4 min-h-[60vh]"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.3 }}
+  viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
       <motion.div

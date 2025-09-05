@@ -72,7 +72,7 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
   const [referral, setReferral] = useState("")
   const [isPaying, setIsPaying] = useState(false)
   const [treasuryValid, setTreasuryValid] = useState<boolean>(true)
-  // useTokenBalance will fetch the user's USDC balance (uiAmount) by ATA
+
   const { balance: usdcBalance, refetch: refetchUsdc } = useTokenBalance(publicKey ?? null, USDC_MINT, true)
   const priceUsdc = useMemo(() => (plan ? PLAN_PRICES_USDC[plan] : 0), [plan])
 
@@ -91,25 +91,29 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
     }
   }, [])
 
-  // Ensure user is server-logged-in when wallet connects
+ 
   useEffect(() => {
-    const doLogin = async () => {
-      if (connected && publicKey && !hasLoggedIn) {
-        try {
-          const res = await loginFn({ publicKey: publicKey.toBase58() })
-          if (res?.token) {
-            setToken(res.token, 7)
+   
+  if (connected && publicKey && !hasLoggedIn) {
+     const data = {
+      publicKey: publicKey.toBase58()
+    };
+     loginFn(data, {
+          onSuccess: (res) => {
+            toast.success(res?.message || 'Login successful');
+            setLoggedIn(true);
+            console.log(res?.token)
+            setToken(res?.token, 7)
+                  const pubKeyStr = publicKey.toBase58();
+          setPublicKey(pubKeyStr);
+          },
+          onError: (err) => {
+            console.error('Login error', err);
+            toast.error('An error occurred during login');
           }
-          setLoggedIn(true)
-          setPublicKey(publicKey.toBase58())
-        } catch (e: unknown) {
-          console.error(e)
-          const msg = e instanceof Error ? e.message : "Login failed"
-          toast.error(msg)
-        }
-      }
-    }
-    doLogin()
+        });
+  }
+ 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connected, publicKey])
 
@@ -193,11 +197,18 @@ export default function SubscriptionModal({ open, onOpenChange, plan }: Subscrip
       toast.success("Payment confirmed on-chain")
 
       // Notify backend
-      await subscribeFn({ signature: sig, plan: "pro", referralCode: referral })
+      subscribeFn({ signature: sig, plan: "pro", referralCode: referral, publicKey: publicKey.toBase58() },{
+        onSuccess: () =>{
       toast.success("Subscription activated")
-
-      onOpenChange(false)
+  onOpenChange(false)
       router.push("/overview")
+        },
+        onError: () =>{
+          toast.error('An Error Occurred')
+        }
+      })
+
+    
     } catch (e: unknown) {
       console.error(e)
       const msg = e instanceof Error ? e.message : "Payment failed"

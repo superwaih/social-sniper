@@ -74,7 +74,8 @@ interface ISubscriptionData {
 
     "signature": string,
     "plan": string,
-    "referralCode": string
+    "referralCode": string,
+    "publicKey": string
 }
 
 const makeSubscription = async (data: ISubscriptionData) =>{
