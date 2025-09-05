@@ -100,8 +100,8 @@ export const useDeleteTarget = () =>{
     mutationFn: deleteTarget,
     mutationKey: ['delete-target'],
     onSuccess: () =>{
-queryClient.invalidateQueries({ queryKey: ['get-all-targets', 'get-targets'] })
-  
+queryClient.invalidateQueries({ queryKey: [ 'get-targets', "get-all-targets"] })
+
     }
   })
 }
